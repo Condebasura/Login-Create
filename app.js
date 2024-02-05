@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.get("/users.json" , UserControllers.getAllUsers);
+app.get("/" , UserControllers.getAllUsers);
 
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);

@@ -1,7 +1,7 @@
 
 
 const getAllUsers = (req, res) =>{
-	res.json({users})
+	res.json(users);
 };
 
 export default{
