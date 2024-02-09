@@ -1,9 +1,16 @@
+const postUsers = (req, res) =>{
+let datos = req.body;
+  
+res.send({
+	message: "datos recibidos correctamete",
+	datos: datos
 
-
-const getAllUsers = (req, res) =>{
-	res.json(users);
+})
 };
 
+
+
 export default{
-	getAllUsers,
+	postUsers,
+	
 };
