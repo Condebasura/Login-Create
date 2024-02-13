@@ -1,3 +1,4 @@
+
 let body = document.querySelector("body");
 const form = document.querySelector(".form");
 let email = document.querySelector(".e-mail");
@@ -19,12 +20,11 @@ form.addEventListener("submit", (e) =>{
              body: JSON.stringify({email, pass})   
          
          }).then(res => res.json())
-         .then(data => {
-           console.log(data);
+         .then(data => console.log(data)
          
             
              
-         })
+         )
          .catch(error => console.log(error));
          
         

@@ -1,16 +1,22 @@
+let user = [
+	{email: "could_2032@outlook.com",pass: "Mierda" },];
+
 const getIndex = (req , res) =>{
 
 	res.render("index")
-}
+};
 
 const postUsers = (req, res) =>{
-let datos = req.body;
-  
-res.send({
-	message: "datos recibidos correctamete",
-	datos: datos
+	
+let email = req.body.email;
+let pass = req.body.pass;
+const userEncontrado = user.find(user => user.email === email);
+if(userEncontrado){
+	res.status(200).json("el correo es correcto")
+}else{
+	res.status(404).json("el correo es incorrecto")
+}
 
-})
 };
 
 
