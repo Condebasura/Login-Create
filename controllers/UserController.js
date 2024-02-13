@@ -12,7 +12,7 @@ let email = req.body.email;
 let pass = req.body.pass;
 const userEncontrado = user.find(user => user.email === email);
 if(userEncontrado){
-	res.status(200).json("el correo es correcto")
+	res.status(200).json({mensaje: "el correo es correcto"})
 }else{
 	res.status(404).json("el correo es incorrecto")
 }
