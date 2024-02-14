@@ -3,18 +3,18 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet', type="text/css", href='/css/style.css')
-  title Login-Create
+  title Login-Create 
 form.form
   h2.login_name Iniciar Sesion
   br
-  label.email Email
-  input#email.e-mail(type='email')
+  label(for="email") Email
+  input(id="email" class="e-mail" type='email')
+  h3.parrafo= mensaje 
   label(for='password') Password
   input(type='password' class='contraseña' id="password")
   button.login(type='submit') Iniciar
   br
   h4.no_cuenta No tienes una cuenta?
   button.registro(type='submit') Registrarse
-dialog#modal
-p mensaje 
 script(type="application/javascript", src='../js/script.js')
+

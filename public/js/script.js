@@ -1,4 +1,3 @@
-
 let body = document.querySelector("body");
 const form = document.querySelector(".form");
 let email = document.querySelector(".e-mail");
@@ -6,11 +5,8 @@ let pass = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 
-
-
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
-  
         const verifiDatos = (email , pass)=>{
 
             return fetch("http://localhost:3000",{
@@ -19,12 +15,16 @@ form.addEventListener("submit", (e) =>{
              },
              body: JSON.stringify({email, pass})   
          
-         }).then(res => res.json())
-         .then(data => console.log(data)
+         })
          
+         .then(res =>  res.json())
             
-             
-         )
+         .then(data => 
+            document.querySelector(".parrafo").innerHTML = data.mensaje
+         
+       
+        
+        )
          .catch(error => console.log(error));
          
         
