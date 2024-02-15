@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.get("/" , UserControllers.getIndex)
+app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
-
+app.get("/log-in", UserControllers.getWelcome);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
 })
