@@ -14,6 +14,7 @@ const port = 3000;
 app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
+
 /*app.use((req,res,next)=>{
 	res.setHeader('X-Content-Type-Options', 'nosniff');
 next();	

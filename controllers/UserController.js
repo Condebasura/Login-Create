@@ -16,11 +16,11 @@ let user = [
 		let pass = req.body.pass;
 		const userEncontrado = user.find(user => user.email === email && user.pass === pass);
 		
-		if (!userEncontrado) {
+		if (userEncontrado) {
 			
-			res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
+			res.redirect(302, "/log-in");
 		}else{
-			res.status(200).redirect("/log-in")
+			res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
 		}
 		
 	}

@@ -25,7 +25,7 @@ form.addEventListener("submit", (e) =>{
                 });
                 const data = await res.json();
 
-                if(res.ok){
+                if(res.status <= 399){
                 
                     return window.location.href = "/log-in";
                 }else{
