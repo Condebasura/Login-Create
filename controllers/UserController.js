@@ -18,7 +18,7 @@ let user = [
 		
 		if (userEncontrado) {
 			
-			res.redirect(302, "/log-in");
+			res.status(200).redirect("log-in");
 		}else{
 			res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
 		}

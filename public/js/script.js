@@ -23,14 +23,13 @@ form.addEventListener("submit", (e) =>{
                     },
                     body: JSON.stringify({ email, pass })
                 });
-                const data = await res.json();
-
+                const data = await res.text();
+                   
                 if(res.status <= 399){
-                
                     return window.location.href = "/log-in";
                 }else{
-
-                    return document.querySelector(".parrafo").innerHTML = data.mensaje;
+                   let objeto = JSON.parse(data) 
+                    return document.querySelector(".parrafo").innerHTML = objeto.mensaje;
                 }
             } catch (error) {
                 return console.log(error);
