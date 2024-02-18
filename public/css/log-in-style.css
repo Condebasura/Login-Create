@@ -1,0 +1,44 @@
+*{
+    margin:  auto;
+}
+.conteiner{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+text-align: center;
+box-shadow: 0px 2px 4px #454545;
+height: 5em;
+
+
+}
+
+.bars{
+    box-shadow: 1px 1px 4px #454;
+    padding: .6em;
+    transform: rotateZ(90deg);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.bars:active{
+    box-shadow: 1px 1px 4px #999393;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.buscador{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.img_default{
+    width: 3em;
+    box-shadow: 1px 1px 5px #454;
+    border-radius: 2em;
+
+}

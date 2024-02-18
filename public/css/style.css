@@ -11,7 +11,7 @@
    align-self: center;
     margin: auto;
     margin-top: 5%;
- padding:1em 2em;
+ padding: 2em 1em;
   box-shadow: 2px 2px 12px #464545cb;
  }
 
@@ -25,14 +25,14 @@ label{
   font-size: 17px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-	input{
+	.e-mail , .contraseña{
 		height: 30px;
     max-width: 100%;
    border: 1px solid  rgb(180, 187, 178);
    
 	}
 
-input:focus{
+.e-mail:focus , .contraseña:focus{
   border: 1px solid green;
   outline: none;
 }
@@ -59,7 +59,7 @@ input:focus{
   .registro{
     margin: 1em;
     padding: 10px;
-    background-color: rgba(32, 165, 32, 0.733);
+    background-color: rgb(50, 60, 172);
     color: aliceblue;
     font-size: 18px;
     border-style: none;

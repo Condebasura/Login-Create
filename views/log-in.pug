@@ -1,4 +1,11 @@
 extends layout 
 block content 
  title= title
- h1.log-in-sucess Bienvenido!!
+ nav.conteiner
+    div.bars |||
+    div.buscador
+     label(for="buscar") buscar
+     input(type="search", class="search", id="buscar")
+    div.user
+     img(src="/img/default1.jpg", class="img_default")
+     spam.user_name usuario 
