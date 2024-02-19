@@ -1,5 +1,3 @@
-
-
 let body = document.querySelector("body");
 const form = document.querySelector(".form");
 let email = document.querySelector(".e-mail");
@@ -41,6 +39,12 @@ form.addEventListener("submit", (e) =>{
 
     verifiDatos(email.value , pass.value);
 
-    
 })
 
+btnRegistro.addEventListener("click", (e)=>{
+    e.preventDefault();
+    if(e.target){
+
+        return window.location.href = "/create";
+    }
+})    

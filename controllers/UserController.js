@@ -24,12 +24,18 @@ let user = [
 		}
 		
 	}
+
+	const getCreate = (req , res )=>{
+
+		res.render("create", {title: "Registrarse"})
+	}
 	
 
 export default{
 	postUsers,
 	getIndex,
-	getWelcome
+	getWelcome,
+	getCreate,
 	
 };
 
