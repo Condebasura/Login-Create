@@ -2,7 +2,7 @@ const form = document.querySelector(".formCreate");
 let nombre = document.querySelector(".Name");
 let apellido = document.querySelector(".Ap");
 let email = document.querySelector(".C-mail");
-let password = document.querySelector(".pasword");
+let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
 const btnRegis = document.querySelector(".Regis-fin");
 
@@ -50,7 +50,7 @@ apellido.addEventListener("input", validaApellido);
 const validaEmail = () => {
     if (!regexEmail.test(email.value)) {
         email.style.border = "2px solid tomato";
-        email.setCustomValidity("El campo no puede estar vacio contener numeros o caracteres especiales");
+        email.setCustomValidity("Ingrese un email valido ");
         return false;
     } else {
         email.style.border = "none";
