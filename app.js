@@ -1,5 +1,6 @@
 import cors from "cors";
 import path from "path";
+import multer from "multer";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -19,6 +20,7 @@ app.use((req,res,next)=>{
 	res.setHeader('X-Content-Type-Options', 'nosniff');
 next();	
 });
+let upload = multer({dest:'uploads/'});
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -32,6 +34,7 @@ app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.get("/log-in", UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
+app.post("/create", upload.single('imagen') , UserControllers.CrarUsuario);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
 })

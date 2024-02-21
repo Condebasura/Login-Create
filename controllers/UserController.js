@@ -1,5 +1,5 @@
-let user = [
-	{email: "could_2032@outlook.com",pass: "Mierda" },];
+import model from "../model/model.js";
+import bd from "../model/bd.js";
 	
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create"} )
@@ -11,31 +11,54 @@ let user = [
 				};
 	
 	
-	const postUsers =(req, res) => {
+	const postUsers  = async (req, res) => {
 		let email = req.body.email;
 		let pass = req.body.pass;
-		const userEncontrado = user.find(user => user.email === email && user.pass === pass);
-		
-		if (userEncontrado) {
+        try{
+
+			let usuario = await bd.get('SELECT * FROM usuarios WHERE email = ?' , email);
 			
-			res.status(200).redirect("log-in");
-		}else{
-			res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
-		}
-		
+			
+			if (usuario && usuario.contraseña === pass) {
+				
+				res.status(200).redirect("log-in");
+			}else{
+				res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
+			}
+		}catch(err){
+		res.send("Ocurrio un error al insertar los datos")
 	}
+			
+	};
 
 	const getCreate = (req , res )=>{
 
 		res.render("create", {title: "Registrarse"})
 	}
 	
+	const CrarUsuario = async (req, res)=>{
+          
+		let usuario = {
+			nombre: req.body.nombre,
+			apllido: req.body.apellido , 
+			email: req.body.email, 
+			contraseña: req.body.contraseña, 
+			imagen: req.file.buffer,
+		};
+		try{
+			let resultado = await model.InsertUser(usuario);
+			res.sen(resultado);
+		}catch(err){
+			res.send("Ocurrio un error al insertar los datos")
+		};
+	}
 
 export default{
 	postUsers,
 	getIndex,
 	getWelcome,
 	getCreate,
+	CrarUsuario,
 	
 };
 

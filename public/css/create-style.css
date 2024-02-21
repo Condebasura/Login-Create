@@ -8,6 +8,7 @@
     width: 400px;
     align-items: center;
     text-align: center;
+    align-self: center;
     margin-top: 5%;
     padding: 2em 1em;
 }
