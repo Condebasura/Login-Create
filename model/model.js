@@ -1,6 +1,6 @@
 import bd from "./bd.js";
 
-bd.run('CREATE TABLE IF NOT EXISTS usuarios(id INTEGRER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT , imagen BLOB)');
+bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGRER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT , imagen BLOB)');
 
 const InsertUser = async (usuario)=>{
    try{
