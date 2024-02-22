@@ -1,6 +1,5 @@
-import model from "../model/model.js";
 import bd from "../model/bd.js";
-	
+	// se pudo ingresar los datos a la bd , hay quue configurar la validacin al iniciar
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create"} )
 	};
@@ -13,13 +12,13 @@ import bd from "../model/bd.js";
 	
 	const postUsers  = async (req, res) => {
 		let email = req.body.email;
-		let pass = req.body.pass;
+		let pass = req.body.password;
         try{
 
 			let usuario = await bd.get('SELECT * FROM usuarios WHERE email = ?' , email);
-			
-			
-			if (usuario && usuario.contraseña === pass) {
+			   
+             		
+			if (usuario.email  === email && usuario.contraseña === pass) {
 				
 				res.status(200).redirect("log-in");
 			}else{
@@ -42,16 +41,20 @@ import bd from "../model/bd.js";
 			nombre: req.body.nombre,
 			apllido: req.body.apellido , 
 			email: req.body.email, 
-			contraseña: req.body.contraseña, 
-			imagen: req.file.buffer,
+			contraseña: req.body.password, 
+			imagen: req.archivo,
 		};
 		try{
-			let resultado = await model.InsertUser(usuario);
-			res.sen(resultado);
+			let resultado = await bd.InsertUser(usuario);
+			res.send("Usuario creado con exito");
 		}catch(err){
-			res.send("Ocurrio un error al insertar los datos")
+			res.send(console.log(err))
 		};
 	}
+
+
+
+
 
 export default{
 	postUsers,

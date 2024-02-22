@@ -4,6 +4,7 @@ let apellido = document.querySelector(".Ap");
 let email = document.querySelector(".C-mail");
 let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
+let archivo = document.querySelector(["data-archivo"]);
 const btnRegis = document.querySelector(".Regis-fin");
 
 //  Para emails.
@@ -80,8 +81,26 @@ const ValidarRegisPass = () => {
  RePasword.addEventListener("input", ValidarRegisPass);
 
  
-form.addEventListener("submit", (e)=>{
+form.addEventListener("submit",(e)=>{
     e.preventDefault();
+    const RegisUsuario = async (nombre , apellido, email , password , archivo)=>{
 
+        try{
 
+            if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
+                await fetch("http://localhost:3000/create", {
+                    method: "POST", 
+                    headers:{
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({nombre, apellido , email , password , archivo})
+                }).then(res => res.text())
+                .then(data => console.log(data))
+                
+            }
+        }catch(error){
+            return console.log(error)
+        }
+    }
+RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo);
 })

@@ -5,7 +5,8 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import {fileURLToPath} from "url";
-import UserControllers from "./controllers/UserController.js"
+import UserControllers from "./controllers/UserController.js";
+import bd from "./model/bd.js";
 
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+//app.get("/" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.get("/log-in", UserControllers.getWelcome);
