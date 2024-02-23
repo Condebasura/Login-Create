@@ -1,5 +1,5 @@
 import bd from "../model/bd.js";
-	// se pudo ingresar los datos a la bd , hay quue configurar la validacin al iniciar
+	// se pudo ingresar los datos a la bd , hay quue configurar la validacin al iniciar y tambien el registro con emails unicos.
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create"} )
 	};
@@ -34,6 +34,11 @@ import bd from "../model/bd.js";
 
 		res.render("create", {title: "Registrarse"})
 	}
+
+
+const getNewUser= (req ,res)=>{
+	res.render("NewUserOk")
+}
 	
 	const CrarUsuario = async (req, res)=>{
           
@@ -45,13 +50,20 @@ import bd from "../model/bd.js";
 			imagen: req.archivo,
 		};
 		try{
-			let resultado = await bd.InsertUser(usuario);
-			res.send("Usuario creado con exito");
+
+			let resultado = bd.InsertUser(usuario);
+			if(resultado){
+				//res.status(200).redirect("NewUserOk");
+
+			}else{
+
+				res.status(404).json({mensaje: "Error al crear el usuario , recargue  e intente nuevamente"});
+			}
+			
 		}catch(err){
 			res.send(console.log(err))
 		};
 	}
-
 
 
 
@@ -62,6 +74,8 @@ export default{
 	getWelcome,
 	getCreate,
 	CrarUsuario,
+	getNewUser,
+	
 	
 };
 

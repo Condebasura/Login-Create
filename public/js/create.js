@@ -88,15 +88,21 @@ form.addEventListener("submit",(e)=>{
         try{
 
             if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
-                await fetch("http://localhost:3000/create", {
+               let res =  await fetch("http://localhost:3000/create", {
                     method: "POST", 
                     headers:{
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({nombre, apellido , email , password , archivo})
-                }).then(res => res.text())
-                .then(data => console.log(data))
-                
+                })
+                const data = await res.text();
+                if(res.status <= 399){
+                    return window.location.href = "/NewUserOk";
+                }else{
+                    let objeto = JSON.parse(data);
+                    return document.querySelector(".error").innerHTML = objeto.mensaje
+
+                }
             }
         }catch(error){
             return console.log(error)
