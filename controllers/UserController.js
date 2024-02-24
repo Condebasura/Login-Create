@@ -55,7 +55,7 @@ const getNewUser= (req ,res)=>{
 		
 			   let resultado = bd.InsertUser(usuario);
 			   if(!resultado){
-				   return res.status(400).json({mensaje: `no disponible`})
+				  return EmailUsado;
 				}else{
 				res.status(200).redirect("NewUserOk");
 				return;

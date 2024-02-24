@@ -30,17 +30,18 @@ const InsertUser =  async (usuario)=>{
      throw error;
     }
  };
-const EmailenUso =(usuario)=>{
+const EmailenUso =(usuario, res)=>{
     let sql = `SELECT * FROM usuarios WHERE email = ?`;
               
     let mail = usuario.email;
-bd.get(sql , [mail], (err , row, res) =>{
+bd.get(sql , [mail], (err , row, res)=> {
         if(err){
             console.error(err.message);
             res.status(500).send("Error en el servidor");
             return;
            }if(row){
-               res.status(400).json({mensaje: `El email ${mail} no esta disponible`})
+            
+               res.json({mensaje: `El email ${mail} no esta disponible`})
            return;
            }
            
