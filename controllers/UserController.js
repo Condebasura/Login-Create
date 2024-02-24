@@ -50,14 +50,16 @@ const getNewUser= (req ,res)=>{
 			imagen: req.archivo,
 		};
 		try{
-
-			let resultado = bd.InsertUser(usuario);
-			if(resultado){
-				//res.status(200).redirect("NewUserOk");
-
-			}else{
-
-				res.status(404).json({mensaje: "Error al crear el usuario , recargue  e intente nuevamente"});
+			let EmailUsado = bd.EmailenUso(usuario);
+			
+		
+			   let resultado = bd.InsertUser(usuario);
+			   if(!resultado){
+				   return res.status(400).json({mensaje: `no disponible`})
+				}else{
+				res.status(200).redirect("NewUserOk");
+				return;
+			   
 			}
 			
 		}catch(err){
