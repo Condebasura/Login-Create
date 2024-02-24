@@ -15,9 +15,16 @@ const ConsultUser = ()=>{
                     
                 })
             }
-        
-        })
-}
+            bd.close((err) => {
+              if (err) {
+                console.error('Error al cerrar la conexión:', err.message);
+              } else {
+                console.log('Conexión cerrada correctamente.');
+              }
+            });
+      });
+    
+    };
 
 const InsertUser =  async (usuario)=>{
     try{
@@ -27,27 +34,35 @@ const InsertUser =  async (usuario)=>{
       stmt.finalize();
      return 'usuario registrado con exito';
     } catch(error){
-     throw error;
+     throw console.log(error);
     }
  };
-const EmailenUso =(usuario, res)=>{
-    let sql = `SELECT * FROM usuarios WHERE email = ?`;
-              
-    let mail = usuario.email;
-bd.get(sql , [mail], (err , row, res)=> {
-        if(err){
-            console.error(err.message);
-            res.status(500).send("Error en el servidor");
-            return;
-           }if(row){
+
+
+
+const EmailenUso =(usuario )=>{
+
+    return new Promise((resolve , reject)=>{
+
+        let sql = `SELECT * FROM usuarios WHERE email = ?`;
+        
+        let mail = usuario.email;
+        bd.get(sql , [mail], (err , row )=> {
+            if(err){
+                console.error(err.message);
+                reject(err);
+            }if(row){
+                console.log(`El correo ${mail} no esta disponible`);
+                resolve(false);
+
+            } else{
+                resolve(true);
+            }
             
-               res.json({mensaje: `El email ${mail} no esta disponible`})
-           return;
-           }
-           
             
-       })
-}
+        });
+    })
+};
 
 export default{bd,
 ConsultUser,

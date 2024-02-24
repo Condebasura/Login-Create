@@ -100,6 +100,7 @@ form.addEventListener("submit",(e)=>{
                     return window.location.href = "/NewUserOk";
                 }else{
                     let objeto = JSON.parse(data);
+                    console.log(objeto.mensaje);
                     return document.querySelector(".error").innerHTML = objeto.mensaje
 
                 }
