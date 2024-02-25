@@ -52,9 +52,9 @@ const EmailenUso =(usuario )=>{
                 console.error(err.message);
                 reject(err);
             }if(row){
-                console.log(`El correo ${mail} no esta disponible`);
+                //console.log(`El correo ${mail} no esta disponible`);
                 resolve(false);
-
+               
             } else{
                 resolve(true);
             }

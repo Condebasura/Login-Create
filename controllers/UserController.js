@@ -1,5 +1,5 @@
 import bd from "../model/bd.js";
-	
+	// se pudo ingresar los datos a la bd , hay quue configurar la validacin al iniciar y tambien el registro con emails unicos.
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create"} )
 	};
@@ -39,7 +39,7 @@ import bd from "../model/bd.js";
 const getNewUser= (req ,res)=>{
 	res.render("NewUserOk")
 }
-	//corregir el problema con esta funcion!!
+	
 	const CrarUsuario = async (req, res)=>{
           
 		let usuario = {
@@ -50,34 +50,25 @@ const getNewUser= (req ,res)=>{
 			imagen: req.archivo,
 		};
 		try{
-			console.log("antes del if EmailenUso")
-			let EmailUsado =  await bd.EmailenUso(usuario);
-			if(EmailUsado){
-				console.log("dentro de mail ya usado");
-				res.json({mensaje: `El email ${usuario.email} no esta disponible`});
-				
+			
+			
+			
+			if(bd.EmailenUso(usuario)){
+			res.json({mensaje:`El email ${usuario.email} esta en uso`})
+			   
+			console.log("El email esta en uso");
 			}else{
-				console.log("antes de la declaracion de resultado")
-				let resultado = await bd.InsertUser(usuario);
-				console.log("antes del if resultado");
-				if(resultado){
-				console.log("dentro del if resultado");
-					res.redirect("NewUserOk");
-				}else{
-				console.log("dentro del else resultado");
-
-					res.json({mensaje: `Ocurrio un error al crear el usuario!`});
-				 
-			  }
-			  }
-		
-			 
-		}catch(error){
-				console.error(error);
-				res.status(500).send("Error en el servidor");
+			     bd.InsertUser(usuario)
+				console.log("Exito al crear e usuario")
+				res.status(200).redirect("NewUserOk");
+				return;
+			   
 			}
+			
+		}catch(err){
+			res.send(console.log(err))
 		};
-	
+	}
 
 
 

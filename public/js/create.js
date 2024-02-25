@@ -95,13 +95,15 @@ form.addEventListener("submit",(e)=>{
                     },
                     body: JSON.stringify({nombre, apellido , email , password , archivo})
                 })
+
                 const data = await res.text();
-                if(res.status <= 399){
-                    return window.location.href = "/NewUserOk";
-                }else{
-                    let objeto = JSON.parse(data);
+                
+                if(!res.status <= 304){
+                    let objeto = await JSON.parse(data);
                     console.log(objeto.mensaje);
                     return document.querySelector(".error").innerHTML = objeto.mensaje
+                }else{
+                    return window.location.href = "/NewUserOk";
 
                 }
             }
