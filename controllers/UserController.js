@@ -1,5 +1,5 @@
 import bd from "../model/bd.js";
-	// se pudo ingresar los datos a la bd , hay quue configurar la validacin al iniciar y tambien el registro con emails unicos.
+	
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create"} )
 	};
@@ -51,18 +51,15 @@ const getNewUser= (req ,res)=>{
 		};
 		try{
 			
-			
-			
-			if(bd.EmailenUso(usuario)){
-			res.json({mensaje:`El email ${usuario.email} esta en uso`})
-			   
-			console.log("El email esta en uso");
-			}else{
-			     bd.InsertUser(usuario)
-				console.log("Exito al crear e usuario")
-				res.status(200).redirect("NewUserOk");
-				return;
-			   
+			const CorreoEnUso = await bd.EmailenUso(usuario);
+			if(CorreoEnUso){
+				res.status(409);
+				res.json({mensaje:`${usuario.email} no esta disponible!!`});
+				
+			}else if(!CorreoEnUso){
+				await bd.InsertUser(usuario);
+				res.status(200)
+				res.json({mensaje: `Usuario registrado con exito`});
 			}
 			
 		}catch(err){

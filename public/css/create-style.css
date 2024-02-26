@@ -49,3 +49,19 @@ input:focus{
 .Regis_fin:active{
 box-shadow: none;
 }
+
+#modal{
+    border-style: none;
+
+}
+.msgError{
+    font-size: 13px;
+    color: red;
+}
+
+.msjExito{
+    font-size: 13px;
+    color:rgb(17, 161, 17);
+    
+
+}

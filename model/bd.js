@@ -40,23 +40,27 @@ const InsertUser =  async (usuario)=>{
 
 
 
-const EmailenUso =(usuario )=>{
+const EmailenUso =(usuario)=>{
 
     return new Promise((resolve , reject)=>{
 
-        let sql = `SELECT * FROM usuarios WHERE email = ?`;
+        let sql = 'SELECT * FROM usuarios WHERE email = ?';
         
         let mail = usuario.email;
+        
         bd.get(sql , [mail], (err , row )=> {
+        
             if(err){
                 console.error(err.message);
                 reject(err);
+                
             }if(row){
-                //console.log(`El correo ${mail} no esta disponible`);
-                resolve(false);
+
+                resolve(true);
                
             } else{
-                resolve(true);
+                
+                resolve(false);
             }
             
             

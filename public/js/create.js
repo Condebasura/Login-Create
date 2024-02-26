@@ -81,10 +81,11 @@ const ValidarRegisPass = () => {
  RePasword.addEventListener("input", ValidarRegisPass);
 
  
+ 
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
     const RegisUsuario = async (nombre , apellido, email , password , archivo)=>{
-
+       
         try{
 
             if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
@@ -98,12 +99,26 @@ form.addEventListener("submit",(e)=>{
 
                 const data = await res.text();
                 
-                if(!res.status <= 304){
+                if(res.status === 409){
                     let objeto = await JSON.parse(data);
                     console.log(objeto.mensaje);
-                    return document.querySelector(".error").innerHTML = objeto.mensaje
-                }else{
-                    return window.location.href = "/NewUserOk";
+                    let modal = document.getElementById("modal");
+                    let p = document.createElement("h2");
+                    p.setAttribute("class", "msgError");
+                    modal.innerHTML = "";
+                    p.innerHTML = objeto.mensaje;
+                    modal.appendChild(p);
+                    modal.showModal();
+                   
+                }else if(res.status === 200){
+                    let objeto = await JSON.parse(data);
+                    let modal = document.getElementById("modal");
+                    let p = document.createElement("h2");
+                    p.setAttribute("class", "msgExito");
+                    modal.innerHTML = "";
+                    p.innerHTML = objeto.mensaje;
+                    modal.appendChild(p);
+                    modal.showModal();
 
                 }
             }
