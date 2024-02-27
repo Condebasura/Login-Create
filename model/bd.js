@@ -15,13 +15,7 @@ const ConsultUser = ()=>{
                     
                 })
             }
-            bd.close((err) => {
-              if (err) {
-                console.error('Error al cerrar la conexión:', err.message);
-              } else {
-                console.log('Conexión cerrada correctamente.');
-              }
-            });
+           
       });
     
     };
@@ -67,8 +61,34 @@ const EmailenUso =(usuario)=>{
         });
     })
 };
+// Encontrar porque en esta fubcion me devuelve undefined el pass
+const NoCoincide = (usuario)=>{
+    return new Promise((resolve , reject)=>{
+        let sql = 'SELECT * FROM usuarios WHERE email = ?';
+        
+           let mail = usuario.email;
+           let pass= usuario.password;
+        bd.get(sql , [mail , pass], (err, row)=>{
+            console.log(mail);
+            console.log(pass);
+            if(err){
+                console.error(err.message);
+                reject(err);
+            }else if(row){
+                console.log(row.email);
+                console.log(row.contraseña);
+                console.log("Exacto")
+            }else{
+                console.log(row.contraseña);
+                console.log("credenciales incorrectas")
+            }
+        })
+
+    })
+}
 
 export default{bd,
 ConsultUser,
 InsertUser,
-EmailenUso, };
+EmailenUso, 
+NoCoincide,};

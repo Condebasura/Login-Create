@@ -11,19 +11,20 @@ import bd from "../model/bd.js";
 	
 	
 	const postUsers  = async (req, res) => {
-		let email = req.body.email;
-		let pass = req.body.password;
+		let usuario = {
+        	email: req.body.email,
+			pass: req.body.password,
+		}
         try{
-
-			let usuario = await bd.get('SELECT * FROM usuarios WHERE email = ?' , email);
-			   
-             		
-			if (usuario.email  === email && usuario.contraseña === pass) {
-				
-				res.status(200).redirect("log-in");
-			}else{
-				res.status(404).json({ mensaje: "Credenciales Incorrectas!!" });
-			}
+               const CredUser = await bd.NoCoincide(usuario);
+			   if(CredUser){
+				res.status(409);
+				res.json({mensaje: `Credenciales incorrectas`});
+			   }else if(!CredUser){
+				res.status(200);
+				res.redirect("log-in");
+			   }
+			
 		}catch(err){
 		res.send("Ocurrio un error al insertar los datos")
 	}
@@ -58,7 +59,7 @@ const getNewUser= (req ,res)=>{
 				
 			}else if(!CorreoEnUso){
 				await bd.InsertUser(usuario);
-				res.status(200)
+				res.status(200);
 				res.json({mensaje: `Usuario registrado con exito`});
 			}
 			

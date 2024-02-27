@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.get("/" , bd.ConsultUser);
+app.get("/consulta" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.get("/log-in", UserControllers.getWelcome);

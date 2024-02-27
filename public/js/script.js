@@ -23,11 +23,11 @@ form.addEventListener("submit", (e) =>{
                 });
                 const data = await res.text();
                    
-                if(res.status <= 399){
-                    return window.location.href = "/log-in";
-                }else{
-                   let objeto = JSON.parse(data) 
+                if(res.status === 409){
+                    let objeto = JSON.parse(data);
                     return document.querySelector(".parrafo").innerHTML = objeto.mensaje;
+                }else if(res.status === 200){
+                    return window.location.href = "log-in";
                 }
             } catch (error) {
                 return console.log(error);
