@@ -61,31 +61,30 @@ const EmailenUso =(usuario)=>{
         });
     })
 };
-// Encontrar porque en esta fubcion me devuelve undefined el pass
+
 const NoCoincide = (usuario)=>{
     return new Promise((resolve , reject)=>{
-        let sql = 'SELECT * FROM usuarios WHERE email = ?';
+        let sql = 'SELECT * FROM usuarios WHERE email = ? AND contraseña = ? ';
         
-           let mail = usuario.email;
-           let pass= usuario.password;
-        bd.get(sql , [mail , pass], (err, row)=>{
-            console.log(mail);
-            console.log(pass);
+           let email = usuario.email;
+           let pass = usuario.pass;
+        bd.get(sql , [email ,pass], (err, row)=>{
             if(err){
                 console.error(err.message);
                 reject(err);
             }else if(row){
-                console.log(row.email);
-                console.log(row.contraseña);
+                resolve(true);
                 console.log("Exacto")
             }else{
-                console.log(row.contraseña);
+                resolve(false);
                 console.log("credenciales incorrectas")
             }
         })
 
     })
 }
+
+
 
 export default{bd,
 ConsultUser,

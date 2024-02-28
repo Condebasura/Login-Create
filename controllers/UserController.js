@@ -4,25 +4,26 @@ import bd from "../model/bd.js";
 		res.render("index", {title: "Login-Create"} )
 	};
 	
-	const getWelcome = (req , res) =>{
-		res.render("log-in", {title: "Bienvenido!!"})
-		 
+	const getWelcome = (req , res ) =>{
+			res.render("log-in", {title: "Bienvenido!!"});
+	
 				};
 	
 	
 	const postUsers  = async (req, res) => {
 		let usuario = {
         	email: req.body.email,
-			pass: req.body.password,
+			pass: req.body.pass,
 		}
         try{
                const CredUser = await bd.NoCoincide(usuario);
 			   if(CredUser){
-				res.status(409);
-				res.json({mensaje: `Credenciales incorrectas`});
-			   }else if(!CredUser){
-				res.status(200);
-				res.redirect("log-in");
+				   res.status(200);
+				   return getWelcome();
+				   
+				}else if(!CredUser){
+					res.status(409);
+					res.json({mensaje: `Credenciales incorrectas`});
 			   }
 			
 		}catch(err){
@@ -37,9 +38,6 @@ import bd from "../model/bd.js";
 	}
 
 
-const getNewUser= (req ,res)=>{
-	res.render("NewUserOk")
-}
 	
 	const CrarUsuario = async (req, res)=>{
           
@@ -76,10 +74,7 @@ export default{
 	getIndex,
 	getWelcome,
 	getCreate,
-	CrarUsuario,
-	getNewUser,
-	
-	
+	CrarUsuario,	
 };
 
 

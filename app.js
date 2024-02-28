@@ -36,7 +36,6 @@ app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.get("/log-in", UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
-app.get("/NewUserOk", UserControllers.getNewUser);
 app.post("/create", upload.single('imagen') , UserControllers.CrarUsuario );
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
