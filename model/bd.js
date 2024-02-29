@@ -84,10 +84,33 @@ const NoCoincide = (usuario)=>{
     })
 }
 
+const DataUser = async (usuario)=>{
+    try{
+     return  await new Promise((resolve, reject)=>{
 
+         let sql = 'SELECT * FROM usuarios WHERE email = ? ';
+         let email =  usuario.email;  
+    
+    bd.get(sql , [email], (err, row)=>{
+        if(err){
+            reject(err);
+        }else{
+            resolve(row);
+            
+        }
+    })
+    
+})
+}catch(err){
+console.log(err)
+}
+
+
+}
 
 export default{bd,
 ConsultUser,
 InsertUser,
 EmailenUso, 
-NoCoincide,};
+NoCoincide,
+DataUser,};

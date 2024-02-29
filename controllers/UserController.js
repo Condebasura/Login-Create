@@ -1,11 +1,12 @@
 import bd from "../model/bd.js";
 	
 	const getIndex = (req , res) =>{
-		res.render("index", {title: "Login-Create"} )
+		res.render("index", {title: "Login-Create" } )
 	};
 	
 	const getWelcome = (req , res ) =>{
-			res.render("log-in", {title: "Bienvenido!!"});
+	    
+			res.render("log-in", {title: "Home"});
 	
 				};
 	
@@ -16,10 +17,13 @@ import bd from "../model/bd.js";
 			pass: req.body.pass,
 		}
         try{
-               const CredUser = await bd.NoCoincide(usuario);
-			   if(CredUser){
-				   res.status(200);
-				   return getWelcome();
+              const userEmail = req.body.email;
+			const CredUser = await bd.NoCoincide(usuario);
+			if(CredUser){
+				res.status(200);
+				const data = await bd.DataUser(usuario);
+				console.log(data);
+				getWelcome(data);
 				   
 				}else if(!CredUser){
 					res.status(409);
