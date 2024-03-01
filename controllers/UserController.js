@@ -5,14 +5,15 @@ import bd from "../model/bd.js";
 	};
 	
 	const getWelcome = (req , res ) =>{
-	    
-			res.render("log-in", {title: "Home"});
+			
+		res.render("log-in" , {title: "Home"})
 	
-				};
+
+			};
 	
 	
 	const postUsers  = async (req, res) => {
-		let usuario = {
+		usuario = {
         	email: req.body.email,
 			pass: req.body.pass,
 		}
@@ -23,8 +24,7 @@ import bd from "../model/bd.js";
 				res.status(200);
 				const data = await bd.DataUser(usuario);
 				console.log(data);
-				getWelcome(data);
-				   
+				getWelcome();
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
@@ -35,6 +35,8 @@ import bd from "../model/bd.js";
 	}
 			
 	};
+
+	
 
 	const getCreate = (req , res )=>{
 
