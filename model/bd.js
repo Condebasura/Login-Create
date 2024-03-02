@@ -74,7 +74,7 @@ const NoCoincide = (usuario)=>{
                 reject(err);
             }else if(row){
                 resolve(true);
-                console.log("Exacto")
+               console.log("exacto");
             }else{
                 resolve(false);
                 console.log("credenciales incorrectas")

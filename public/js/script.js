@@ -14,7 +14,7 @@ form.addEventListener("submit", (e) =>{
         const verifiDatos = async (email , pass)=>{
 
             try {
-                const res = await fetch("http://localhost:3000", {
+                const res = await fetch("log-in", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -27,7 +27,10 @@ form.addEventListener("submit", (e) =>{
                     let objeto = JSON.parse(data);
                     return document.querySelector(".parrafo").innerHTML = objeto.mensaje;
                 }else if(res.status === 200){
-                    return window.location.href = "log-in";
+                    let objeto = JSON.parse(data);
+                    window.location.href = "log-in";
+                   
+                   
                 }
             } catch (error) {
                 return console.log(error);

@@ -12,8 +12,13 @@ const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", imp
 
 const app = express();
 const port = 3000;
-
-app.use(cors());
+const corsOptions = {
+    origin: '*', // Origen permitido (puedes usar * para permitir todo)
+    methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
+    allowedHeaders: 'Content-Type,Authorization', // Encabezados permitidos
+    // ... otras opciones ...
+};
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan("dev"));
 
@@ -34,6 +39,7 @@ app.use(express.urlencoded({extended: false}));
 app.get("/consulta" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
+app.post("/log-in" , UserControllers.postUsers);
 app.get("/log-in", UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('imagen') , UserControllers.CrarUsuario );

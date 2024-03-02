@@ -13,18 +13,17 @@ import bd from "../model/bd.js";
 	
 	
 	const postUsers  = async (req, res) => {
-		usuario = {
+	let	usuario = {
         	email: req.body.email,
 			pass: req.body.pass,
 		}
         try{
-              const userEmail = req.body.email;
+              
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
-				res.status(200);
 				const data = await bd.DataUser(usuario);
-				console.log(data);
-				getWelcome();
+				res.status(200);
+				res.json({data});
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
