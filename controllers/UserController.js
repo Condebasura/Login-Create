@@ -6,7 +6,7 @@ import bd from "../model/bd.js";
 	
 	const getWelcome = (req , res ) =>{
 			
-		res.render("log-in" , {title: "Home"})
+		res.render("usuario" , {title: "Home"})
 	
 
 			};
@@ -23,7 +23,7 @@ import bd from "../model/bd.js";
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
 				res.status(200);
-				res.json({data});
+				res.json(data);
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});

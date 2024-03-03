@@ -1,28 +1,53 @@
+let body = document.querySelector("body");
+const form = document.querySelector(".form");
+let email = document.querySelector(".e-mail");
+let pass = document.querySelector(".contraseña");
+const btnLogin = document.querySelector(".login");
+const btnRegistro = document.querySelector(".registro");
 
-let img = document.querySelector(".img_default");
-let UserName = document.querySelector(".user_name");
+form.addEventListener("submit", (e) =>{
+    e.preventDefault();
 
-const dataUsuario = async ()=>{
-    try{
-        
-       const res = await fetch('log-in') 
-         
-       //Intentemos solucionar el problema de que no devuelve los datos desde el servidor; 
+  
+    
+    
+        const verifiDatos = async (email , pass)=>{
 
-          if(!res.ok){
-                throw new Error('Error al obtener los datos del usuario');
-                
-            }else{
+            try {
+                const res = await fetch("/usuario", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, pass })
+                });
                 const data = await res.text();
-                
-                
-                console.log(data);
-               
+                   
+                if(res.status === 409){
+                    let objeto = JSON.parse(data);
+                    return document.querySelector(".parrafo").innerHTML = objeto.mensaje;
+                }else if(res.status === 200){
+                    let objeto = JSON.parse(data);
+                    window.location.href = "/usuario";
+                   
+                   
+                }
+            } catch (error) {
+                return console.log(error);
             }
-       
-    }catch(err){
-        console.log(err);
-    }
-}
+         
+        
 
-dataUsuario();
+    };
+
+    verifiDatos(email.value , pass.value);
+
+})
+
+btnRegistro.addEventListener("click", (e)=>{
+    e.preventDefault();
+    if(e.target){
+
+        return window.location.href = "/create";
+    }
+})    

@@ -89,7 +89,7 @@ form.addEventListener("submit",(e)=>{
         try{
 
             if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
-               let res =  await fetch("http://localhost:3000/create", {
+               let res =  await fetch("/create", {
                     method: "POST", 
                     headers:{
                         "Content-Type": "application/json"
