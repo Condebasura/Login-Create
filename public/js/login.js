@@ -5,6 +5,8 @@ let pass = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 
+
+
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
 
@@ -29,6 +31,7 @@ form.addEventListener("submit", (e) =>{
                 }else if(res.status === 200){
                     let objeto = JSON.parse(data);
                     window.location.href = "/usuario";
+                    
                    
                    
                 }

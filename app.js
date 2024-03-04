@@ -29,6 +29,7 @@ app.use((req,res,next)=>{
 	res.setHeader('X-Content-Type-Options', 'nosniff');
 next();	
 });
+
 let upload = multer({dest:'uploads/'});
 
 app.set("views", path.join(__dirname, "views"));
