@@ -1,5 +1,5 @@
 import bd from "../model/bd.js";
-	
+	import jwt from "jsonwebtoken";
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
 	};
@@ -19,7 +19,15 @@ import bd from "../model/bd.js";
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
-				res.status(200).json(data);
+				console.log(data);
+				const payload = {user: usuario};
+				const secret = "humedad-cancha-lodo";
+				const token = jwt.sign(payload, secret);
+				console.log(token);
+				res.cookie('mitoken', token, {
+					httpOnly: true, maxAge: 3600000
+				});
+				res.status(200).json({token});
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
@@ -32,8 +40,16 @@ import bd from "../model/bd.js";
 	};
 	
 	const getWelcome = (req , res ) =>{
-			const usuario = req.user;
-		res.render("usuario" , {title: "Home", datos: usuario })
+			const token = req.headers.authorization;
+			const secret = "humedad-cancha-lodo";
+			jwt.verify(token, secret, (err, decoded)=>{
+				if(err){
+					res.status(401).json({mensaje: "el token es invalido"})
+				}else if(decoded){
+
+					res.render("usuario" , {title: "Home", user: decoded.user })
+				}
+			})
 	
 
 			};

@@ -4,19 +4,28 @@ let UserName = document.querySelector(".user_name");
  let imgDefault = './img/default.jpg';
  img.src = imgDefault;
 
-const dataUsuario = async ()=>{
+const dataUsuario = async (req )=>{
+    const token = req.cookies.mitoken;
     try{
+
         
-        const res = await fetch('/usuario') 
+        const res = await fetch('/usuario', {
+            method: "GET",
+            headers:{
+                authorization: `Bearer ${token}`,
+                'Algorithm': 'HS256',
+            },
+        }) 
        
         //Intentemos solucionar el problema de que no devuelve los datos desde el servidor; 
         
         if(!res.ok){
-            throw new Error('Error al obtener los datos del usuario');
+           const data = await res.json();
+           console.log(data.mensaje);
             
         }else{
-            const data = await res.text();
-            console.log("dese index", data);
+            const data = await res.json();
+            console.log("datos protegidos", data);
             
                 
                
