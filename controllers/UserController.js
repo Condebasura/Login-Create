@@ -4,26 +4,22 @@ import bd from "../model/bd.js";
 		res.render("index", {title: "Login-Create" } )
 	};
 	
-	const getWelcome = (req , res ) =>{
-			
-		res.render("usuario" , {title: "Home"})
 	
-
-			};
 	
 	
 	const postUsers  = async (req, res) => {
-	let	usuario = {
-        	email: req.body.email,
-			pass: req.body.pass,
-		}
-        try{
+		
+		try{
+			
+			const usuario = {
+				email: req.user.email,
+				pass: req.user.pass
+			} 
               
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
-				res.status(200);
-				res.json(data);
+				res.status(200).json(data);
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
@@ -34,7 +30,13 @@ import bd from "../model/bd.js";
 	}
 			
 	};
+	
+	const getWelcome = (req , res ) =>{
+			const usuario = req.user;
+		res.render("usuario" , {title: "Home", datos: usuario })
+	
 
+			};
 	
 
 	const getCreate = (req , res )=>{
@@ -48,7 +50,7 @@ import bd from "../model/bd.js";
           
 		let usuario = {
 			nombre: req.body.nombre,
-			apllido: req.body.apellido , 
+			apellido: req.body.apellido , 
 			email: req.body.email, 
 			contraseña: req.body.password, 
 			imagen: req.archivo,
@@ -67,7 +69,7 @@ import bd from "../model/bd.js";
 			}
 			
 		}catch(err){
-			res.send(console.log(err))
+			res.send(console.log(err));
 		};
 	}
 

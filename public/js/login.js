@@ -26,10 +26,10 @@ form.addEventListener("submit", (e) =>{
                 const data = await res.text();
                    
                 if(res.status === 409){
-                    let objeto = JSON.parse(data);
-                    return document.querySelector(".parrafo").innerHTML = objeto.mensaje;
+                    
+                    return document.querySelector(".parrafo").innerHTML = data.mensaje;
                 }else if(res.status === 200){
-                    let objeto = JSON.parse(data);
+                    
                     window.location.href = "/usuario";
                     
                    

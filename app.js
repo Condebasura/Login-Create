@@ -4,12 +4,13 @@ import multer from "multer";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import { expressjwt } from "express-jwt";
+import jwt from "jsonwebtoken";
 import {fileURLToPath} from "url";
 import UserControllers from "./controllers/UserController.js";
 import bd from "./model/bd.js";
 
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
-
 const app = express();
 const port = 3000;
 const corsOptions = {
@@ -18,6 +19,13 @@ const corsOptions = {
     allowedHeaders: 'Content-Type,Authorization', // Encabezados permitidos
     // ... otras opciones ...
 };
+
+app.use("/usuario",expressjwt({
+     secret: "humedad-cancha-lodo", algorithms: ['HS256'],
+
+}));//.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
+ //})
+
 app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan("dev"));
@@ -41,7 +49,7 @@ app.use(express.static(path.join(__dirname, "img")));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
+app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);

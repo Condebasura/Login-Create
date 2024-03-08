@@ -1,7 +1,7 @@
 import  sqlite3  from "sqlite3";
 
 let bd = new sqlite3.Database('Users.bd');
-bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGRER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT , imagen BLOB)');
+bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT , imagen BLOB)');
 
 const ConsultUser = ()=>{
 
@@ -11,7 +11,7 @@ const ConsultUser = ()=>{
             }else{
                 console.log('usuarios encontrados: ' + rows.length);
                 rows.forEach((row)=>{
-                    console.log(row.email , row.contraseña)
+                    console.log(row)
                     
                 })
             }
@@ -19,6 +19,10 @@ const ConsultUser = ()=>{
       });
     
     };
+
+    const DeleteAll = ()=>{
+        bd.run('DROP  TABLE usuarios')
+    }
 
 const InsertUser =  async (usuario)=>{
     try{
@@ -109,6 +113,7 @@ console.log(err)
 }
 
 export default{bd,
+    DeleteAll,
 ConsultUser,
 InsertUser,
 EmailenUso, 
