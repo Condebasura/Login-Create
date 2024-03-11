@@ -1,3 +1,4 @@
+
 import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
 	const getIndex = (req , res) =>{
@@ -5,51 +6,49 @@ import bd from "../model/bd.js";
 	};
 	
 	
+
 	
-	
+	//Probar modificar la creacion del token, porque sin el mismo el ingreso y la validacion esta bien desde la bd
 	const postUsers  = async (req, res) => {
 		
 		try{
-			
 			const usuario = {
-				email: req.user.email,
-				pass: req.user.pass
+				email: req.body.email,
+				pass: req.body.pass
 			} 
-              
+			
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
 				console.log(data);
-				const payload = {user: usuario};
+				/*const payload = {user: usuario};
 				const secret = "humedad-cancha-lodo";
 				const token = jwt.sign(payload, secret);
-				console.log(token);
+
 				res.cookie('mitoken', token, {
-					httpOnly: true, maxAge: 3600000
+					httpOnly: true
 				});
-				res.status(200).json({token});
+				res.status(200).json({token});*/
+				res.render("usuario");
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
 			   }
 			
 		}catch(err){
-		res.send("Ocurrio un error al insertar los datos")
+		res.json("Ocurrio un error al insertar los datos")
 	}
-			
+		
 	};
 	
 	const getWelcome = (req , res ) =>{
-			const token = req.headers.authorization;
+			/*const token = req.headers.authorization;
 			const secret = "humedad-cancha-lodo";
-			jwt.verify(token, secret, (err, decoded)=>{
-				if(err){
-					res.status(401).json({mensaje: "el token es invalido"})
-				}else if(decoded){
-
-					res.render("usuario" , {title: "Home", user: decoded.user })
-				}
-			})
+			jwt.verify(token, secret, (err, decoded)=>{*/
+				
+					res.status(200).render("usuario" , {title: "Home" })
+				
+			//})
 	
 
 			};

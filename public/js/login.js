@@ -16,7 +16,7 @@ form.addEventListener("submit", (e) =>{
         const verifiDatos = async (email , pass)=>{
 
             try {
-                const res = await fetch("/usuario", {
+                const res = await fetch("usuario", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -26,10 +26,11 @@ form.addEventListener("submit", (e) =>{
                 const data = await res.text();
                    
                 if(res.status === 409){
+                    console.log( 'desde el 409',data);
                     
                     return document.querySelector(".parrafo").innerHTML = data.mensaje;
                 }else if(res.status === 200){
-                    
+                    console.log('desde el 200',data);
                     window.location.href = "/usuario";
                     
                    

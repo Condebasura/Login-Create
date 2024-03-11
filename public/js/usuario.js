@@ -9,22 +9,22 @@ const dataUsuario = async (req )=>{
     try{
 
         
-        const res = await fetch('/usuario', {
+        const res = await fetch('usuario', {
             method: "GET",
             headers:{
-                authorization: `Bearer ${token}`,
-                'Algorithm': 'HS256',
+                Authorization: `Bearer ${token}`,
+               
             },
-        }) 
+        }); 
        
-        //Intentemos solucionar el problema de que no devuelve los datos desde el servidor; 
+        
         
         if(!res.ok){
            const data = await res.json();
            console.log(data.mensaje);
             
         }else{
-            const data = await res.json();
+            
             console.log("datos protegidos", data);
             
                 

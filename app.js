@@ -10,6 +10,7 @@ import {fileURLToPath} from "url";
 import UserControllers from "./controllers/UserController.js";
 import bd from "./model/bd.js";
 
+const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 const port = 3000;
@@ -20,21 +21,24 @@ const corsOptions = {
     // ... otras opciones ...
 };
 
-app.use("/usuario",expressjwt({
-     secret: "humedad-cancha-lodo", algorithms: ['HS256'],
+/*app.use("/usuario",expressjwt({
+     secret: ScrT , algorithms: ['HS256'],
      credentialsRequired: false,
      getToken: function fromHeaderOrQuerystring(req) {
        if (
          req.headers.authorization &&
          req.headers.authorization.split("")[0] === "Bearer"
        ) {
+        
          return req.headers.authorization.split("")[1];
        } else if (req.query && req.query.token) {
+        
          return req.query.token;
        }
        return null;
      },
-}));//.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
+     
+}));*///.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
  //})
 app.use(cookieParser());
 app.use(cors(corsOptions));
