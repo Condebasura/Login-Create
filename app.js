@@ -17,20 +17,21 @@ const port = 3000;
 const corsOptions = {
     origin: '*', // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type,Authorization', // Encabezados permitidos
+    allowedHeaders: 'Content-Type,Authorization',
+     // Encabezados permitidos
     // ... otras opciones ...
 };
 
-/*app.use("/usuario",expressjwt({
+app.use("usuario",expressjwt({
      secret: ScrT , algorithms: ['HS256'],
      credentialsRequired: false,
      getToken: function fromHeaderOrQuerystring(req) {
        if (
          req.headers.authorization &&
-         req.headers.authorization.split("")[0] === "Bearer"
+         req.headers.authorization.split(" ")[0] === "Bearer"
        ) {
         
-         return req.headers.authorization.split("")[1];
+         return req.headers.authorization.split(" ")[1];
        } else if (req.query && req.query.token) {
         
          return req.query.token;
@@ -38,7 +39,7 @@ const corsOptions = {
        return null;
      },
      
-}));*///.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
+}));//.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
  //})
 app.use(cookieParser());
 app.use(cors(corsOptions));

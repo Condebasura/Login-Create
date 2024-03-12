@@ -27,10 +27,13 @@ form.addEventListener("submit", (e) =>{
                    
                 if(res.status === 409){
                     console.log( 'desde el 409',data);
-                    
-                    return document.querySelector(".parrafo").innerHTML = data.mensaje;
+                    const obj = JSON.parse(data);
+                    return document.querySelector(".parrafo").innerHTML = obj.mensaje;
                 }else if(res.status === 200){
-                    console.log('desde el 200',data);
+                    const obj = JSON.parse(data);
+                    const tokenJWT = obj.token;
+                    document.cookie = 'SesionTks=' + tokenJWT + ';path=/';
+                    console.log(tokenJWT);
                     window.location.href = "/usuario";
                     
                    

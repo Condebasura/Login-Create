@@ -21,15 +21,16 @@ import bd from "../model/bd.js";
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
 				console.log(data);
-				/*const payload = {user: usuario};
+				const payload = {usuario};
 				const secret = "humedad-cancha-lodo";
 				const token = jwt.sign(payload, secret);
 
 				res.cookie('mitoken', token, {
 					httpOnly: true
 				});
-				res.status(200).json({token});*/
-				res.render("usuario");
+				res.status(200).json({token});
+				console.log(token);
+				//res.render("usuario");
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
@@ -42,13 +43,27 @@ import bd from "../model/bd.js";
 	};
 	
 	const getWelcome = (req , res ) =>{
-			/*const token = req.headers.authorization;
-			const secret = "humedad-cancha-lodo";
-			jwt.verify(token, secret, (err, decoded)=>{*/
+			
+             if(!req.headers.authorization){
 				
-					res.status(200).render("usuario" , {title: "Home" })
+				 return res.status(401).json({mensaje: "No se proporcionó token de authorizacion."});
+				}
 				
-			//})
+				
+				const token = req.headers.authorization;
+			 const secret = "humedad-cancha-lodo";
+
+
+
+			 jwt.verify(token, secret, (err, decoded)=>{
+				if(err){
+					
+					console.error(err.message);
+					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
+				}
+				
+				res.status(200).render("usuario" , {title: "Home", decoded});
+			})
 	
 
 			};
