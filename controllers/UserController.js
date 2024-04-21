@@ -83,10 +83,11 @@ import bd from "../model/bd.js";
 			apellido: req.body.apellido , 
 			email: req.body.email, 
 			contraseña: req.body.password, 
-			imagen: req.archivo,
+			imagen: req.file,
+			
 		};
 		try{
-			
+		
 			const CorreoEnUso = await bd.EmailenUso(usuario);
 			if(CorreoEnUso){
 				res.status(409);
