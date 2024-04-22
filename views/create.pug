@@ -1,6 +1,6 @@
 extends layout 
 block content 
- form.formCreate
+ form.formCreate(action="/create" , method="post" , enctype="multipart/form-data")
   h1.titleCreate Crear Cuenta 
   label(for="Nombre") Nombre 
   input( type="text" ,class="Name", id="Nombre", placeholder="Ingresa tu nombre" , required)

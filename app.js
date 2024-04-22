@@ -41,6 +41,7 @@ app.use("usuario",expressjwt({
      
 }));//.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
  //})
+ 
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(helmet());
@@ -54,6 +55,8 @@ app.use((req,res,next)=>{
 next();	
 });
 
+
+
 let upload = multer({dest:'uploads/'});
 
 app.set("views", path.join(__dirname, "views"));
@@ -65,6 +68,13 @@ app.use(express.static(path.join(__dirname, "img")));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use((req, res, next) => {
+  console.log('Solicitud recibida:', req.method, req.url);
+  console.log('Datos del formulario:', req.body);
+  console.log('Datos del archivo:', req.file); // Esto mostrará la información del archivo si Multer lo ha procesado
+  next();
+});
+
 app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
@@ -72,7 +82,7 @@ app.post("/" , UserControllers.postUsers);
 app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" ,  UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
-app.post("/create", upload.single('imagen') , UserControllers.CrarUsuario );
+app.post("/create", upload.single("imagen") , UserControllers.CrarUsuario );
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
 })

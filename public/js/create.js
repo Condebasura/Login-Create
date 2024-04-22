@@ -4,7 +4,7 @@ let apellido = document.querySelector(".Ap");
 let email = document.querySelector(".C-mail");
 let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
-let archivo = document.querySelector(["data-archivo"]);
+let archivo = document.querySelector(".archivo");
 const btnRegis = document.querySelector(".Regis-fin");
 
 //  Para emails.
@@ -111,6 +111,7 @@ form.addEventListener("submit",(e)=>{
                     modal.showModal();
                    
                 }else if(res.status === 200){
+                    console.log(archivo.value)
                     let objeto = await JSON.parse(data);
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
@@ -126,5 +127,5 @@ form.addEventListener("submit",(e)=>{
             return console.log(error)
         }
     }
-RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo);
+RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo.value);
 })
