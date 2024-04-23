@@ -4,7 +4,6 @@ let apellido = document.querySelector(".Ap");
 let email = document.querySelector(".C-mail");
 let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
-let archivo = document.querySelector(".archivo");
 const btnRegis = document.querySelector(".Regis-fin");
 
 //  Para emails.
@@ -26,7 +25,7 @@ const validaNombre = () => {
         nombre.setCustomValidity("El campo no puede estar vacio contener numeros o caracteres especiales");
         return false;
     } else {
-        nombre.style.border = "none";
+       nombre.style.border = "";
         nombre.setCustomValidity("");
         return true;
     }
@@ -40,7 +39,7 @@ const validaApellido = () => {
         apellido.setCustomValidity(`El campo no puede estar vacio contener numeros o caracteres especiales`);
         return false;
     } else {
-        apellido.style.border = "none";
+        apellido.style.border = "";
         apellido.setCustomValidity("");
         return true;
     }
@@ -54,7 +53,7 @@ const validaEmail = () => {
         email.setCustomValidity("Ingrese un email valido ");
         return false;
     } else {
-        email.style.border = "none";
+        email.style.border = "";
         email.setCustomValidity("");
         return true;
     }
@@ -84,7 +83,7 @@ const ValidarRegisPass = () => {
  
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
-    const RegisUsuario = async (nombre , apellido, email , password , archivo)=>{
+    const RegisUsuario = async (nombre , apellido, email , password )=>{
        
         try{
 
@@ -94,7 +93,7 @@ form.addEventListener("submit",(e)=>{
                     headers:{
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({nombre, apellido , email , password , archivo})
+                    body: JSON.stringify({nombre, apellido , email , password})
                 })
 
                 const data = await res.text();
@@ -107,19 +106,19 @@ form.addEventListener("submit",(e)=>{
                     p.setAttribute("class", "msgError");
                     modal.innerHTML = "";
                     p.innerHTML = objeto.mensaje;
-                    modal.appendChild(p);
                     modal.showModal();
+                    setTimeout(() => { modal.appendChild(p), location.reload(), 5000000 });
                    
                 }else if(res.status === 200){
-                    console.log(archivo.value)
                     let objeto = await JSON.parse(data);
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgExito");
                     modal.innerHTML = "";
                     p.innerHTML = objeto.mensaje;
-                    modal.appendChild(p);
                     modal.showModal();
+                    
+                    setTimeout(() => { modal.appendChild(p), window.location.href = "/", 200000 });
 
                 }
             }
@@ -127,5 +126,5 @@ form.addEventListener("submit",(e)=>{
             return console.log(error)
         }
     }
-RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo.value);
+RegisUsuario(nombre.value , apellido.value , email.value , password.value );
 })

@@ -5,12 +5,17 @@ let UserName = document.querySelector(".user_name");
  img.src = imgDefault;
 
 const dataUsuario = async ( )=>{
+    // Averiguar ue pasa con document.cookie, porque no se eencuentra
     const tokenName = 'mitoken';
-    const token = document.cookie.split(' ').find(row =>
-        row.startsWith(tokenName + '=')).split('=')[1];
-        
+    const token = document.cookie.split(';').map(cookie = cookie.trim().split('=').find(([n , value])=> n = tokenName));
+    if(token){
+        const tokenValue = token[1];
+        console.log(tokenValue)
+    }else{
+        console.log('La cookie "mitoken" no se encontró o está mal formateada.');
+    }
     try{
-console.log(token);
+
         
         const res = await fetch('usuario', {
             method: "GET",
@@ -35,7 +40,7 @@ console.log(token);
             }
        
     }catch(err){
-        console.errpr('Error al  realizar la solicitud',err);
+        console.error('Error al  realizar la solicitud',err);
     }
 }
 

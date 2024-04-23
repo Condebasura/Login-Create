@@ -32,8 +32,7 @@ form.addEventListener("submit", (e) =>{
                 }else if(res.status === 200){
                     const obj = JSON.parse(data);
                     const tokenJWT = obj.token;
-                    document.cookie = 'SesionTks=' + tokenJWT + ';path=/';
-                    console.log(tokenJWT);
+                    document.cookie = 'SesionTks=' + " " +tokenJWT + ';path=/';
                     window.location.href = "/usuario";
                     
                    

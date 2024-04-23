@@ -1,33 +1,45 @@
-.formCreate{
-    background-color: #bcd1f0e0;
+.brra_nav_create{
+    background-color: #dcdedf8a;
     display: flex;
-    flex-direction: column;
-    gap: 1.7rem;
-    box-shadow: 2px 2px 12px #464545cb;
-    max-width: 80%;
-    width: 400px;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    align-self: center;
-    margin-top: 5%;
-    padding: 2em 1em;
+    padding: 1em;
+    box-shadow: 4px 10px 16px #2424252f;
 }
 
-.titleCreate{
+.formCreate{
+    background-color: rgb(255, 255, 255);
+    border-radius: .5rem;
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+    gap: 1rem;
+    margin-top: 3em;
+     max-width: 80%;
+     width: 300px;
+   align-items:center;
+   padding: 2em 1em;
+    box-shadow:  inset  18px 18px 28px 0 hsla(41, 83%, 60%, 0.562) , inset -18px -18px 28px 0 hsla(41, 83%, 60%, 0.562), 25px 25px 16px #41414228;
+}
+
+.create_name{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 23px;
-    color: rgb(19, 19, 95);
+    color: #363636;
+
 }
 
 input{
     height: 30px;
     max-width: 100%;
-    border: 1px solid #464545cb;
+    outline: none;
+    border: 1px solid #414142b7;
+    
 }
 
 input:focus{
-    border: 1px solid green;
-    outline: none;
+    border: 1px solid rgb(4, 189, 4);
 }
 
 .Regis_fin{
@@ -52,15 +64,17 @@ box-shadow: none;
 
 #modal{
     border-style: none;
+    box-shadow: 25px 25px 16px #41414228;
+    border-radius: 4px;
 
 }
 .msgError{
-    font-size: 13px;
+    font-size: 19px;
     color: red;
 }
 
-.msjExito{
-    font-size: 13px;
+.msgExito{
+    font-size: 19px;
     color:rgb(17, 161, 17);
     
 

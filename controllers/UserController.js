@@ -29,7 +29,6 @@ import bd from "../model/bd.js";
 					httpOnly: true
 				});
 				res.status(200).json({token});
-				console.log(token);
 				//res.render("usuario");
 				}else if(!CredUser){
 					res.status(409);
@@ -44,14 +43,14 @@ import bd from "../model/bd.js";
 	
 	const getWelcome = (req , res ) =>{
 			
-             if(!req.headers.authorization){
+		const token = req.cookies.mitoken;
+		const secret = "humedad-cancha-lodo";
+             if(!token){
 				
 				 return res.status(401).json({mensaje: "No se proporcionó token de authorizacion."});
 				}
 				
 				
-				const token = req.headers.authorization;
-			 const secret = "humedad-cancha-lodo";
 
 
 
@@ -61,8 +60,10 @@ import bd from "../model/bd.js";
 					console.error(err.message);
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
-				
-				res.status(200).render("usuario" , {title: "Home", decoded});
+				else{
+
+					res.status(200).render("usuario" , {title: "Home", decoded});
+				}
 			})
 	
 
@@ -83,7 +84,7 @@ import bd from "../model/bd.js";
 			apellido: req.body.apellido , 
 			email: req.body.email, 
 			contraseña: req.body.password, 
-			imagen: req.file,
+		
 			
 		};
 		try{

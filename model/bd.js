@@ -1,7 +1,7 @@
 import  sqlite3  from "sqlite3";
 
 let bd = new sqlite3.Database('Users.bd');
-bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT , imagen BLOB)');
+bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT)');
 
 const ConsultUser = ()=>{
 
@@ -26,8 +26,8 @@ const ConsultUser = ()=>{
 
 const InsertUser =  async (usuario)=>{
     try{
-     let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , contraseña , imagen) VALUES(?,?,?,?,?)' );
-     stmt.run(usuario.nombre , usuario.apellido , usuario.email , usuario.contraseña , usuario.imagen);
+     let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , contraseña) VALUES(?,?,?,?)' );
+     stmt.run(usuario.nombre , usuario.apellido , usuario.email , usuario.contraseña );
  
       stmt.finalize();
      return 'usuario registrado con exito';
