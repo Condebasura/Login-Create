@@ -2,10 +2,8 @@ extends layout
 block content 
  nav.conteiner
     div.bars |||
-    div.buscador
-     label(for="buscar") buscar
-     input(type="search", class="search", id="buscar")
+    button(type="button" , class="logout") Cerrar Sesion 
     div.user
      img(src="", class="img_default")
-     spam(class="user_name")= nombre
+     spam(class="user_name")
  script(type="module", src="/js/usuario.js") 

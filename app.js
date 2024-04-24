@@ -69,7 +69,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 
-
 app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
 app.get("/" , UserControllers.getIndex);
@@ -78,6 +77,7 @@ app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" ,  UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
 app.post("/create", UserControllers.CrarUsuario );
+app.get("/logout", UserControllers.logout);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
 })

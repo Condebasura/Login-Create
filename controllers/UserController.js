@@ -3,6 +3,7 @@ import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
+		
 	};
 	
 	
@@ -14,20 +15,24 @@ import bd from "../model/bd.js";
 		try{
 			const usuario = {
 				email: req.body.email,
-				pass: req.body.pass
+				pass: req.body.pass,
 			} 
 			
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
 				console.log(data);
-				const payload = {usuario};
+				const payload = {usuario,
+				nombre: data.nombre,
+			    apellido: data.apellido,
+			};
 				const secret = "humedad-cancha-lodo";
 				const token = jwt.sign(payload, secret);
-
-				res.cookie('mitoken', token, {
+				res.cookie('mitoken', token,  { sameSite: 'Strict' } , {
 					httpOnly: true
 				});
+				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
+			   httpOnly:true});
 				res.status(200).json({token});
 				//res.render("usuario");
 				}else if(!CredUser){
@@ -50,19 +55,15 @@ import bd from "../model/bd.js";
 				 return res.status(401).json({mensaje: "No se proporcionó token de authorizacion."});
 				}
 				
-				
-
-
-
-			 jwt.verify(token, secret, (err, decoded)=>{
+			 jwt.verify(token, secret, (err)=>{
 				if(err){
 					
 					console.error(err.message);
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
 				else{
-
-					res.status(200).render("usuario" , {title: "Home", decoded});
+            
+					res.status(200).render("usuario" , {title: "Home"});
 				}
 			})
 	
@@ -105,7 +106,13 @@ import bd from "../model/bd.js";
 		};
 	}
 
+const logout = (req,res)=>{
 
+	res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
+res.redirect("index");
+		
+	
+}
 
 
 export default{
@@ -113,7 +120,8 @@ export default{
 	getIndex,
 	getWelcome,
 	getCreate,
-	CrarUsuario,	
+	CrarUsuario,
+	logout,	
 };
 
 

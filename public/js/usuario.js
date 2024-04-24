@@ -3,39 +3,43 @@ let img = document.querySelector(".img_default");
 let UserName = document.querySelector(".user_name");
  let imgDefault = './img/default.jpg';
  img.src = imgDefault;
+ const logout = document.querySelector(".logout");
 
 const dataUsuario = async ( )=>{
-    // Averiguar ue pasa con document.cookie, porque no se eencuentra
-    const tokenName = 'mitoken';
-    const token = document.cookie.split(';').map(cookie = cookie.trim().split('=').find(([n , value])=> n = tokenName));
-    if(token){
-        const tokenValue = token[1];
-        console.log(tokenValue)
-    }else{
-        console.log('La cookie "mitoken" no se encontró o está mal formateada.');
-    }
+    // Averiguar que pasa con document.cookie, porque no se encuentra
+
+  const tokenName = 'mitoken';
+const cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
+
+const cookie = cookies.find(([name, value]) => name === tokenName);
+
+    const tokenValue = cookie[1];
+    const tokenPayload = tokenValue.split('.')[1];
+    const decodedPayload = JSON.parse(window.atob(tokenPayload));
+    console.log(decodedPayload);
+
     try{
 
         
         const res = await fetch('usuario', {
             method: "GET",
             headers:{
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${decodedPayload}`,
                
             },
         }); 
        
         
-        const data = await res.json();
-        
+       
+       
         if(!res.ok){
            console.log(data.mensaje);
             
         }else{
+            const datos = decodedPayload;
+            console.log("datos protegidos",datos.nombre);
             
-            console.log("datos protegidos", data);
-            
-                
+                UserName.innerHTML = datos.nombre;
                
             }
        
@@ -45,3 +49,8 @@ const dataUsuario = async ( )=>{
 }
 
 dataUsuario();
+
+logout.addEventListener("click", (e)=>{
+    fetch("/logout").then(res=> res.json()).catch(err => console.log(err))
+    return window.location.href = "/";
+} );
