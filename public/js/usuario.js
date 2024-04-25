@@ -6,7 +6,6 @@ let UserName = document.querySelector(".user_name");
  const logout = document.querySelector(".logout");
 
 const dataUsuario = async ( )=>{
-    // Averiguar que pasa con document.cookie, porque no se encuentra
 
   const tokenName = 'mitoken';
 const cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
@@ -16,7 +15,6 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
     const tokenValue = cookie[1];
     const tokenPayload = tokenValue.split('.')[1];
     const decodedPayload = JSON.parse(window.atob(tokenPayload));
-    console.log(decodedPayload);
 
     try{
 
@@ -32,12 +30,12 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
         
        
        
-        if(!res.ok){
+        if(res.status === 401){
+            const data = res.json();
            console.log(data.mensaje);
             
         }else{
             const datos = decodedPayload;
-            console.log("datos protegidos",datos.nombre);
             
                 UserName.innerHTML = datos.nombre;
                
@@ -50,7 +48,14 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
 
 dataUsuario();
 
-logout.addEventListener("click", (e)=>{
-    fetch("/logout").then(res=> res.json()).catch(err => console.log(err))
-    return window.location.href = "/";
+logout.addEventListener("click",async (e)=>{
+    try {
+      const res = await fetch("/logout")
+      if(res){
+
+          return window.location.href = "/";
+      }
+    } catch (error) {
+        console.log(error.message)
+    }
 } );

@@ -14,11 +14,11 @@ const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", imp
 const app = express();
 const port = 3000;
 const corsOptions = {
-    origin: '*', // Origen permitido (puedes usar * para permitir todo)
+    origin: ['/', 'create' , 'layout' , 'logout' ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type,Authorization',
      // Encabezados permitidos
-    // ... otras opciones ...
+  
 };
 
 app.use("usuario",expressjwt({

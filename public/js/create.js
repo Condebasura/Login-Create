@@ -100,7 +100,6 @@ form.addEventListener("submit",(e)=>{
                 
                 if(res.status === 409){
                     let objeto = await JSON.parse(data);
-                    console.log(objeto.mensaje);
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgError");

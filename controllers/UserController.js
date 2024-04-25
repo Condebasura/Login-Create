@@ -6,10 +6,7 @@ import bd from "../model/bd.js";
 		
 	};
 	
-	
 
-	
-	//Probar modificar la creacion del token, porque sin el mismo el ingreso y la validacion esta bien desde la bd
 	const postUsers  = async (req, res) => {
 		
 		try{
@@ -21,7 +18,6 @@ import bd from "../model/bd.js";
 			const CredUser = await bd.NoCoincide(usuario);
 			if(CredUser){
 				const data = await bd.DataUser(usuario);
-				console.log(data);
 				const payload = {usuario,
 				nombre: data.nombre,
 			    apellido: data.apellido,
@@ -34,7 +30,7 @@ import bd from "../model/bd.js";
 				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
 			   httpOnly:true});
 				res.status(200).json({token});
-				//res.render("usuario");
+				
 				}else if(!CredUser){
 					res.status(409);
 					res.json({mensaje: `Credenciales incorrectas`});
@@ -52,7 +48,7 @@ import bd from "../model/bd.js";
 		const secret = "humedad-cancha-lodo";
              if(!token){
 				
-				 return res.status(401).json({mensaje: "No se proporcionó token de authorizacion."});
+				 return res.status(401).json({mensaje: "Accseso no authorizado."});
 				}
 				
 			 jwt.verify(token, secret, (err)=>{
@@ -109,7 +105,8 @@ import bd from "../model/bd.js";
 const logout = (req,res)=>{
 
 	res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
-res.redirect("index");
+	res.cookie('SesionTks', '', {expires: new Date(0), httpOnly: true});
+res.redirect("/");
 		
 	
 }

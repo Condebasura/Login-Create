@@ -26,7 +26,6 @@ form.addEventListener("submit", (e) =>{
                 const data = await res.text();
                    
                 if(res.status === 409){
-                    console.log( 'desde el 409',data);
                     const obj = JSON.parse(data);
                     return document.querySelector(".parrafo").innerHTML = obj.mensaje;
                 }else if(res.status === 200){
