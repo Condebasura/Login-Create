@@ -14,7 +14,7 @@ const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", imp
 const app = express();
 const port = 3000;
 const corsOptions = {
-    origin: ['/', 'create' , 'layout' , 'logout' ],  // Origen permitido (puedes usar * para permitir todo)
+    origin: [`http://localhost:${port}/`, `http://localhost:${port}/create` , `http://localhost:${port}/layout` , `http://localhost:${port}/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type,Authorization',
      // Encabezados permitidos

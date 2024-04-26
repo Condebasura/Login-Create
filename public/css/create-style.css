@@ -79,3 +79,24 @@ box-shadow: none;
     
 
 }
+
+.Tienes_cuenta{
+    color: red;
+    font-size: 15px;
+}
+
+.Sesion{
+    margin: 0 1em;
+    padding: 7px;
+    width: 7em;
+    background-color: rgb(69, 77, 196);
+    color: rgb(245, 246, 248);
+    font-size: 16px;
+    border-style: none;
+    box-shadow: 2px 2px 8px #444444ef;
+    cursor: pointer;
+}
+
+.Sesion:active{
+    box-shadow: none;
+}

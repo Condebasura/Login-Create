@@ -5,6 +5,7 @@ let email = document.querySelector(".C-mail");
 let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
 const btnRegis = document.querySelector(".Regis-fin");
+const sesion = document.querySelector(".Sesion");
 
 //  Para emails.
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -126,4 +127,12 @@ form.addEventListener("submit",(e)=>{
         }
     }
 RegisUsuario(nombre.value , apellido.value , email.value , password.value );
+})
+
+sesion.addEventListener("click", (e)=>{
+    if(e.target){
+        return window.location.href = "/";
+    }else{
+        console.log("Error al redirigir")
+    }
 })

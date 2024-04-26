@@ -48,14 +48,18 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
 
 dataUsuario();
 
-logout.addEventListener("click",async (e)=>{
-    try {
-      const res = await fetch("/logout")
-      if(res){
+logout.addEventListener("click", async (e)=>{
+try{
 
-          return window.location.href = "/";
-      }
-    } catch (error) {
-        console.log(error.message)
+    if(e.target){
+        window.location.href = "/";
+         return fetch("/logout",{
+          method:"GET",
+        })
+        
     }
-} );
+}catch(err){
+    console.log(err)
+}
+
+ });

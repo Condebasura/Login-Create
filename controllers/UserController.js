@@ -102,11 +102,17 @@ import bd from "../model/bd.js";
 		};
 	}
 
-const logout = (req,res)=>{
+const logout = async (req,res)=>{
+	try{
+		await res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
+		await res.cookie('SesionTks', '', {expires: new Date(0), httpOnly: true});
 
-	res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
-	res.cookie('SesionTks', '', {expires: new Date(0), httpOnly: true});
-res.redirect("/");
+		return res.redirect("/");
+	}catch(err){
+		console.log(err)
+	}
+	
+   
 		
 	
 }
