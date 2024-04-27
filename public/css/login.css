@@ -53,7 +53,7 @@ label{
   .login{
     margin: 0 1em  ;
     padding:  10px ;
-    width: 6em;
+    width: 80%;
     background-color: rgba(63, 155, 10, 0.822);
     color: aliceblue;
     font-size: 18px;
@@ -79,6 +79,7 @@ label{
     border-style: none;
     box-shadow: 2px 2px 8px #444444e0;
     cursor: pointer;
+    width: 80%;
   }
 
   .registro:active{

@@ -107,7 +107,7 @@ form.addEventListener("submit",(e)=>{
                     modal.innerHTML = "";
                     p.innerHTML = objeto.mensaje;
                     modal.showModal();
-                    setTimeout(() => { modal.appendChild(p), location.reload(), 5000000 });
+                    setTimeout(() => { modal.appendChild(p), 500000 });
                    
                 }else if(res.status === 200){
                     let objeto = await JSON.parse(data);
