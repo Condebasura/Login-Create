@@ -1,3 +1,6 @@
+body{
+  background-color: #a78ee057;
+}
 
 .brra_nav{
   background-color: #dcdedf8a;
@@ -9,6 +12,13 @@
   box-shadow: 4px 10px 16px #2424252f;
 }
 
+.logo{
+  background: url("/img/logo_sesions.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+ 
+
+}
 .form{
   background-color: rgb(255, 255, 255);
   border-radius: .5rem;

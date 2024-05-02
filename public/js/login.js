@@ -6,12 +6,8 @@ const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 
 
-
 form.addEventListener("submit", (e) =>{
-    e.preventDefault();
-
-  
-    
+    e.preventDefault(); 
     
         const verifiDatos = async (email , pass)=>{
 

@@ -14,7 +14,7 @@
     display: flex;
    flex-direction: column;
    justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-top: 3em;
      max-width: 80%;
      width: 300px;
@@ -30,16 +30,18 @@
 
 }
 
-input{
-    height: 30px;
-    width: 60%;
-    outline: none;
-    border: 1px solid #414142b7;
+.Name , .Ap , .C-mail , .Pasword , .Re-Contraseña{
+   	height: 30px;
+    max-width: 100%;
+   border: 1px solid  rgb(180, 187, 178);
+   background-color: transparent;
+   box-shadow: inset -1px -1.7px 6px #36363665 ;
     
 }
 
-input:focus{
+.Name:focus , .Ap:focus , .C-mail:focus , .Pasword:focus , .Re-Contraseña:focus{
     border: 1px solid rgb(4, 189, 4);
+    outline: none;
 }
 
 .Regis_fin{
