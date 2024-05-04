@@ -13,17 +13,35 @@ height: 5em;
 
 
 
-.user{
+.cont_User{
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    gap: 5px;
+    
 }
 
 
 .img_default{
+    display: flex;
+    flex-direction: column;
     width: 3em;
     box-shadow: 1px 1px 5px #454;
     border-radius: 2em;
 
+}
+
+.logout{
+    cursor: pointer;
+}
+
+.ul_off{
+    display: none;
+}
+
+.ul_on{
+    margin: 1em;
+    position: absolute;right: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
 }

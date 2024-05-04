@@ -16,6 +16,12 @@ body{
   background: url("/img/logo_sesions.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
+  width: 7vmin;
+    color: rgb(22, 21, 21);
+    font-size: 16em;
+    font-style: italic;
+    padding-top: 7vmin ;
+border-radius: 50%;
  
 
 }

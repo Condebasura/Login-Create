@@ -1,5 +1,6 @@
 
 let img = document.querySelector(".img_default");
+const ul = document.querySelector(".ul_off");
 let UserName = document.querySelector(".user_name");
  let imgDefault = './img/default.jpg';
  img.src = imgDefault;
@@ -47,6 +48,23 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
 }
 
 dataUsuario();
+
+img.addEventListener("click", (e)=>{
+if(ul.classList.contains("ul_off")){
+    ul.classList.remove("ul_off");
+    ul.classList.add("ul_on");
+}
+ else{ 
+     ul.classList.remove("ul_on");
+    ul.classList.add("ul_off");
+}
+document.addEventListener("click", (e)=>{
+    if(e.target != img){
+        ul.classList.remove("ul_on");
+    ul.classList.add("ul_off");
+    }
+})
+})
 
 logout.addEventListener("click", async (e)=>{
 try{

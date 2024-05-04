@@ -1,9 +1,11 @@
-extends layout 
+extends layowt 
 block content 
  nav.conteiner
-    button(type="button" , class="logout") Cerrar Sesion 
-    div.user
-     img(src="", class="img_default")
-     spam(class="user_name")
+     div.logo
+     div.cont_User
+      img(src="", class="img_default")
+ ul.ul_off  
+  a(type="text" , class="logout") Cerrar Sesion 
+  spam(class="user_name")
  dialog#modal     
  script(type="module", src="/js/usuario.js") 
