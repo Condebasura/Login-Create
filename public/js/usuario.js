@@ -5,6 +5,7 @@ let UserName = document.querySelector(".user_name");
  let imgDefault = './img/default.jpg';
  img.src = imgDefault;
  const logout = document.querySelector(".logout");
+ const modal = document.getElementById("modal");
 
 const dataUsuario = async ( )=>{
 
@@ -41,6 +42,12 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                 UserName.innerHTML = datos.nombre;
                
             }
+
+            UserName.addEventListener("click", (e)=>{
+                if(e.target){
+                    modal.showModal()
+                }
+            })
        
     }catch(err){
         console.error('Error al  realizar la solicitud',err);
@@ -71,8 +78,8 @@ try{
 
     if(e.target){
         window.location.href = "/";
-         return fetch("/logout",{
-          method:"GET",
+        return fetch("/logout",{
+            method:"GET",
         })
         
     }
@@ -81,3 +88,12 @@ try{
 }
 
  });
+
+ window.addEventListener('beforeunload', (e) =>{
+    if(e.target){
+        return fetch("/logout",{
+            method:"GET",
+        })
+    }
+ })
+

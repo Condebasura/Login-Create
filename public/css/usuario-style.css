@@ -19,6 +19,10 @@ height: 5em;
     
 }
 
+.user_name{
+    cursor: pointer;
+}
+
 
 .img_default{
     display: flex;
