@@ -77,6 +77,7 @@ app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" ,  UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
 app.post("/create", UserControllers.CrarUsuario );
+app.put("/usuario", UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);

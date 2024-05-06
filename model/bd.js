@@ -110,10 +110,28 @@ console.log(err)
 
 }
 
+
+const UpdatePerfil = async (usuario)=>{
+    try{
+        const sql = 'UPDATE usuarios SET nombre = ? WHERE email = ?';
+        bd.run(sql , [usuario.nombre, usuario.email] , (err)=>{
+            if(err){
+                console.log(err.message);
+            }else{
+                console.log("Se actualizaron los datos correctamente");
+            }
+        })
+    }
+    catch(error){
+        console.log(error.message)
+}
+}
+
 export default{bd,
     DeleteAll,
 ConsultUser,
 InsertUser,
 EmailenUso, 
 NoCoincide,
-DataUser,};
+DataUser,
+UpdatePerfil,};

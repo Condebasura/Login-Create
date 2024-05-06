@@ -42,10 +42,63 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                 UserName.innerHTML = datos.nombre;
                
             }
-
+               // Continuar con la actualizacion de datos!!
             UserName.addEventListener("click", (e)=>{
                 if(e.target){
-                    modal.showModal()
+                    modal.innerHTML = "";
+                    const datos = decodedPayload;
+                    console.log(datos)
+                    const form = document.createElement("form");
+                   let labelNombre = document.createElement("label");
+                   let inputNombre = document.createElement("input");
+                   let labelEmail = document.createElement("label");
+                   let inputEmail = document.createElement("input");
+                   const btnCancelar = document.createElement("button");
+                   const btnGuardar = document.createElement("button");
+                   labelNombre.innerHTML = "Nombre de usuario";
+                   inputNombre.value = datos.nombre;
+                   labelEmail.innerHTML = "Email";
+                   inputEmail.value = datos.usuario.email;
+                   console.log(inputEmail.value)
+                   btnCancelar.innerHTML = "Cancelar";
+                   btnGuardar.innerHTML = "Guardar";
+                   inputEmail.setAttribute("readonly", "readonly");
+                   btnGuardar.setAttribute("type", "submit");
+                   btnCancelar.setAttribute("type", "button");
+                    modal.showModal();
+                    form.appendChild(labelNombre);
+                    form.appendChild(inputNombre);
+                    form.appendChild(labelEmail);
+                    form.appendChild(inputEmail);
+                    form.appendChild(btnCancelar);
+                    form.appendChild(btnGuardar);
+                    modal.appendChild(form);
+
+                  
+                         form.addEventListener("submit", (e)=>{
+                            e.preventDefault();
+
+                            const ActualizarDatos = async (inputNombre, inputEmail)=>{
+                                try{
+                                      return await fetch('/usuario', {
+                                        method: "PUT",
+                                        headers:{
+                                            "Content-type": "application/json"
+                                        },
+                                        body: JSON.stringify({inputNombre, inputEmail})
+                                      }).then(res => res.json()).catch(error => console.log(err.mensaje))
+                                }catch(err){
+                                    console.log(err.mensaje)
+                                }
+                            }
+                            ActualizarDatos(inputNombre.value, inputEmail.value);
+                         })
+
+                         btnCancelar.addEventListener("click", (e)=>{
+                            if(e.target){
+                                modal.close();
+                            }
+                        });
                 }
             })
        
@@ -78,7 +131,7 @@ try{
 
     if(e.target){
         window.location.href = "/";
-        return fetch("/logout",{
+        return await fetch("/logout",{
             method:"GET",
         })
         
@@ -89,11 +142,16 @@ try{
 
  });
 
- window.addEventListener('beforeunload', (e) =>{
-    if(e.target){
-        return fetch("/logout",{
-            method:"GET",
-        })
-    }
- })
+ /*window.addEventListener('beforeunload', async (e) =>{
+   try{
+
+       if(e.target){
+       return  await fetch("/logout",{
+                method:"GET",
+            })
+        }
+   }catch(err){
+    console.log(err)
+   }
+ })*/
 

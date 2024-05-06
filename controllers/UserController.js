@@ -102,6 +102,25 @@ import bd from "../model/bd.js";
 		};
 	}
 
+
+	const ActualizarPerfil = async (req, res)=>{
+		
+		console.log(req.body.inputEmail)
+		let usuario = {
+			nombre: req.body.inputNombre,
+			email: req.body.inputEmail,
+			}
+		
+		try{
+		     
+			await bd.UpdatePerfil(usuario);
+			res.status(200).json({message: "Datos actualizados correctamente"})
+		}catch(err){
+			console.log(err),
+			res.status(500).json({err: "Ocurrio un error al querer actualizar los datos , intente nuevamente"});
+		}
+	}
+
 const logout = async (req,res)=>{
 	try{
 		await res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
@@ -124,6 +143,7 @@ export default{
 	getWelcome,
 	getCreate,
 	CrarUsuario,
+	ActualizarPerfil,
 	logout,	
 };
 
