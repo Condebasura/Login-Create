@@ -113,8 +113,8 @@ console.log(err)
 
 const UpdatePerfil = async (usuario)=>{
     try{
-        const sql = 'UPDATE usuarios SET nombre = ? WHERE email = ?';
-        bd.run(sql , [usuario.nombre, usuario.email] , (err)=>{
+        const sql = 'UPDATE usuarios SET nombre = ? , apellido = ? WHERE email = ?';
+        bd.run(sql , [usuario.nombre , usuario.apellido, usuario.email] , (err)=>{
             if(err){
                 console.log(err.message);
             }else{

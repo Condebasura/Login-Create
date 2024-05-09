@@ -47,29 +47,47 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                 if(e.target){
                     modal.innerHTML = "";
                     const datos = decodedPayload;
-                    console.log(datos)
                     const form = document.createElement("form");
-                   let labelNombre = document.createElement("label");
-                   let inputNombre = document.createElement("input");
+                    let inputNombre = document.createElement("input");
+                    let labelNombre = document.createElement("label");
+                    let labelApellido = document.createElement("label");
+                    let inputApellido = document.createElement("input");
                    let labelEmail = document.createElement("label");
                    let inputEmail = document.createElement("input");
+                   let labelPass = document.createElement("label");
+                   let inputPass = document.createElement("input");
+                   let divBotones = document.createElement("div");
                    const btnCancelar = document.createElement("button");
                    const btnGuardar = document.createElement("button");
+
                    labelNombre.innerHTML = "Nombre de usuario";
-                   inputNombre.value = datos.nombre;
+                   labelApellido.innerHTML = "Apelido";
                    labelEmail.innerHTML = "Email";
-                   inputEmail.value = datos.usuario.email;
-                   console.log(inputEmail.value)
+                   
+                   
                    btnCancelar.innerHTML = "Cancelar";
                    btnGuardar.innerHTML = "Guardar";
-                   inputEmail.setAttribute("readonly", "readonly");
-                   btnGuardar.setAttribute("type", "submit");
+
+                   inputNombre.value = datos.nombre;
+                   inputApellido.value = datos.apellido;
+                   inputEmail.value = datos.usuario.email;
+                 
+
+
+                   form.setAttribute("class", "formEditPerfil");
+                   inputEmail.setAttribute("type", "email");
+                   
                    btnCancelar.setAttribute("type", "button");
+                   btnGuardar.setAttribute("type", "submit");
                     modal.showModal();
                     form.appendChild(labelNombre);
                     form.appendChild(inputNombre);
+                    form.appendChild(labelApellido);
+                    form.appendChild(inputApellido);
                     form.appendChild(labelEmail);
                     form.appendChild(inputEmail);
+                   
+                   
                     form.appendChild(btnCancelar);
                     form.appendChild(btnGuardar);
                     modal.appendChild(form);
@@ -78,20 +96,20 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                          form.addEventListener("submit", (e)=>{
                             e.preventDefault();
 
-                            const ActualizarDatos = async (inputNombre, inputEmail)=>{
+                            const ActualizarDatos = async (inputNombre,inputApellido, inputEmail)=>{
                                 try{
                                       return await fetch('/usuario', {
                                         method: "PUT",
                                         headers:{
                                             "Content-type": "application/json"
                                         },
-                                        body: JSON.stringify({inputNombre, inputEmail})
+                                        body: JSON.stringify({inputNombre,inputApellido, inputEmail})
                                       }).then(res => res.json()).catch(error => console.log(err.mensaje))
                                 }catch(err){
                                     console.log(err.mensaje)
                                 }
                             }
-                            ActualizarDatos(inputNombre.value, inputEmail.value);
+                            ActualizarDatos(inputNombre.value,inputApellido.value, inputEmail.value);
                          })
 
                          btnCancelar.addEventListener("click", (e)=>{
