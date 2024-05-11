@@ -105,11 +105,12 @@ import bd from "../model/bd.js";
 
 	const ActualizarPerfil = async (req, res)=>{
 		
-		
+		console.log(req.body.inputPass)
 		let usuario = {
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
+			contraseña: req.body.inputPass,
 			
 			}
 		

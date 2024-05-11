@@ -37,6 +37,7 @@ height: 5em;
     cursor: pointer;
 }
 
+
 .ul_off{
     display: none;
 }
@@ -48,4 +49,18 @@ height: 5em;
     flex-direction: column;
     justify-content: space-between;
     gap: 2em;
+}
+
+.Camb_Dataoff{
+    display: none;
+}
+
+.Camb_Dataon{
+    display: flex;
+    font-size: 21px;
+    background-color: red;
+    color: beige;
+    text-align: center;
+    justify-content: center;
+    opacity: 60%;
 }

@@ -6,6 +6,8 @@ let UserName = document.querySelector(".user_name");
  img.src = imgDefault;
  const logout = document.querySelector(".logout");
  const modal = document.getElementById("modal");
+const textCambData = document.querySelector(".Camb_Dataoff");
+
  
  
 
@@ -50,6 +52,7 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                 if(e.target){
                     modal.innerHTML = "";
                     const datos = decodedPayload;
+                    console.log(datos);
                     const form = document.createElement("form");
                     let inputNombre = document.createElement("input");
                     let labelNombre = document.createElement("label");
@@ -66,6 +69,7 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                    labelNombre.innerHTML = "Nombre de usuario";
                    labelApellido.innerHTML = "Apelido";
                    labelEmail.innerHTML = "Email";
+                   labelPass.innerHTML = "Cambiar Contraseña";
                    
                    
                    btnCancelar.innerHTML = "Cancelar";
@@ -74,11 +78,14 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                    inputNombre.value = datos.nombre;
                    inputApellido.value = datos.apellido;
                    inputEmail.value = datos.usuario.email;
+                   inputPass.value = datos.usuario.pass;
                  
 
 
                    form.setAttribute("class", "formEditPerfil");
                    inputEmail.setAttribute("type", "email");
+                   
+                
                    
                    btnCancelar.setAttribute("type", "button");
                    btnGuardar.setAttribute("type", "submit");
@@ -89,7 +96,8 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                     form.appendChild(inputApellido);
                     form.appendChild(labelEmail);
                     form.appendChild(inputEmail);
-                   
+                    form.appendChild(labelPass);
+                    form.appendChild(inputPass);
                    
                     form.appendChild(btnCancelar);
                     form.appendChild(btnGuardar);
@@ -99,23 +107,38 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                          form.addEventListener("submit", (e)=>{
                             e.preventDefault();
 
-                            const ActualizarDatos = async (inputNombre,inputApellido, inputEmail)=>{
+                            const ActualizarDatos = async (inputNombre,inputApellido, inputEmail , inputPass)=>{
                                 try{
-                                      return await fetch('/usuario', {
+                                       const res =  await fetch('/usuario', {
                                         method: "PUT",
                                         headers:{
                                             "Content-type": "application/json"
                                         },
-                                        body: JSON.stringify({inputNombre,inputApellido, inputEmail})
-                                      }).then(res => 
-                                        res.json()
-                ).catch(error => console.log(err.mensaje))
+                                        body: JSON.stringify({inputNombre,inputApellido, inputEmail , inputPass})
+                                      })
+                                      if(!res.ok){
+                                        console.log("Ocurrió un error al actualizar los datos")
+                                      }else{
+                                        
+                                         modal.close(); 
+                                          if(textCambData.classList.contains("Camb_Dataoff")){
+                                              textCambData.innerHTML = "Los cambios se veran reflejados en la proxima sesion"
+                                            textCambData.classList.remove("Camb_Dataoff");
+                                              textCambData.classList.add("Camb_Dataon");
+                                              
+                                            }else{
+                                                textCambData.classList.remove("Camb_Dataon");
+                                                textCambData.classList.add("Camb_Dataoff");
+                                                
+                                            }
+                                        }
+                
                                 }catch(err){
                                     console.log(err.mensaje)
                                 }
                             }
-                            ActualizarDatos(inputNombre.value,inputApellido.value, inputEmail.value);
-                            
+                            ActualizarDatos(inputNombre.value,inputApellido.value, inputEmail.value , inputPass.value);
+                           
                          })
 
                          btnCancelar.addEventListener("click", (e)=>{
