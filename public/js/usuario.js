@@ -6,6 +6,9 @@ let UserName = document.querySelector(".user_name");
  img.src = imgDefault;
  const logout = document.querySelector(".logout");
  const modal = document.getElementById("modal");
+ 
+ 
+
 
 const dataUsuario = async ( )=>{
 
@@ -104,12 +107,15 @@ const cookie = cookies.find(([name, value]) => name === tokenName);
                                             "Content-type": "application/json"
                                         },
                                         body: JSON.stringify({inputNombre,inputApellido, inputEmail})
-                                      }).then(res => res.json()).catch(error => console.log(err.mensaje))
+                                      }).then(res => 
+                                        res.json()
+                ).catch(error => console.log(err.mensaje))
                                 }catch(err){
                                     console.log(err.mensaje)
                                 }
                             }
                             ActualizarDatos(inputNombre.value,inputApellido.value, inputEmail.value);
+                            
                          })
 
                          btnCancelar.addEventListener("click", (e)=>{
