@@ -1,6 +1,8 @@
 import  sqlite3  from "sqlite3";
-
+import bcrypt from "bcrypt";
+const saltRounds = 10;
 let bd = new sqlite3.Database('Users.bd');
+
 bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT)');
 
 const ConsultUser = ()=>{
@@ -24,10 +26,13 @@ const ConsultUser = ()=>{
         bd.run('DROP  TABLE usuarios')
     }
 
+
+
 const InsertUser =  async (usuario)=>{
     try{
+        const hashedPasword = await bcrypt.hash(usuario.contraseña , saltRounds)
      let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , contraseña) VALUES(?,?,?,?)' );
-     stmt.run(usuario.nombre , usuario.apellido , usuario.email , usuario.contraseña );
+     stmt.run(usuario.nombre , usuario.apellido , usuario.email , hashedPasword );
  
       stmt.finalize();
      return 'usuario registrado con exito';
@@ -68,18 +73,24 @@ const EmailenUso =(usuario)=>{
 
 const NoCoincide = (usuario)=>{
     return new Promise((resolve , reject)=>{
-        let sql = 'SELECT * FROM usuarios WHERE email = ? AND contraseña = ? ';
+        let sql = 'SELECT * FROM usuarios WHERE email = ? ';
         
            let email = usuario.email;
            let pass = usuario.pass;
-        bd.get(sql , [email ,pass], (err, row)=>{
+        bd.get(sql , [email], async (err, row)=>{
             if(err){
                 console.error(err.message);
                 reject(err);
-            }else if(row){
-                resolve(true);
-            }else{
+            } if(!row){
                 resolve(false);
+                return;
+            }
+            try {
+                const passwordMatch = await bcrypt.compare(pass, row.contraseña);
+                resolve(passwordMatch);
+            } catch (bcryptError) {
+                console.error('Error al comparar contraseñas:', bcryptError);
+                reject(bcryptError);
             }
         })
 
@@ -113,8 +124,9 @@ console.log(err)
 
 const UpdatePerfil = async (usuario)=>{
     try{
-        const sql = 'UPDATE usuarios SET nombre = ? , apellido = ? , contraseña = ? WHERE email = ?';
-        bd.run(sql , [usuario.nombre , usuario.apellido, usuario.email , usuario.contraseña] , (err)=>{
+        const hashedPassword = await bcrypt.hash(usuario.contraseña , saltRounds);
+        const sql = 'UPDATE usuarios SET nombre = ? , apellido = ? , email = ? , contraseña = ? WHERE email = ?';
+        bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , hashedPassword, usuario.email] , (err)=>{
             if(err){
                 console.log(err.message);
             }else{
