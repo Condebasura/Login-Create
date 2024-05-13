@@ -1,7 +1,11 @@
 extends layowt 
 block content 
  nav.brra_nav_create 
-  div(class="logo")
+  div.ContentLogo
+   div(class="logo")
+   div.textlogo
+    h1.nameLogo Sesions
+    spam.TextFrase Muchas redes en un solo lugar
   h2.create_name Registrarse 
  form.formCreate(action="/create" , method="post" , enctype="multipart/form-data")
   label(for="Nombre") Nombre 

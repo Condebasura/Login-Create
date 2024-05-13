@@ -11,6 +11,15 @@ body{
   padding: 1em;
   box-shadow: 4px 10px 16px #2424252f;
 }
+.ContentLogo{
+  display: flex;
+  flex-direction: row;
+  gap: .4em;
+  
+}
+.nameLogo{
+  text-align: left;
+}
 
 .logo{
   background: url("/img/logo_sesions.jpeg") no-repeat;
@@ -22,7 +31,8 @@ body{
     font-style: italic;
     padding-top: 7vmin ;
 border-radius: 50%;
- 
+
+
 
 }
 .form{

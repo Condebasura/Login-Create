@@ -125,12 +125,9 @@ const dataUsuario = async () => {
                                     textCambData.classList.remove("Camb_Dataoff");
                                     textCambData.classList.add("Camb_Dataon");
 
-                                } else {
-                                    textCambData.classList.remove("Camb_Dataon");
-                                    textCambData.classList.add("Camb_Dataoff");
-
-                                }
-                            }
+                                } }
+                                    
+                            
 
                         } catch (err) {
                             console.log(err.mensaje)
