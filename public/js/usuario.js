@@ -35,18 +35,26 @@ const dataUsuario = async () => {
         });
 
 
+        
 
+        if (!res.ok) {
+            const data = await res.json();
+            let parrafo = document.createElement("h3");
+            parrafo.innerHTML = data.mensaje;
+            console.log(parrafo);
+            window.appendChild(parrafo);
 
-        if (res.status === 401) {
-            const data = res.json();
-            console.log(data.mensaje);
-
+            
         } else {
             const datos = decodedPayload;
 
             UserName.innerHTML = datos.nombre;
+            
 
         }
+
+
+
         // Continuar con la actualizacion de datos!!
         UserName.addEventListener("click", (e) => {
             if (e.target) {
@@ -152,6 +160,7 @@ const dataUsuario = async () => {
 
 dataUsuario();
 
+
 img.addEventListener("click", (e) => {
     if (ul.classList.contains("ul_off")) {
         ul.classList.remove("ul_off");
@@ -185,16 +194,23 @@ logout.addEventListener("click", async (e) => {
 
 });
 
-/*window.addEventListener('beforeunload', async (e) =>{
+window.addEventListener('beforeunload', async (e) =>{
   try{
 
-      if(e.target){
-      return  await fetch("/logout",{
-               method:"GET",
-           })
-       }
+
+    if(e.target){
+        window.location.href = "index";
+         
+        return  await fetch("/logout",{
+                 method:"GET",
+             })
+        
+    }
+
+     
+    
   }catch(err){
    console.log(err)
   }
-})*/
+})
 

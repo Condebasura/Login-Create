@@ -48,7 +48,7 @@ import bd from "../model/bd.js";
 		const secret = "humedad-cancha-lodo";
              if(!token){
 				
-				 return res.status(401).json({mensaje: "Accseso no authorizado."});
+				 return res.status(401).render( "index", {mensaje: "Imposible cargar los datos del usuario!!"});
 				}
 				
 			 jwt.verify(token, secret, (err)=>{
