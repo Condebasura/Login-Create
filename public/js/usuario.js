@@ -38,11 +38,11 @@ const dataUsuario = async () => {
         
 
         if (!res.ok) {
+            
             const data = await res.json();
-            let parrafo = document.createElement("h3");
-            parrafo.innerHTML = data.mensaje;
-            console.log(parrafo);
-            window.appendChild(parrafo);
+         
+            return data.mensaje;
+           
 
             
         } else {
@@ -198,12 +198,11 @@ window.addEventListener('beforeunload', async (e) =>{
   try{
 
 
-    if(e.target){
-        window.location.href = "index";
-         
-        return  await fetch("/logout",{
-                 method:"GET",
-             })
+    if(e.target ){
+        await fetch("/logout",{
+            method:"GET",
+        })
+        return window.location.href = "sesionCaduca";
         
     }
 
