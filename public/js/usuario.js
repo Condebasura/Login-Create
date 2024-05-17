@@ -7,8 +7,7 @@ img.src = imgDefault;
 const logout = document.querySelector(".logout");
 const modal = document.getElementById("modal");
 const textCambData = document.querySelector(".Camb_Dataoff");
-
-
+const textName = document.querySelector(".TextFrase");
 
 
 
@@ -48,8 +47,8 @@ const dataUsuario = async () => {
         } else {
             const datos = decodedPayload;
 
-            UserName.innerHTML = datos.nombre;
-            
+            UserName.innerHTML = "Perfil";
+            textName.innerHTML = `Redes de ${datos.nombre}`;            
 
         }
 
@@ -61,6 +60,8 @@ const dataUsuario = async () => {
                 modal.innerHTML = "";
                 const datos = decodedPayload;
                 const form = document.createElement("form");
+                let ContainerImput = document.createElement("span");
+                let archivo = document.createElement("input");
                 let inputNombre = document.createElement("input");
                 let labelNombre = document.createElement("label");
                 let labelApellido = document.createElement("label");
@@ -77,6 +78,7 @@ const dataUsuario = async () => {
                 labelApellido.innerHTML = "Apelido";
                 labelEmail.innerHTML = "Email";
                 labelPass.innerHTML = "Cambiar Contraseña";
+                ContainerImput.innerHTML = "Cambiar Imagen";
 
 
                 btnCancelar.innerHTML = "Cancelar";
@@ -88,15 +90,19 @@ const dataUsuario = async () => {
                 inputPass.value = datos.usuario.pass;
 
 
-
+                 
                 form.setAttribute("class", "formEditPerfil");
                 inputEmail.setAttribute("type", "email");
-
+                 archivo.setAttribute("type", "file");
+                 archivo.setAttribute("class", "archivo");
+                 ContainerImput.setAttribute("class", "input_Container")
 
 
                 btnCancelar.setAttribute("type", "button");
                 btnGuardar.setAttribute("type", "submit");
                 modal.showModal();
+                ContainerImput.appendChild(archivo);
+                form.appendChild(ContainerImput);
                 form.appendChild(labelNombre);
                 form.appendChild(inputNombre);
                 form.appendChild(labelApellido);
@@ -109,10 +115,24 @@ const dataUsuario = async () => {
                 form.appendChild(btnCancelar);
                 form.appendChild(btnGuardar);
                 modal.appendChild(form);
-
+                
+                ContainerImput.addEventListener("click", e=>{
+                    if(e.target){
+                        archivo.click();
+                        
+                    }
+                    archivo.addEventListener("change", e=>{
+                        if(e.target){
+                            
+                            return console.log(archivo.value);
+                        }
+                    })
+                })
 
                 form.addEventListener("submit", (e) => {
                     e.preventDefault();
+
+                   
 
                     const ActualizarDatos = async (inputNombre, inputApellido, inputEmail, inputPass) => {
                         try {
@@ -194,7 +214,7 @@ logout.addEventListener("click", async (e) => {
 
 });
 
-window.addEventListener('beforeunload', async (e) =>{
+/*window.addEventListener('beforeunload', async (e) =>{
   try{
 
 
@@ -211,5 +231,5 @@ window.addEventListener('beforeunload', async (e) =>{
   }catch(err){
    console.log(err)
   }
-})
+})*/
 

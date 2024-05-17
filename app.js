@@ -3,6 +3,7 @@ import path from "path";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import multer from "multer";
 import { expressjwt } from "express-jwt";
 import cookieParser from "cookie-parser";
 import {fileURLToPath} from "url";

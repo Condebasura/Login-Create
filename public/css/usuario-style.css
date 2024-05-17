@@ -65,3 +65,13 @@ height: 5em;
     opacity: 60%;
 }
 
+.input_Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+.archivo{
+    opacity: 0%;
+}
