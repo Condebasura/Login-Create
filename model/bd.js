@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 const saltRounds = 10;
 let bd = new sqlite3.Database('Users.bd');
 
-bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER , nombre TEXT , apellido TEXT , email TEXT PRIMARY KEY , contraseña TEXT)');
+bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT , nombre TEXT , apellido TEXT , email TEXT  , contraseña TEXT , imagen TEXT)');
 
 const ConsultUser = ()=>{
 
@@ -125,8 +125,8 @@ console.log(err)
 const UpdatePerfil = async (usuario)=>{
     try{
         const hashedPassword = await bcrypt.hash(usuario.contraseña , saltRounds);
-        const sql = 'UPDATE usuarios SET nombre = ? , apellido = ? , email = ? , contraseña = ? WHERE email = ?';
-        bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , hashedPassword, usuario.email] , (err)=>{
+        const sql = 'UPDATE usuarios SET nombre = ? , apellido = ? , email = ? , contraseña = ? , imagen = ?  WHERE email = ?';
+        bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , hashedPassword, usuario.imagen, usuario.email] , (err)=>{
             if(err){
                 console.log(err.message);
             }else{

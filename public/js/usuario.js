@@ -59,6 +59,7 @@ const dataUsuario = async () => {
             if (e.target) {
                 modal.innerHTML = "";
                 const datos = decodedPayload;
+                console.log(datos);
                 const form = document.createElement("form");
                 let ContainerImput = document.createElement("span");
                 let archivo = document.createElement("input");
@@ -95,14 +96,15 @@ const dataUsuario = async () => {
                 inputEmail.setAttribute("type", "email");
                  archivo.setAttribute("type", "file");
                  archivo.setAttribute("class", "archivo");
+                 archivo.setAttribute("name", "archivo");
+                 archivo.setAttribute("accept", "image/*");
                  ContainerImput.setAttribute("class", "input_Container")
 
 
                 btnCancelar.setAttribute("type", "button");
                 btnGuardar.setAttribute("type", "submit");
                 modal.showModal();
-                ContainerImput.appendChild(archivo);
-                form.appendChild(ContainerImput);
+               
                 form.appendChild(labelNombre);
                 form.appendChild(inputNombre);
                 form.appendChild(labelApellido);
@@ -111,6 +113,8 @@ const dataUsuario = async () => {
                 form.appendChild(inputEmail);
                 form.appendChild(labelPass);
                 form.appendChild(inputPass);
+                ContainerImput.appendChild(archivo);
+                form.appendChild(ContainerImput);
 
                 form.appendChild(btnCancelar);
                 form.appendChild(btnGuardar);
@@ -124,7 +128,8 @@ const dataUsuario = async () => {
                     archivo.addEventListener("change", e=>{
                         if(e.target){
                             
-                            return console.log(archivo.value);
+                          
+                           console.log(archivo.value);
                         }
                     })
                 })
@@ -134,14 +139,14 @@ const dataUsuario = async () => {
 
                    
 
-                    const ActualizarDatos = async (inputNombre, inputApellido, inputEmail, inputPass) => {
+                    const ActualizarDatos = async (inputNombre, inputApellido, inputEmail, inputPass, archivo) => {
                         try {
                             const res = await fetch('/usuario', {
                                 method: "PUT",
                                 headers: {
                                     "Content-type": "application/json"
                                 },
-                                body: JSON.stringify({ inputNombre, inputApellido, inputEmail, inputPass })
+                                body: JSON.stringify({ inputNombre, inputApellido, inputEmail, inputPass ,archivo })
                             })
                             if (!res.ok) {
                                 console.log("Ocurrió un error al actualizar los datos")
@@ -161,7 +166,8 @@ const dataUsuario = async () => {
                             console.log(err.mensaje)
                         }
                     }
-                    ActualizarDatos(inputNombre.value, inputApellido.value, inputEmail.value, inputPass.value);
+                    ActualizarDatos(inputNombre.value, inputApellido.value, inputEmail.value, inputPass.value , archivo.value);
+                   
 
                 })
 

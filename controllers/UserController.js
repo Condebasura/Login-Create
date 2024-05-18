@@ -1,6 +1,9 @@
 
 import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
+	import multer from "multer";
+	import path from "path";
+
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
 		
@@ -100,17 +103,50 @@ import bd from "../model/bd.js";
 		}catch(err){
 			res.send(console.log(err));
 		};
-	}
+	};
+
+	const storage = multer.diskStorage({
+		destination: (req, file , cb)=>{
+		  cb(null, 'public/uploads');
+		},
+		filename: (req, file , cb)=>{
+		  cb(null, Date.now() + path.extname(file.originalname))
+		}
+	  });
+	  
+	  
+	  const upload = multer({storage: storage,
+		fileFilter: (req, file, cb) => {
+			// Filtrar los archivos permitiendo solo imágenes
+			const filetypes = /jpeg|jpg|png|gif/;
+			const mimetype = filetypes.test(file.mimetype);
+			const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+		
+			if (mimetype && extname) {
+			  return cb(null, true);
+			} else {
+			  cb('Error: Solo se permiten imágenes');
+			}
+		  }
+		});
+	 
+	
 
 
 	const ActualizarPerfil = async (req, res)=>{
-		
-		console.log(req.body.inputPass)
+       upload.single('archivo')(req, res ,async (err)=>{
+		if(err){
+			return res.status(400).json({message: "Error al cargar la imagen"})
+		}
+	   })
+
+		console.log(req.file);
 		let usuario = {
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
 			contraseña: req.body.inputPass,
+            imagen: req.file,
 			
 			}
 		
@@ -148,6 +184,7 @@ export default{
 	CrarUsuario,
 	ActualizarPerfil,
 	logout,	
+	
 };
 
 

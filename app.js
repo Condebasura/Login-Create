@@ -7,7 +7,7 @@ import multer from "multer";
 import { expressjwt } from "express-jwt";
 import cookieParser from "cookie-parser";
 import {fileURLToPath} from "url";
-import UserControllers from "./controllers/UserController.js";
+import   UserControllers from "./controllers/UserController.js";
 import bd from "./model/bd.js";
 
 const ScrT = "humedad-cancha-lodo";
@@ -41,6 +41,8 @@ app.use("usuario",expressjwt({
      
 }));//.unless({ path: ["/","/usuario","/create",  "/css/create-style.css", "/css/login.css", "/css/usuario-style.css","/js/usuario.js", "/js/create.js" , "/js/login.js", "/img/default.jpg"]
  //})
+
+
  
 app.use(cors(corsOptions));
 app.use(helmet());
@@ -63,7 +65,8 @@ app.set("view engine", "pug");
 
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "img")));
+app.use( express.static(path.join(__dirname, "public/img")));
+app.use( '/uploads',express.static(path.join(__dirname, "public/uploads")));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
