@@ -2,8 +2,6 @@
 let img = document.querySelector(".img_default");
 const ul = document.querySelector(".ul_off");
 let UserName = document.querySelector(".user_name");
-let imgDefault = './img/default.jpg';
-img.src = imgDefault;
 const logout = document.querySelector(".logout");
 const modal = document.getElementById("modal");
 const textCambData = document.querySelector(".Camb_Dataoff");
@@ -49,7 +47,7 @@ const dataUsuario = async () => {
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
-
+                console.log(datos)
         }
 
 
@@ -59,10 +57,11 @@ const dataUsuario = async () => {
             if (e.target) {
                 modal.innerHTML = "";
                 const datos = decodedPayload;
-                console.log(datos);
+               
                 const form = document.createElement("form");
                 let ContainerImput = document.createElement("span");
                 let archivo = document.createElement("input");
+                let NameArchivo = document.createElement("p");
                 let inputNombre = document.createElement("input");
                 let labelNombre = document.createElement("label");
                 let labelApellido = document.createElement("label");
@@ -80,6 +79,7 @@ const dataUsuario = async () => {
                 labelEmail.innerHTML = "Email";
                 labelPass.innerHTML = "Cambiar Contraseña";
                 ContainerImput.innerHTML = "Cambiar Imagen";
+               
 
 
                 btnCancelar.innerHTML = "Cancelar";
@@ -114,6 +114,7 @@ const dataUsuario = async () => {
                 form.appendChild(labelPass);
                 form.appendChild(inputPass);
                 ContainerImput.appendChild(archivo);
+                ContainerImput.appendChild(NameArchivo);
                 form.appendChild(ContainerImput);
 
                 form.appendChild(btnCancelar);
@@ -128,8 +129,10 @@ const dataUsuario = async () => {
                     archivo.addEventListener("change", e=>{
                         if(e.target){
                             
-                          
-                           console.log(archivo.value);
+                          let imgName = archivo.value;
+                          const partes = imgName.split("\\");
+                          let soloImg =  partes.pop();
+                          return NameArchivo.innerHTML = soloImg;
                         }
                     })
                 })
@@ -140,6 +143,7 @@ const dataUsuario = async () => {
                    
 
                     const ActualizarDatos = async (inputNombre, inputApellido, inputEmail, inputPass, archivo) => {
+                       let  formdata = new FormData(e.target);
                         try {
                             const res = await fetch('/usuario', {
                                 method: "PUT",
@@ -147,11 +151,28 @@ const dataUsuario = async () => {
                                     "Content-type": "application/json"
                                 },
                                 body: JSON.stringify({ inputNombre, inputApellido, inputEmail, inputPass ,archivo })
-                            })
+                            });
+
+                             await fetch('/usuario', {
+                                method: 'PUT',
+                                body: formdata,
+                             })
+                             const result = await res.json();
                             if (!res.ok) {
+                                       
                                 console.log("Ocurrió un error al actualizar los datos")
                             } else {
-
+                                    await fetch('/usuario').then(response =>{
+                                        if(!response.ok){
+                                            throw new Error("Error al obtener la imagen");
+                                        }else{
+                                            return response.blob();
+                                        }
+                                    }).then(Blob =>{
+                                        const ImgURL = URL.createObjectURL(Blob);
+                                        img.src = ImgURL;
+                                    })
+                                    console.log(result);
                                 modal.close();
                                 if (textCambData.classList.contains("Camb_Dataoff")) {
                                     textCambData.innerHTML = "Los cambios se veran reflejados en la proxima sesion"

@@ -68,10 +68,7 @@
     box-shadow: 2px 2px 8px #444444ef;
     cursor: pointer;
 }
-.archivo{
-    outline: none;
-    border-style: none;
-}
+
 
 .Regis_fin:active{
 box-shadow: none;

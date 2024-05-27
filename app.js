@@ -52,7 +52,9 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Error interno del servidor' });
 });
 app.use((req,res,next)=>{
-	res.setHeader('X-Content-Type-Options', 'nosniff');
+	res.setHeader("Content-Security-Policy",
+     "img-src 'self' blob: data:",
+     'X-Content-Type-Options', 'nosniff',);
 next();	
 });
 
@@ -66,12 +68,13 @@ app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use( express.static(path.join(__dirname, "public/img")));
-app.use( '/uploads',express.static(path.join(__dirname, "public/uploads")));
+app.use( 'uploads/',express.static(path.join(__dirname, "public/uploads/")));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+const upload = multer({dest: 'public/uploads/'});
 
 app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
@@ -80,9 +83,13 @@ app.post("/" , UserControllers.postUsers);
 app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" ,  UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
-app.post("/create", UserControllers.CrarUsuario );
-app.put("/usuario", UserControllers.ActualizarPerfil);
+app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
+app.put("/usuario", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
-})
+});
+
+export {
+  __dirname,
+}

@@ -5,6 +5,7 @@ let email = document.querySelector(".C-mail");
 let password = document.querySelector(".Pasword");
 let RePasword = document.querySelector(".Re-Contraseña");
 const btnRegis = document.querySelector(".Regis-fin");
+let archivo = document.querySelector(".CreaArchivo");
 const sesion = document.querySelector(".Sesion");
 
 //  Para emails.
@@ -84,7 +85,8 @@ const ValidarRegisPass = () => {
  
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
-    const RegisUsuario = async (nombre , apellido, email , password )=>{
+    const RegisUsuario = async (nombre , apellido, email , password, archivo )=>{
+        let  formdata = new FormData(e.target);
        
         try{
 
@@ -94,10 +96,11 @@ form.addEventListener("submit",(e)=>{
                     headers:{
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({nombre, apellido , email , password})
-                })
+                    body: JSON.stringify({nombre, apellido , email , password, archivo})
+                });
 
                 const data = await res.text();
+                 
                 
                 if(res.status === 409){
                     let objeto = await JSON.parse(data);
@@ -126,7 +129,29 @@ form.addEventListener("submit",(e)=>{
             return console.log(error)
         }
     }
-RegisUsuario(nombre.value , apellido.value , email.value , password.value );
+    form.addEventListener("submit", async (e) =>{
+        e.preventDefault();
+     
+        const formdata = new FormData(e.target);
+       
+         try {
+            const res = await fetch('/create', {
+                method: "POST",
+                body: formdata, 
+              
+            })
+            const result = await res.json();
+            
+            
+            
+            if(res.ok){
+               console.log(result);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    })
+RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo.value );
 })
 
 sesion.addEventListener("click", (e)=>{

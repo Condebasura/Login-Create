@@ -1,8 +1,10 @@
 
 import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
-	import multer from "multer";
+	import { __dirname } from "../app.js";
 	import path from "path";
+	import fs from 'fs';
+	
 
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
@@ -46,7 +48,11 @@ import bd from "../model/bd.js";
 	};
 	
 	const getWelcome = (req , res ) =>{
+		let usuario = {
+			nombre: req.body.UserName,
+            imagen: req.body.img,
 			
+		}
 		const token = req.cookies.mitoken;
 		const secret = "humedad-cancha-lodo";
              if(!token){
@@ -61,8 +67,23 @@ import bd from "../model/bd.js";
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
 				else{
-            
 					res.status(200).render("usuario" , {title: "Home"});
+					
+					const Img =  usuario.imagen;
+					
+					 
+					let imagePath;
+		
+					if(Img){
+						imagePath = path.join(__dirname, 'public/uploads/', Img)
+					}else{
+						imagePath = path.join(__dirname,  './public/uploads/', 'default.jpg')
+		
+					}
+					  
+					res.sendFile(imagePath);
+					console.log(imagePath);
+					
 				}
 			})
 	
@@ -76,26 +97,28 @@ import bd from "../model/bd.js";
 	}
 
 
-	
+	// Resolver el problema de que no guarda en la bd;
 	const CrarUsuario = async (req, res)=>{
-          
+	
 		let usuario = {
 			nombre: req.body.nombre,
 			apellido: req.body.apellido , 
 			email: req.body.email, 
 			contraseña: req.body.password, 
-		
-			
+			imagen: req.body.archivo ,
 		};
+
 		try{
-		
+			const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 			const CorreoEnUso = await bd.EmailenUso(usuario);
 			if(CorreoEnUso){
 				res.status(409);
 				res.json({mensaje:`${usuario.email} no esta disponible!!`});
 				
-			}else if(!CorreoEnUso){
+			}else if(!CorreoEnUso ){
+			
 				await bd.InsertUser(usuario);
+				console.log(usuario)
 				res.status(200);
 				res.json({mensaje: `Usuario registrado con exito`});
 			}
@@ -105,60 +128,34 @@ import bd from "../model/bd.js";
 		};
 	};
 
-	const storage = multer.diskStorage({
-		destination: (req, file , cb)=>{
-		  cb(null, 'public/uploads');
-		},
-		filename: (req, file , cb)=>{
-		  cb(null, Date.now() + path.extname(file.originalname))
-		}
-	  });
-	  
-	  
-	  const upload = multer({storage: storage,
-		fileFilter: (req, file, cb) => {
-			// Filtrar los archivos permitiendo solo imágenes
-			const filetypes = /jpeg|jpg|png|gif/;
-			const mimetype = filetypes.test(file.mimetype);
-			const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-		
-			if (mimetype && extname) {
-			  return cb(null, true);
-			} else {
-			  cb('Error: Solo se permiten imágenes');
-			}
-		  }
-		});
+	
 	 
 	
 
 
 	const ActualizarPerfil = async (req, res)=>{
-       upload.single('archivo')(req, res ,async (err)=>{
-		if(err){
-			return res.status(400).json({message: "Error al cargar la imagen"})
-		}
-	   })
-
-		console.log(req.file);
+		
 		let usuario = {
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
 			contraseña: req.body.inputPass,
-            imagen: req.file,
+            imagen: req.body.archivo,
 			
-			}
+		}
 		
 		try{
+		
 		     
 			await bd.UpdatePerfil(usuario);
-			res.status(200).json({message: "Datos actualizados correctamente"})
+			res.status(200).json({message: "Datos actualizados correctamente"});
 		}catch(err){
 			console.log(err),
 			res.status(500).json({err: "Ocurrio un error al querer actualizar los datos , intente nuevamente"});
 		}
-	}
+	};
+
+
 
 const logout = async (req,res)=>{
 	try{
