@@ -107,9 +107,9 @@ import bd from "../model/bd.js";
 			contraseña: req.body.password, 
 			imagen: req.body.archivo ,
 		};
+		const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 
 		try{
-			const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 			const CorreoEnUso = await bd.EmailenUso(usuario);
 			if(CorreoEnUso){
 				res.status(409);

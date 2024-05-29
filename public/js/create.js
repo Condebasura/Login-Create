@@ -99,9 +99,9 @@ form.addEventListener("submit",(e)=>{
                     body: JSON.stringify({nombre, apellido , email , password, archivo})
                 });
 
-                const data = await res.text();
+                const data = await res.json();
                  
-                
+                console.log(data);
                 if(res.status === 409){
                     let objeto = await JSON.parse(data);
                     let modal = document.getElementById("modal");
@@ -126,6 +126,7 @@ form.addEventListener("submit",(e)=>{
                 }
             }
         }catch(error){
+    
             return console.log(error)
         }
     }
