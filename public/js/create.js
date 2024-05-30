@@ -83,42 +83,44 @@ const ValidarRegisPass = () => {
 
  
  
-form.addEventListener("submit",(e)=>{
+form.addEventListener("submit", async (e)=>{
     e.preventDefault();
-    const RegisUsuario = async (nombre , apellido, email , password, archivo )=>{
+     
+
         let  formdata = new FormData(e.target);
-       
+         formdata.append("nombre", nombre.value);
+         formdata.append("apellido", apellido.value);
+         formdata.append("email", email.value);
+         formdata.append("password", password.value);
+         
         try{
 
             if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
                let res =  await fetch("/create", {
                     method: "POST", 
-                    headers:{
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({nombre, apellido , email , password, archivo})
+                    body: formdata
                 });
 
                 const data = await res.json();
                  
                 console.log(data);
                 if(res.status === 409){
-                    let objeto = await JSON.parse(data);
+                    
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgError");
                     modal.innerHTML = "";
-                    p.innerHTML = objeto.mensaje;
+                    p.innerHTML = data.mensaje;
                     modal.showModal();
                     setTimeout(() => { modal.appendChild(p), 500000 });
                    
                 }else if(res.status === 200){
-                    let objeto = await JSON.parse(data);
+                    
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgExito");
                     modal.innerHTML = "";
-                    p.innerHTML = objeto.mensaje;
+                    p.innerHTML = data.mensaje;
                     modal.showModal();
                     
                     setTimeout(() => { modal.appendChild(p), window.location.href = "/", 200000 });
@@ -129,31 +131,9 @@ form.addEventListener("submit",(e)=>{
     
             return console.log(error)
         }
-    }
-    form.addEventListener("submit", async (e) =>{
-        e.preventDefault();
-     
-        const formdata = new FormData(e.target);
-       
-         try {
-            const res = await fetch('/create', {
-                method: "POST",
-                body: formdata, 
-              
-            })
-            const result = await res.json();
-            
-            
-            
-            if(res.ok){
-               console.log(result);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    })
-RegisUsuario(nombre.value , apellido.value , email.value , password.value , archivo.value );
-})
+  
+
+});
 
 sesion.addEventListener("click", (e)=>{
     if(e.target){

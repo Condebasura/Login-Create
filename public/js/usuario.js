@@ -48,6 +48,12 @@ const dataUsuario = async () => {
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
                 console.log(datos)
+
+                const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+                const imagenResponse = await fetch(imageURL);
+                const imgBlob = await imagenResponse.blob();
+                const imagenObjectURL = URL.createObjectURL(imgBlob);
+                img.src = imagenObjectURL;
         }
 
 

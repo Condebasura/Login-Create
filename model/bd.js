@@ -32,7 +32,7 @@ const InsertUser =  async (usuario)=>{
     try{
         const hashedPasword = await bcrypt.hash(usuario.contraseña , saltRounds)
      let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , contraseña , imagen ) VALUES(?,?,?,?,?)' );
-     stmt.run(usuario.nombre , usuario.apellido , usuario.email, hashedPasword,usuario.imagen );
+     stmt.run(usuario.nombre , usuario.apellido , usuario.email, hashedPasword, usuario.imagen );
  
       stmt.finalize();
      return 'usuario registrado con exito';
@@ -146,4 +146,5 @@ InsertUser,
 EmailenUso, 
 NoCoincide,
 DataUser,
-UpdatePerfil,};
+UpdatePerfil,
+};

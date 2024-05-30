@@ -26,7 +26,9 @@ import bd from "../model/bd.js";
 				const payload = {usuario,
 				nombre: data.nombre,
 			    apellido: data.apellido,
+				imagen: data.imagen,
 			};
+			
 				const secret = "humedad-cancha-lodo";
 				const token = jwt.sign(payload, secret);
 				res.cookie('mitoken', token,  { sameSite: 'Strict' } , {
@@ -47,12 +49,9 @@ import bd from "../model/bd.js";
 		
 	};
 	
-	const getWelcome = (req , res ) =>{
-		let usuario = {
-			nombre: req.body.UserName,
-            imagen: req.body.img,
-			
-		}
+	const getWelcome =  (req , res ) =>{
+		
+		
 		const token = req.cookies.mitoken;
 		const secret = "humedad-cancha-lodo";
              if(!token){
@@ -67,28 +66,11 @@ import bd from "../model/bd.js";
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
 				else{
+				
 					res.status(200).render("usuario" , {title: "Home"});
-					
-					const Img =  usuario.imagen;
-					
-					 
-					let imagePath;
-		
-					if(Img){
-						imagePath = path.join(__dirname, 'public/uploads/', Img)
-					}else{
-						imagePath = path.join(__dirname,  './public/uploads/', 'default.jpg')
-		
-					}
-					  
-					res.sendFile(imagePath);
-					console.log(imagePath);
-					
+						
 				}
-			})
-	
-
-			};
+			})};
 	
 
 	const getCreate = (req , res )=>{
@@ -105,7 +87,7 @@ import bd from "../model/bd.js";
 			apellido: req.body.apellido , 
 			email: req.body.email, 
 			contraseña: req.body.password, 
-			imagen: req.body.archivo ,
+			imagen: req.file.filename,
 		};
 		const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 
