@@ -79,7 +79,7 @@ import bd from "../model/bd.js";
 	}
 
 
-	// Resolver el problema de que no guarda en la bd;
+	
 	const CrarUsuario = async (req, res)=>{
 	
 		let usuario = {
@@ -89,9 +89,12 @@ import bd from "../model/bd.js";
 			contraseña: req.body.password, 
 			imagen: req.file.filename,
 		};
+		
+		
 		const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
-
+         
 		try{
+			
 			const CorreoEnUso = await bd.EmailenUso(usuario);
 			if(CorreoEnUso){
 				res.status(409);
@@ -100,7 +103,7 @@ import bd from "../model/bd.js";
 			}else if(!CorreoEnUso ){
 			
 				await bd.InsertUser(usuario);
-				console.log(usuario)
+				
 				res.status(200);
 				res.json({mensaje: `Usuario registrado con exito`});
 			}
@@ -116,18 +119,29 @@ import bd from "../model/bd.js";
 
 
 	const ActualizarPerfil = async (req, res)=>{
-		
 		let usuario = {
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
 			contraseña: req.body.inputPass,
-            imagen: req.body.archivo,
+            imagen: req.file.filename,
 			
 		}
-		
+		// buscar la forma de eliminar la imagen anterior, y guardar la nueva imagen;
+		const prevImg = usuario.body.archivo;
+		const newimg = req.file.filename;
+		const previusfilePath = path.join(__dirname, './public/uploads/', prevImg)
 		try{
-		
+			if(imageUrl){
+				fs.unlink(previusfilePath, (err) => {
+					if (err) {
+						console.error('Error al eliminar la imagen anterior:', err);
+						return res.status(500).send('Error al actualizar la imagen');
+					}
+					console.log('Imagen anterior eliminada correctamente');
+				})
+			}
+			const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 		     
 			await bd.UpdatePerfil(usuario);
 			res.status(200).json({message: "Datos actualizados correctamente"});

@@ -95,7 +95,7 @@ const dataUsuario = async () => {
                 inputApellido.value = datos.apellido;
                 inputEmail.value = datos.usuario.email;
                 inputPass.value = datos.usuario.pass;
-
+                archivo.value = datos.imagen;
 
                  
                 form.setAttribute("class", "formEditPerfil");
@@ -127,12 +127,12 @@ const dataUsuario = async () => {
                 form.appendChild(btnGuardar);
                 modal.appendChild(form);
                 
-                ContainerImput.addEventListener("click", e=>{
+                ContainerImput.addEventListener("click", (e)=>{
                     if(e.target){
                         archivo.click();
                         
                     }
-                    archivo.addEventListener("change", e=>{
+                    archivo.addEventListener("change", (e)=>{
                         if(e.target){
                             
                           let imgName = archivo.value;
@@ -143,41 +143,30 @@ const dataUsuario = async () => {
                     })
                 })
 
-                form.addEventListener("submit", (e) => {
+                form.addEventListener("submit", async (e) => {
                     e.preventDefault();
 
                    
 
-                    const ActualizarDatos = async (inputNombre, inputApellido, inputEmail, inputPass, archivo) => {
+                    
                        let  formdata = new FormData(e.target);
+                       formdata.append("inputNombre", inputNombre.value);
+                       formdata.append("inputApellido",  inputApellido.value);
+                       formdata.append("inputEmail", inputEmail.value);
+                       formdata.append("inputPass", inputPass.value);
                         try {
                             const res = await fetch('/usuario', {
                                 method: "PUT",
-                                headers: {
-                                    "Content-type": "application/json"
-                                },
-                                body: JSON.stringify({ inputNombre, inputApellido, inputEmail, inputPass ,archivo })
+                                body: formdata
                             });
 
-                             await fetch('/usuario', {
-                                method: 'PUT',
-                                body: formdata,
-                             })
+                             
                              const result = await res.json();
                             if (!res.ok) {
                                        
                                 console.log("Ocurrió un error al actualizar los datos")
                             } else {
-                                    await fetch('/usuario').then(response =>{
-                                        if(!response.ok){
-                                            throw new Error("Error al obtener la imagen");
-                                        }else{
-                                            return response.blob();
-                                        }
-                                    }).then(Blob =>{
-                                        const ImgURL = URL.createObjectURL(Blob);
-                                        img.src = ImgURL;
-                                    })
+                                    
                                     console.log(result);
                                 modal.close();
                                 if (textCambData.classList.contains("Camb_Dataoff")) {
@@ -192,11 +181,10 @@ const dataUsuario = async () => {
                         } catch (err) {
                             console.log(err.mensaje)
                         }
-                    }
-                    ActualizarDatos(inputNombre.value, inputApellido.value, inputEmail.value, inputPass.value , archivo.value);
+                    
                    
 
-                })
+                });
 
                 btnCancelar.addEventListener("click", (e) => {
                     if (e.target) {
