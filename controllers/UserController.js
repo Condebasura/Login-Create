@@ -119,18 +119,21 @@ import bd from "../model/bd.js";
 
 
 	const ActualizarPerfil = async (req, res)=>{
+	         
+		const prevImg = req.body.Prevarchivo;
 		let usuario = {
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
 			contraseña: req.body.inputPass,
-            imagen: req.file.filename,
+            imagen: req.file ? req.file.filename : prevImg,
 			
 		}
-		// buscar la forma de eliminar la imagen anterior, y guardar la nueva imagen;
-		const prevImg = usuario.body.archivo;
-		const newimg = req.file.filename;
-		const previusfilePath = path.join(__dirname, './public/uploads/', prevImg)
+		// Ya borra la imagen anterior pero si no selecciono una imagen al cambiar otro dato me da error en el filename!!
+		console.log(prevImg);
+		
+		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
+		const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
 		try{
 			if(imageUrl){
 				fs.unlink(previusfilePath, (err) => {
@@ -140,8 +143,9 @@ import bd from "../model/bd.js";
 					}
 					console.log('Imagen anterior eliminada correctamente');
 				})
+			}else{
+				console.log('Manteniendo la imagen anterior:', prevImg);
 			}
-			const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
 		     
 			await bd.UpdatePerfil(usuario);
 			res.status(200).json({message: "Datos actualizados correctamente"});

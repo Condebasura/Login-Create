@@ -68,6 +68,7 @@ const dataUsuario = async () => {
                 let ContainerImput = document.createElement("span");
                 let archivo = document.createElement("input");
                 let NameArchivo = document.createElement("p");
+                let PrevArchivo = document.createElement("input");
                 let inputNombre = document.createElement("input");
                 let labelNombre = document.createElement("label");
                 let labelApellido = document.createElement("label");
@@ -95,8 +96,8 @@ const dataUsuario = async () => {
                 inputApellido.value = datos.apellido;
                 inputEmail.value = datos.usuario.email;
                 inputPass.value = datos.usuario.pass;
-                archivo.value = datos.imagen;
-
+                PrevArchivo.value = datos.imagen;
+                
                  
                 form.setAttribute("class", "formEditPerfil");
                 inputEmail.setAttribute("type", "email");
@@ -104,6 +105,8 @@ const dataUsuario = async () => {
                  archivo.setAttribute("class", "archivo");
                  archivo.setAttribute("name", "archivo");
                  archivo.setAttribute("accept", "image/*");
+                 PrevArchivo.setAttribute("name", "Prevarchivo");
+                 PrevArchivo.setAttribute("type", "hidden");
                  ContainerImput.setAttribute("class", "input_Container")
 
 
@@ -120,6 +123,7 @@ const dataUsuario = async () => {
                 form.appendChild(labelPass);
                 form.appendChild(inputPass);
                 ContainerImput.appendChild(archivo);
+                ContainerImput.appendChild(PrevArchivo);
                 ContainerImput.appendChild(NameArchivo);
                 form.appendChild(ContainerImput);
 
@@ -140,7 +144,7 @@ const dataUsuario = async () => {
                           let soloImg =  partes.pop();
                           return NameArchivo.innerHTML = soloImg;
                         }
-                    })
+                    });
                 })
 
                 form.addEventListener("submit", async (e) => {
