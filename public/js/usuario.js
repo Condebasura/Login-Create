@@ -177,7 +177,7 @@ const dataUsuario = async () => {
                                     textCambData.innerHTML = "Los cambios se veran reflejados en la proxima sesion"
                                     textCambData.classList.remove("Camb_Dataoff");
                                     textCambData.classList.add("Camb_Dataon");
-
+                                
                                 } }
                                     
                             
