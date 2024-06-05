@@ -1,4 +1,6 @@
-
+const template = document.querySelector(".fragment-template");
+const body = document.querySelector("body");
+const conteiner = document.querySelector(".conteiner");
 let img = document.querySelector(".img_default");
 const ul = document.querySelector(".ul_off");
 let UserName = document.querySelector(".user_name");
@@ -7,7 +9,19 @@ const modal = document.getElementById("modal");
 const textCambData = document.querySelector(".Camb_Dataoff");
 const textName = document.querySelector(".TextFrase");
 
+const loadFragment = ()=>{
+    
+    const fragmentContent = document.importNode(template.content, true);
+     const content = document.querySelector(".content");
+     content.appendChild(fragmentContent);
+   
 
+   
+    
+    }
+
+
+    document.addEventListener("DOMContentLoaded", loadFragment);
 
 const dataUsuario = async () => {
 
@@ -54,6 +68,7 @@ const dataUsuario = async () => {
                 const imgBlob = await imagenResponse.blob();
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
                 img.src = imagenObjectURL;
+                
         }
 
 
@@ -146,11 +161,13 @@ const dataUsuario = async () => {
                         }
                     });
                 })
-
+               
+            
                 form.addEventListener("submit", async (e) => {
                     e.preventDefault();
 
-                   
+                    
+                       
 
                     
                        let  formdata = new FormData(e.target);
@@ -170,15 +187,19 @@ const dataUsuario = async () => {
                                        
                                 console.log("Ocurrió un error al actualizar los datos")
                             } else {
-                                    
+                                    // Aca tengo que agregar el fragmento
                                     console.log(result);
                                 modal.close();
-                                if (textCambData.classList.contains("Camb_Dataoff")) {
+                               loadFragment(location.reload());
+                                
+                                return result;
+                               /* if (textCambData.classList.contains("Camb_Dataoff")) {
                                     textCambData.innerHTML = "Los cambios se veran reflejados en la proxima sesion"
                                     textCambData.classList.remove("Camb_Dataoff");
                                     textCambData.classList.add("Camb_Dataon");
                                 
-                                } }
+                                }*/
+                             }
                                     
                             
 

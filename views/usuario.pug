@@ -1,6 +1,8 @@
 extends layowt 
-block content 
- nav.conteiner
+block content
+ template.fragment-template  
+ div.content 
+  nav.conteiner
      div.ContentLogo
       div(class="logo")
       div.textlogo
@@ -9,9 +11,9 @@ block content
      template.caja_temp
      div.cont_User
       img(src="", class="img_default")
- ul.ul_off  
-  a(type="text" , class="logout") Cerrar Sesion 
-  spam(class="user_name")
- dialog#modal
- spam.Camb_Dataoff     
- script(type="module", src="/js/usuario.js") 
+  ul.ul_off  
+   a(type="text" , class="logout") Cerrar Sesion 
+   spam(class="user_name")
+  dialog#modal
+  spam.Camb_Dataoff     
+  script(type="module", src="/js/usuario.js")
