@@ -1,5 +1,3 @@
-const template = document.querySelector(".fragment-template");
-const body = document.querySelector("body");
 const conteiner = document.querySelector(".conteiner");
 let img = document.querySelector(".img_default");
 const ul = document.querySelector(".ul_off");
@@ -9,19 +7,7 @@ const modal = document.getElementById("modal");
 const textCambData = document.querySelector(".Camb_Dataoff");
 const textName = document.querySelector(".TextFrase");
 
-const loadFragment = ()=>{
-    
-    const fragmentContent = document.importNode(template.content, true);
-     const content = document.querySelector(".content");
-     content.appendChild(fragmentContent);
-   
 
-   
-    
-    }
-
-
-    document.addEventListener("DOMContentLoaded", loadFragment);
 
 const dataUsuario = async () => {
 
@@ -187,12 +173,29 @@ const dataUsuario = async () => {
                                        
                                 console.log("Ocurrió un error al actualizar los datos")
                             } else {
-                                    // Aca tengo que agregar el fragmento
-                                    console.log(result);
-                                modal.close();
-                               loadFragment(location.reload());
+                                    
                                 
-                                return result;
+                                modal.close();
+                                if(e.target || window.location.reload()){
+
+                                    console.log(datos, result)
+                                    datos.nombre = result.nombre;
+                                    datos.apellido = result.apellido;
+                                    datos.usuario.email = result.email;
+                                    datos.usuario.pass = result.contraseña;
+                                    datos.imagen = result.imagen;
+                                    textName.innerHTML = `Redes de ${datos.nombre}`;            
+                                    
+                                    const newimageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+                                    const newimagenResponse = await fetch(newimageURL);
+                                    const newimgBlob = await newimagenResponse.blob();
+                                    const newimagenObjectURL = URL.createObjectURL(newimgBlob);
+                                    img.src = newimagenObjectURL;
+                                    
+                                }
+                                 
+                                    
+                                            
                                /* if (textCambData.classList.contains("Camb_Dataoff")) {
                                     textCambData.innerHTML = "Los cambios se veran reflejados en la proxima sesion"
                                     textCambData.classList.remove("Camb_Dataoff");
@@ -260,22 +263,4 @@ logout.addEventListener("click", async (e) => {
 
 });
 
-/*window.addEventListener('beforeunload', async (e) =>{
-  try{
-
-
-    if(e.target ){
-        await fetch("/logout",{
-            method:"GET",
-        })
-        return window.location.href = "sesionCaduca";
-        
-    }
-
-     
-    
-  }catch(err){
-   console.log(err)
-  }
-})*/
 

@@ -4,8 +4,11 @@ import bd from "../model/bd.js";
 	import { __dirname } from "../app.js";
 	import path from "path";
 	import fs from 'fs';
+import { title } from "process";
 	
-
+const sesionCaduca  = (req , res)=>{
+	res.render("sesionCaduca", {title: "error"})
+}
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
 		
@@ -129,7 +132,7 @@ import bd from "../model/bd.js";
             imagen: req.file ? req.file.filename : prevImg,
 			
 		}
-		// Ya borra la imagen anterior pero si no selecciono una imagen al cambiar otro dato me da error en el filename!!
+		
 		console.log(prevImg);
 		
 		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
@@ -148,7 +151,8 @@ import bd from "../model/bd.js";
 			}
 		     
 			await bd.UpdatePerfil(usuario);
-			res.status(200).json({message: "Datos actualizados correctamente"});
+			res.status(200).send(usuario);
+			
 		}catch(err){
 			console.log(err),
 			res.status(500).json({err: "Ocurrio un error al querer actualizar los datos , intente nuevamente"});
@@ -159,10 +163,11 @@ import bd from "../model/bd.js";
 
 const logout = async (req,res)=>{
 	try{
-		await res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
-		await res.cookie('SesionTks', '', {expires: new Date(0), httpOnly: true});
+			await res.cookie('mitoken', '', {expires: new Date(0), httpOnly: true});
+			await res.cookie('SesionTks', '', {expires: new Date(0), httpOnly: true});
+			return res.redirect("/");
+		
 
-		return res.redirect("/");
 	}catch(err){
 		console.log(err)
 	}
