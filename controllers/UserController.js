@@ -4,11 +4,9 @@ import bd from "../model/bd.js";
 	import { __dirname } from "../app.js";
 	import path from "path";
 	import fs from 'fs';
-import { title } from "process";
+
 	
-const sesionCaduca  = (req , res)=>{
-	res.render("sesionCaduca", {title: "error"})
-}
+
 	const getIndex = (req , res) =>{
 		res.render("index", {title: "Login-Create" } )
 		
