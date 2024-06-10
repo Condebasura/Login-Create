@@ -76,3 +76,44 @@ height: 5em;
 .archivo{
     opacity: 0%;
 }
+
+.cont_redesChats{
+    margin-top: 6em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    max-width: 95%;
+    height: 100%;
+}
+
+.box_RedChat{display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 50dvh;
+    height: 70dvh;
+    font-size: 40px;
+    color: aliceblue;
+    text-shadow: 2px 2px 2px  rgb(136, 134, 134);
+    border: 0.2px dashed #9c9c9ccb;
+    box-shadow: 2px 2px 12px #a3a3a3;
+    
+}
+
+
+.box_RedChat:nth-child(2){
+    background-image: url('/img/facebook-movil-640x598.jpg');
+    background-size: cover;
+    background-position: start;
+}
+.box_RedChat:nth-child(3){
+    background-image: url('/img/instagram.jpg');
+    background-size: cover;
+    background-position: start;
+}
+
+.box_RedChat:nth-child(4){
+    background-image: url('/img/twiter_chat.jpg');
+    background-size: cover;
+    background-position: start;
+}
