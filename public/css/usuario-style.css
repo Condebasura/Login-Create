@@ -103,18 +103,13 @@ height: 5em;
 }
 
 
-.box_RedChat:nth-child(2){
-    background-image: url('/img/facebook-movil-640x598.jpg');
-    background-size: cover;
-    background-position: start;
-}
-.box_RedChat:nth-child(3){
-    background-image: url('/img/twiter_chat.jpg');
-    background-size: cover;
-    background-position: start;
-}
 
 .contSelect{
     display: none;
     flex-direction: column;
+    gap: 2em;
+}
+
+.selecRed{
+    cursor:pointer;
 }

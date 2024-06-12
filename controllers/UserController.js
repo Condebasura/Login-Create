@@ -1,4 +1,3 @@
-
 import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
 	import { __dirname } from "../app.js";
@@ -49,8 +48,12 @@ import bd from "../model/bd.js";
 	}
 		
 	};
-	
-	const getWelcome =  (req , res ) =>{
+
+	//ya puedo ver los datos en el backend , pero me trae los datos del front no de la bd.
+
+	const getWelcome = async (req , res ) =>{
+		
+		
 		
 		
 		const token = req.cookies.mitoken;
@@ -60,14 +63,15 @@ import bd from "../model/bd.js";
 				 return res.status(401).render( "sesionCaduca" , {mensaje: "La sesion a caducado"});
 				}
 				
-			 jwt.verify(token, secret, (err)=>{
+			 jwt.verify(token, secret, async (err, usuario)  =>{
 				if(err){
 					
 					console.error(err.message);
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
 				else{
-				
+				      
+				      console.log(usuario)
 					res.status(200).render("usuario" , {title: "Home"});
 						
 				}

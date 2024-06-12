@@ -55,14 +55,14 @@ const dataUsuario = async () => {
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
                 img.src = imagenObjectURL;
                 
-            
+            }
             
             
             
             UserName.addEventListener("click", (e) => {
                 if (e.target) {
                     modal.innerHTML = "";
-                //const datos = decodedPayload;
+                const datos = decodedPayload;
             
             const form = document.createElement("form");
         let ContainerImput = document.createElement("span");
@@ -223,7 +223,8 @@ btnCancelar.addEventListener("click", (e) => {
 })
 
 }
-} catch (err) {
+ 
+catch (err) {
     console.error('Error al  realizar la solicitud', err);
 }
 }
