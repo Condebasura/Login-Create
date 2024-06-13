@@ -30,9 +30,18 @@ const dataUsuario = async () => {
 
             },
         });
-
-
+// ya tengo el token, falta decodificarlo y usarlo adecuadamente al actualizar datos
         
+const resp = await fetch('usuario/token',{
+    method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+})
+        
+
+    const dat = await resp.json();
+    console.log(dat);
 
         if (!res.ok) {
             
@@ -44,6 +53,7 @@ const dataUsuario = async () => {
             
         } else {
             const datos = decodedPayload;
+
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
@@ -150,7 +160,6 @@ return NameArchivo.innerHTML = soloImg;
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
 
 
 

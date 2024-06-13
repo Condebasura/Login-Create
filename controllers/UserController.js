@@ -36,7 +36,7 @@ import bd from "../model/bd.js";
 				});
 				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
 			   httpOnly:true});
-				res.status(200).json({token});
+				//res.status(200).json({token});
 				
 				}else if(!CredUser){
 					res.status(409);
@@ -49,7 +49,7 @@ import bd from "../model/bd.js";
 		
 	};
 
-	//ya puedo ver los datos en el backend , pero me trae los datos del front no de la bd.
+	
 
 	const getWelcome = async (req , res ) =>{
 		
@@ -70,13 +70,55 @@ import bd from "../model/bd.js";
 					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
 				}
 				else{
+				    
 				      
-				      console.log(usuario)
 					res.status(200).render("usuario" , {title: "Home"});
 						
 				}
 			})};
 	
+
+const getToken = (req, res)=>{
+	const token = req.cookies.mitoken;
+		const secret = "humedad-cancha-lodo";
+             if(!token){
+				
+				 return res.status(401).render( "sesionCaduca" , {mensaje: "La sesion a caducado"});
+				}
+				
+			 jwt.verify(token, secret, async (err, usuario)  =>{
+				if(err){
+					
+					console.error(err.message);
+					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
+				}
+				else{
+				     const user ={
+				      	email: usuario.usuario.email,
+				      }
+				      
+				      const data = await bd.DataUser(user);
+				      const payload = {
+				      	user,
+				      	nombre: data.nombre,
+				      	apellido: data.apellido,
+				      	imagen: data.imagen,
+				      }
+				      console.log(payload);
+
+				    const  eltoken = jwt.sign(payload, secret);
+				res.cookie('mitoken', token,  { sameSite: 'Strict' } , {
+					httpOnly: true
+				});
+				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
+			   httpOnly:true});
+				    console.log(eltoken);  
+					res.status(200).json({eltoken});
+
+						
+				}
+			}
+)}
 
 	const getCreate = (req , res )=>{
 
@@ -188,6 +230,7 @@ export default{
 	CrarUsuario,
 	ActualizarPerfil,
 	logout,	
+	getToken,
 	
 };
 
