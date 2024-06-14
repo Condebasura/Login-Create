@@ -36,7 +36,7 @@ import bd from "../model/bd.js";
 				});
 				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
 			   httpOnly:true});
-				//res.status(200).json({token});
+				res.status(200).json({token});
 				
 				}else if(!CredUser){
 					res.status(409);
@@ -176,7 +176,9 @@ const getToken = (req, res)=>{
             imagen: req.file ? req.file.filename : prevImg,
 			
 		}
-		
+		const secret = "humedad-cancha-lodo";
+		const newtoken = jwt.sign(usuario , secret);
+		console.log(newtoken);
 		console.log(prevImg);
 		
 		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
@@ -195,7 +197,7 @@ const getToken = (req, res)=>{
 			}
 		     
 			await bd.UpdatePerfil(usuario);
-			res.status(200).send(usuario);
+			res.status(200).json({token: newtoken})
 			
 		}catch(err){
 			console.log(err),

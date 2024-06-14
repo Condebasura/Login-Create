@@ -32,16 +32,7 @@ const dataUsuario = async () => {
         });
 // ya tengo el token, falta decodificarlo y usarlo adecuadamente al actualizar datos
         
-const resp = await fetch('usuario/token',{
-    method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-})
-        
 
-    const dat = await resp.json();
-    console.log(dat);
 
         if (!res.ok) {
             
@@ -69,10 +60,11 @@ const resp = await fetch('usuario/token',{
             
             
             
-            UserName.addEventListener("click", (e) => {
+            UserName.addEventListener("click", async (e) => {
                 if (e.target) {
                     modal.innerHTML = "";
                 const datos = decodedPayload;
+
             
             const form = document.createElement("form");
         let ContainerImput = document.createElement("span");
@@ -163,6 +155,12 @@ form.addEventListener("submit", async (e) => {
 
 
 
+const getCookie =  (name)=>{
+    const  value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if(parts.length === 2) return parts.pop().split(';').shift();
+}
+    
 
 let  formdata = new FormData(e.target);
 formdata.append("inputNombre", inputNombre.value);
@@ -170,13 +168,23 @@ formdata.append("inputApellido",  inputApellido.value);
 formdata.append("inputEmail", inputEmail.value);
 formdata.append("inputPass", inputPass.value);
 try {
-    const res = await fetch('/usuario', {
+    const res = await fetch('/usuario/update', {
         method: "PUT",
+        headers: {
+            'Authorization': `Bearer ${getCookie('mitoken')}`
+        },
     body: formdata
 });
 
+if(res.ok){
+// falta configurar que aparezca el token nuevo en las cookies del front y se elimine la anterior
 
-const result = await res.json();
+const dat = await res.json();
+const newToken = dat.token;
+console.log(newToken);
+document.cookie = `mitoken=${newToken};path=/;`;
+}
+console.log(newToken);
 if (!res.ok) {
     
     console.log("Ocurrió un error al actualizar los datos")
@@ -185,23 +193,23 @@ if (!res.ok) {
     
     modal.close();
     
-if(e.target || window.location.reload()){
+
     
    
-datos.nombre = result.nombre;
-datos.apellido = result.apellido;
-datos.usuario.email = result.email;
-datos.usuario.pass = result.contraseña;
-datos.imagen = result.imagen;
-textName.innerHTML = `Redes de ${datos.nombre}`;            
+/*dat.nombre = result.nombre;
+dat.apellido = result.apellido;
+dat.usuario.email = result.email;
+dat.usuario.pass = result.contraseña;
+dat.imagen = result.imagen;
+textName.innerHTML = `Redes de ${dat.nombre}`;            
 
 
-const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+const imageURL = `http://localhost:3000/uploads/${dat.imagen}`;
                 const imagenResponse = await fetch(imageURL);
                 const imgBlob = await imagenResponse.blob();
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
-                img.src = imagenObjectURL;
-}
+                img.src = imagenObjectURL;*/
+
 
 
 

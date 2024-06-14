@@ -85,7 +85,7 @@ app.get("/usuario" , UserControllers.getWelcome);
 app.get("/usuario/token" , UserControllers.getToken);
 app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
-app.put("/usuario", upload.single('archivo'), UserControllers.ActualizarPerfil);
+app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
 app.listen(port, ()=>{
 	console.log(`La APP est funcionando en http://localhost:${port}`);
