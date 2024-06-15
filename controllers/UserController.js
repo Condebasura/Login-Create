@@ -94,7 +94,7 @@ const getToken = (req, res)=>{
 				}
 				else{
 				     const user ={
-				      	email: usuario.usuario.email,
+				      	email: usuario.email,
 				      }
 				      
 				      const data = await bd.DataUser(user);
@@ -133,7 +133,7 @@ const getToken = (req, res)=>{
 			nombre: req.body.nombre,
 			apellido: req.body.apellido , 
 			email: req.body.email, 
-			contraseña: req.body.password, 
+			password: req.body.password, 
 			imagen: req.file.filename,
 		};
 		
@@ -172,7 +172,7 @@ const getToken = (req, res)=>{
 			nombre: req.body.inputNombre,
 			apellido: req.body.inputApellido,
 			email: req.body.inputEmail,
-			contraseña: req.body.inputPass,
+			password: req.body.inputPass,
             imagen: req.file ? req.file.filename : prevImg,
 			
 		}

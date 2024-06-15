@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 const saltRounds = 10;
 let bd = new sqlite3.Database('Users.bd');
 
-bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT  , nombre TEXT , apellido TEXT , email TEXT  , contraseña TEXT , imagen TEXT)');
+bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT  , nombre TEXT , apellido TEXT , email TEXT  , password TEXT , imagen TEXT)');
 
 const ConsultUser = ()=>{
 
@@ -30,8 +30,8 @@ const ConsultUser = ()=>{
 
 const InsertUser =  async (usuario)=>{
     try{
-        const hashedPasword = await bcrypt.hash(usuario.contraseña , saltRounds)
-     let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , contraseña , imagen ) VALUES(?,?,?,?,?)' );
+        const hashedPasword = await bcrypt.hash(usuario.password , saltRounds)
+     let stmt =  bd.prepare('INSERT INTO usuarios(nombre , apellido , email , password , imagen ) VALUES(?,?,?,?,?)' );
      stmt.run(usuario.nombre , usuario.apellido , usuario.email, hashedPasword, usuario.imagen );
  
       stmt.finalize();
@@ -86,7 +86,7 @@ const NoCoincide = (usuario)=>{
                 return;
             }
             try {
-                const passwordMatch = await bcrypt.compare(pass, row.contraseña);
+                const passwordMatch = await bcrypt.compare(pass, row.password);
                 resolve(passwordMatch);
             } catch (bcryptError) {
                 console.error('Error al comparar contraseñas:', bcryptError);
@@ -124,8 +124,8 @@ console.log(err)
 
 const UpdatePerfil = async (usuario)=>{
     try{
-        const hashedPassword = await bcrypt.hash(usuario.contraseña , saltRounds);
-        const sql = 'UPDATE usuarios SET  nombre = ? , apellido = ? , email = ? , contraseña = ? , imagen = ?  WHERE email = ?';
+        const hashedPassword = await bcrypt.hash(usuario.password , saltRounds);
+        const sql = 'UPDATE usuarios SET  nombre = ? , apellido = ? , email = ? , password = ? , imagen = ?  WHERE email = ?';
         bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , hashedPassword, usuario.imagen, usuario.email] , (err)=>{
             if(err){
                 console.log(err.message);

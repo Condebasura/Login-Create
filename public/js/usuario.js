@@ -20,13 +20,20 @@ const dataUsuario = async () => {
     const tokenPayload = tokenValue.split('.')[1];
     const decodedPayload = JSON.parse(window.atob(tokenPayload));
 
+    const getCookie =  (name)=>{
+    const  value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if(parts.length === 2) return parts.pop().split(';').shift();
+}
+   
+
     try {
 
 
         const res = await fetch('usuario', {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${decodedPayload}`,
+                Authorization: `Bearer ${getCookie('mitoken')} `,
 
             },
         });
@@ -44,7 +51,7 @@ const dataUsuario = async () => {
             
         } else {
             const datos = decodedPayload;
-
+console.log(datos.password)
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
@@ -96,8 +103,8 @@ btnGuardar.innerHTML = "Guardar";
 
 inputNombre.value = datos.nombre;
 inputApellido.value = datos.apellido;
-inputEmail.value = datos.usuario.email;
-inputPass.value = datos.usuario.pass;
+inputEmail.value = datos.email;
+inputPass.value = datos.password;
 PrevArchivo.value = datos.imagen;
 
 
@@ -155,12 +162,7 @@ form.addEventListener("submit", async (e) => {
 
 
 
-const getCookie =  (name)=>{
-    const  value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if(parts.length === 2) return parts.pop().split(';').shift();
-}
-    
+ 
 
 let  formdata = new FormData(e.target);
 formdata.append("inputNombre", inputNombre.value);
@@ -177,14 +179,16 @@ try {
 });
 
 if(res.ok){
-// falta configurar que aparezca el token nuevo en las cookies del front y se elimine la anterior
+// hay que hacer pruebas para determinar que funcione correctamente la actualizacion de datos y configurar que se cambien en el momento.
 
 const dat = await res.json();
 const newToken = dat.token;
 console.log(newToken);
 document.cookie = `mitoken=${newToken};path=/;`;
+
+modal.close();
 }
-console.log(newToken);
+
 if (!res.ok) {
     
     console.log("Ocurrió un error al actualizar los datos")
