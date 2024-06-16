@@ -51,7 +51,8 @@ const dataUsuario = async () => {
             
         } else {
             const datos = decodedPayload;
-console.log(datos.password)
+            
+
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
@@ -70,8 +71,8 @@ console.log(datos.password)
             UserName.addEventListener("click", async (e) => {
                 if (e.target) {
                     modal.innerHTML = "";
-                const datos = decodedPayload;
-
+                
+                 const datos = decodedPayload;
             
             const form = document.createElement("form");
         let ContainerImput = document.createElement("span");
@@ -178,51 +179,39 @@ try {
     body: formdata
 });
 
-if(res.ok){
-// hay que hacer pruebas para determinar que funcione correctamente la actualizacion de datos y configurar que se cambien en el momento.
 
-const dat = await res.json();
-const newToken = dat.token;
-console.log(newToken);
-document.cookie = `mitoken=${newToken};path=/;`;
 
-modal.close();
-}
 
 if (!res.ok) {
     
     console.log("Ocurrió un error al actualizar los datos")
 } else {
+    const dat = await res.json();
+const newToken = dat.token;
+const newtokens = document.cookie = `mitoken=${newToken};`
+// Aca podemos ver el nuevo token pero no logro extraer la informacion al modificar datos, solo al actualizar la pagina...
     
-    
-    modal.close();
-    
-
-    
-   
-/*dat.nombre = result.nombre;
-dat.apellido = result.apellido;
-dat.usuario.email = result.email;
-dat.usuario.pass = result.contraseña;
-dat.imagen = result.imagen;
-textName.innerHTML = `Redes de ${dat.nombre}`;            
+textName.innerHTML = `Redes de ${datos.nombre}`;            
 
 
-const imageURL = `http://localhost:3000/uploads/${dat.imagen}`;
+const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
                 const imagenResponse = await fetch(imageURL);
                 const imgBlob = await imagenResponse.blob();
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
-                img.src = imagenObjectURL;*/
+                img.src = imagenObjectURL;
+    
+modal.close()
 
 
 
 
  if (textCambData.classList.contains("Camb_Dataoff")) {
-    textCambData.innerHTML = "Al finalizar la sesion se guardaran los datos completamente"
+    textCambData.innerHTML = "Para visualizar los cambios recargue la pagina"
     textCambData.classList.remove("Camb_Dataoff");
     textCambData.classList.add("Camb_Dataon");
     
     }
+
 }
 
 
@@ -234,6 +223,7 @@ const imageURL = `http://localhost:3000/uploads/${dat.imagen}`;
 
 
 });
+
 
 btnCancelar.addEventListener("click", (e) => {
     if (e.target) {
