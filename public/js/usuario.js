@@ -105,7 +105,7 @@ btnGuardar.innerHTML = "Guardar";
 inputNombre.value = datos.nombre;
 inputApellido.value = datos.apellido;
 inputEmail.value = datos.email;
-inputPass.value = datos.password;
+
 PrevArchivo.value = datos.imagen;
 
 
@@ -188,29 +188,28 @@ if (!res.ok) {
 } else {
     const dat = await res.json();
 const newToken = dat.token;
-const newtokens = document.cookie = `mitoken=${newToken};`
-// Aca podemos ver el nuevo token pero no logro extraer la informacion al modificar datos, solo al actualizar la pagina...
+const newtokens = document.cookie = `mitoken=${newToken}`.split(';').map(cookie => cookie.trim().split('='));
+const lecokie = newtokens.find(([name , value]) => name === tokenName);
+const tokenVelue = lecokie[1];
+const torquepalLoad = tokenVelue.split('.')[1];
+let delcodopayload = JSON.parse(window.atob(torquepalLoad)); 
+
+ const newdatos = delcodopayload;
     
-textName.innerHTML = `Redes de ${datos.nombre}`;            
+textName.innerHTML = `Redes de ${newdatos.nombre}`;            
 
 
-const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+const imageURL = `http://localhost:3000/uploads/${newdatos.imagen}`;
                 const imagenResponse = await fetch(imageURL);
                 const imgBlob = await imagenResponse.blob();
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
                 img.src = imagenObjectURL;
-    
+    const nuevoToken = document.cookie = `mitoken=${newToken}`;
 modal.close()
 
 
 
 
- if (textCambData.classList.contains("Camb_Dataoff")) {
-    textCambData.innerHTML = "Para visualizar los cambios recargue la pagina"
-    textCambData.classList.remove("Camb_Dataoff");
-    textCambData.classList.add("Camb_Dataon");
-    
-    }
 
 }
 

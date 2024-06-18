@@ -26,6 +26,8 @@ import bd from "../model/bd.js";
 				const payload = {usuario,
 				nombre: data.nombre,
 			    apellido: data.apellido,
+				email: data.email, 
+				password: data.password,
 				imagen: data.imagen,
 			};
 			
