@@ -82,7 +82,6 @@ app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" , UserControllers.getWelcome);
-app.get("/usuario/token" , UserControllers.getToken);
 app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);

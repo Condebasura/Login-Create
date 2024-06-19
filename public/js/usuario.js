@@ -15,7 +15,7 @@ const dataUsuario = async () => {
     const cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
 
     const cookie = cookies.find(([name, value]) => name === tokenName);
-    
+    console.log(cookie);
     const tokenValue = cookie[1];
     const tokenPayload = tokenValue.split('.')[1];
     const decodedPayload = JSON.parse(window.atob(tokenPayload));
@@ -26,7 +26,8 @@ const dataUsuario = async () => {
     if(parts.length === 2) return parts.pop().split(';').shift();
 }
    
-
+let separacokie = getCookie(tokenName);
+console.log(separacokie)
     try {
 
 
@@ -95,6 +96,7 @@ labelNombre.innerHTML = "Nombre de usuario";
 labelApellido.innerHTML = "Apelido";
 labelEmail.innerHTML = "Email";
 labelPass.innerHTML = "Cambiar Contraseña";
+
 ContainerImput.innerHTML = "Cambiar Imagen";
 
 
@@ -105,7 +107,6 @@ btnGuardar.innerHTML = "Guardar";
 inputNombre.value = datos.nombre;
 inputApellido.value = datos.apellido;
 inputEmail.value = datos.email;
-
 PrevArchivo.value = datos.imagen;
 
 
@@ -132,6 +133,7 @@ form.appendChild(labelEmail);
 form.appendChild(inputEmail);
 form.appendChild(labelPass);
 form.appendChild(inputPass);
+
 ContainerImput.appendChild(archivo);
 ContainerImput.appendChild(PrevArchivo);
 ContainerImput.appendChild(NameArchivo);
@@ -186,25 +188,28 @@ if (!res.ok) {
     
     console.log("Ocurrió un error al actualizar los datos")
 } else {
+// Cuando actualizo los datos, si entro nuevamente en el perfil me toma los datos anteriores, si actualizo me los cambia...
+
     const dat = await res.json();
 const newToken = dat.token;
-const newtokens = document.cookie = `mitoken=${newToken}`.split(';').map(cookie => cookie.trim().split('='));
-const lecokie = newtokens.find(([name , value]) => name === tokenName);
-const tokenVelue = lecokie[1];
-const torquepalLoad = tokenVelue.split('.')[1];
-let delcodopayload = JSON.parse(window.atob(torquepalLoad)); 
+ const newtokens = `${tokenName}=${newToken}`.split(';').map(cookie => cookie.trim().split('='));
+const lecokie = newtokens.find(([name , value]) => name === tokenName );
+const tokVlue = lecokie[1];
+const toquepayloda = tokVlue.split('.')[1];
+const delcodepaylodad = JSON.parse(window.atob(toquepayloda));
 
- const newdatos = delcodopayload;
-    
+const newdatos = delcodepaylodad;
+
 textName.innerHTML = `Redes de ${newdatos.nombre}`;            
 
 
 const imageURL = `http://localhost:3000/uploads/${newdatos.imagen}`;
-                const imagenResponse = await fetch(imageURL);
-                const imgBlob = await imagenResponse.blob();
-                const imagenObjectURL = URL.createObjectURL(imgBlob);
-                img.src = imagenObjectURL;
-    const nuevoToken = document.cookie = `mitoken=${newToken}`;
+const imagenResponse = await fetch(imageURL);
+const imgBlob = await imagenResponse.blob();
+const imagenObjectURL = URL.createObjectURL(imgBlob);
+img.src = imagenObjectURL;
+
+document.cookie = `${tokenName}=${newToken}`;
 modal.close()
 
 

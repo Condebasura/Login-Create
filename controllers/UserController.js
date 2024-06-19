@@ -80,47 +80,7 @@ import bd from "../model/bd.js";
 			})};
 	
 
-const getToken = (req, res)=>{
-	const token = req.cookies.mitoken;
-		const secret = "humedad-cancha-lodo";
-             if(!token){
-				
-				 return res.status(401).render( "sesionCaduca" , {mensaje: "La sesion a caducado"});
-				}
-				
-			 jwt.verify(token, secret, async (err, usuario)  =>{
-				if(err){
-					
-					console.error(err.message);
-					return res.status(409).json({mensaje: "Ocurio un error al cargar los datos del usuario"});
-				}
-				else{
-				     const user ={
-				      	email: usuario.email,
-				      }
-				      
-				      const data = await bd.DataUser(user);
-				      const payload = {
-				      	user,
-				      	nombre: data.nombre,
-				      	apellido: data.apellido,
-				      	imagen: data.imagen,
-				      }
-				      console.log(payload);
 
-				    const  eltoken = jwt.sign(payload, secret);
-				res.cookie('mitoken', token,  { sameSite: 'Strict' } , {
-					httpOnly: true
-				});
-				res.cookie('SesionTks', token ,{sameSite: 'Strict'},{
-			   httpOnly:true});
-				    console.log(eltoken);  
-					res.status(200).json({eltoken});
-
-						
-				}
-			}
-)}
 
 	const getCreate = (req , res )=>{
 
@@ -178,26 +138,28 @@ const getToken = (req, res)=>{
             imagen: req.file ? req.file.filename : prevImg,
 			
 		}
-		const secret = "humedad-cancha-lodo";
-		const newtoken = jwt.sign(usuario , secret);
-		console.log(newtoken);
-		console.log(prevImg);
-		
-		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
-		const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
-		try{
-			if(imageUrl){
-				fs.unlink(previusfilePath, (err) => {
-					if (err) {
-						console.error('Error al eliminar la imagen anterior:', err);
-						return res.status(500).send('Error al actualizar la imagen');
-					}
-					console.log('Imagen anterior eliminada correctamente');
-				})
-			}else{
+	
+
+			const secret = "humedad-cancha-lodo";
+			const newtoken = jwt.sign(usuario , secret);
+			console.log(newtoken);
+			console.log(prevImg);
+			
+			const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
+			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
+			try{
+				if(imageUrl){
+					fs.unlink(previusfilePath, (err) => {
+						if (err) {
+							console.error('Error al eliminar la imagen anterior:', err);
+							return res.status(500).send('Error al actualizar la imagen');
+						}
+						console.log('Imagen anterior eliminada correctamente');
+					})
+				}else{
 				console.log('Manteniendo la imagen anterior:', prevImg);
 			}
-		     
+			
 			await bd.UpdatePerfil(usuario);
 			res.status(200).json({token: newtoken})
 			
@@ -205,6 +167,7 @@ const getToken = (req, res)=>{
 			console.log(err),
 			res.status(500).json({err: "Ocurrio un error al querer actualizar los datos , intente nuevamente"});
 		}
+	
 	};
 
 
@@ -234,7 +197,7 @@ export default{
 	CrarUsuario,
 	ActualizarPerfil,
 	logout,	
-	getToken,
+	
 	
 };
 
