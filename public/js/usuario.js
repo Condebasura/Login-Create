@@ -88,6 +88,8 @@ let labelEmail = document.createElement("label");
 let inputEmail = document.createElement("input");
 let labelPass = document.createElement("label");
 let inputPass = document.createElement("input");
+let newLabelPass = document.createElement("label");
+let newInputPass = document.createElement("input");
 let divBotones = document.createElement("div");
 const btnCancelar = document.createElement("button");
 const btnGuardar = document.createElement("button");
@@ -95,8 +97,8 @@ const btnGuardar = document.createElement("button");
 labelNombre.innerHTML = "Nombre de usuario";
 labelApellido.innerHTML = "Apelido";
 labelEmail.innerHTML = "Email";
-labelPass.innerHTML = "Cambiar Contraseña";
-
+labelPass.innerHTML = "Contraseña Actual";
+newLabelPass.innerHTML = "Nueva Contraseña";
 ContainerImput.innerHTML = "Cambiar Imagen";
 
 
@@ -133,6 +135,8 @@ form.appendChild(labelEmail);
 form.appendChild(inputEmail);
 form.appendChild(labelPass);
 form.appendChild(inputPass);
+form.appendChild(newLabelPass);
+form.appendChild(newInputPass);
 
 ContainerImput.appendChild(archivo);
 ContainerImput.appendChild(PrevArchivo);
@@ -200,6 +204,11 @@ const delcodepaylodad = JSON.parse(window.atob(toquepayloda));
 
 const newdatos = delcodepaylodad;
 
+if(newdatos.password !== datos.password ){
+    inputPass.style.border = "1.5px solid red";
+    inputPass.setCustomValidity("Las contraseñas no coinciden !!")
+    e.preventDefault();
+}
 textName.innerHTML = `Redes de ${newdatos.nombre}`;            
 
 
@@ -210,6 +219,7 @@ const imagenObjectURL = URL.createObjectURL(imgBlob);
 img.src = imagenObjectURL;
 
 document.cookie = `${tokenName}=${newToken}`;
+
 modal.close()
 
 
