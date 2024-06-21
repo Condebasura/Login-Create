@@ -88,8 +88,6 @@ let labelEmail = document.createElement("label");
 let inputEmail = document.createElement("input");
 let labelPass = document.createElement("label");
 let inputPass = document.createElement("input");
-let newLabelPass = document.createElement("label");
-let newInputPass = document.createElement("input");
 let divBotones = document.createElement("div");
 const btnCancelar = document.createElement("button");
 const btnGuardar = document.createElement("button");
@@ -97,8 +95,7 @@ const btnGuardar = document.createElement("button");
 labelNombre.innerHTML = "Nombre de usuario";
 labelApellido.innerHTML = "Apelido";
 labelEmail.innerHTML = "Email";
-labelPass.innerHTML = "Contraseña Actual";
-newLabelPass.innerHTML = "Nueva Contraseña";
+labelPass.innerHTML = "Cambiar Contraseña";
 ContainerImput.innerHTML = "Cambiar Imagen";
 
 
@@ -135,8 +132,7 @@ form.appendChild(labelEmail);
 form.appendChild(inputEmail);
 form.appendChild(labelPass);
 form.appendChild(inputPass);
-form.appendChild(newLabelPass);
-form.appendChild(newInputPass);
+;
 
 ContainerImput.appendChild(archivo);
 ContainerImput.appendChild(PrevArchivo);
@@ -166,8 +162,11 @@ return NameArchivo.innerHTML = soloImg;
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-
+   
+    if(inputPass.value === ''){
+        inputPass.value = datos.password;
+        
+                };
 
  
 
@@ -188,11 +187,12 @@ try {
 
 
 
+
 if (!res.ok) {
     
     console.log("Ocurrió un error al actualizar los datos")
 } else {
-// Cuando actualizo los datos, si entro nuevamente en el perfil me toma los datos anteriores, si actualizo me los cambia...
+
 
     const dat = await res.json();
 const newToken = dat.token;
@@ -204,11 +204,7 @@ const delcodepaylodad = JSON.parse(window.atob(toquepayloda));
 
 const newdatos = delcodepaylodad;
 
-if(newdatos.password !== datos.password ){
-    inputPass.style.border = "1.5px solid red";
-    inputPass.setCustomValidity("Las contraseñas no coinciden !!")
-    e.preventDefault();
-}
+
 textName.innerHTML = `Redes de ${newdatos.nombre}`;            
 
 
@@ -219,8 +215,8 @@ const imagenObjectURL = URL.createObjectURL(imgBlob);
 img.src = imagenObjectURL;
 
 document.cookie = `${tokenName}=${newToken}`;
+modal.close();
 
-modal.close()
 
 
 

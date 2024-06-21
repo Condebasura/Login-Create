@@ -139,10 +139,7 @@ import bd from "../model/bd.js";
 			
 		}
 	
-           const currentPass = await bd.NoCoincide(usuario);
-		   if(currentPass){
-			console.log("las contraseñas coinciden")
-		   }
+           
 
 			const secret = "humedad-cancha-lodo";
 			const newtoken = jwt.sign(usuario , secret);
