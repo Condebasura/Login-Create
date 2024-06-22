@@ -38,8 +38,7 @@ console.log(separacokie)
 
             },
         });
-// ya tengo el token, falta decodificarlo y usarlo adecuadamente al actualizar datos
-        
+
 
 
         if (!res.ok) {
@@ -65,7 +64,7 @@ console.log(separacokie)
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
                 img.src = imagenObjectURL;
                 
-            }
+                 }            
             
             
             
@@ -74,7 +73,7 @@ console.log(separacokie)
                     modal.innerHTML = "";
                 
                  const datos = decodedPayload;
-            
+             
             const form = document.createElement("form");
         let ContainerImput = document.createElement("span");
     let archivo = document.createElement("input");
@@ -165,6 +164,7 @@ form.addEventListener("submit", async (e) => {
    
     if(inputPass.value === ''){
         inputPass.value = datos.password;
+        inputPass.style.TextColor = "white";
         
                 };
 
