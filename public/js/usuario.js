@@ -117,6 +117,7 @@ archivo.setAttribute("accept", "image/*");
 PrevArchivo.setAttribute("name", "Prevarchivo");
 PrevArchivo.setAttribute("type", "hidden");
 ContainerImput.setAttribute("class", "input_Container")
+inputPass.setAttribute("class", "inputPass");
 
 
 btnCancelar.setAttribute("type", "button");
@@ -131,7 +132,12 @@ form.appendChild(labelEmail);
 form.appendChild(inputEmail);
 form.appendChild(labelPass);
 form.appendChild(inputPass);
-;
+labelPass.addEventListener("click", (e) =>{
+    e.preventDefault();
+    if(e.target){
+        inputPass.style.display = "flex";
+    }
+});
 
 ContainerImput.appendChild(archivo);
 ContainerImput.appendChild(PrevArchivo);
@@ -162,11 +168,10 @@ return NameArchivo.innerHTML = soloImg;
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
    
-    if(inputPass.value === ''){
-        inputPass.value = datos.password;
-        inputPass.style.TextColor = "white";
+    if(inputPass.value === '' || inputPass.value === undefined){
+        inputPass.style.display = "none";
         
-                };
+    };
 
  
 

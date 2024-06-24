@@ -76,7 +76,7 @@ const NoCoincide = (usuario)=>{
         let sql = 'SELECT * FROM usuarios WHERE email = ? ';
         
            let email = usuario.email;
-           let pass = usuario.pass;
+           let password = usuario.password;
         bd.get(sql , [email], async (err, row)=>{
             if(err){
                 console.error(err.message);
@@ -86,7 +86,7 @@ const NoCoincide = (usuario)=>{
                 return;
             }
             try {
-                const passwordMatch = await bcrypt.compare(pass, row.password);
+                const passwordMatch = await bcrypt.compare(password, row.password);
                 resolve(passwordMatch);
             } catch (bcryptError) {
                 console.error('Error al comparar contraseñas:', bcryptError);

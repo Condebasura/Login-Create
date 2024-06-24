@@ -17,7 +17,7 @@ import bd from "../model/bd.js";
 		try{
 			const usuario = {
 				email: req.body.email,
-				pass: req.body.pass,
+				password: req.body.password,
 			} 
 			
 			const CredUser = await bd.NoCoincide(usuario);
@@ -138,17 +138,24 @@ import bd from "../model/bd.js";
             imagen: req.file ? req.file.filename : prevImg,
 			
 		}
-	
-           
-
-			const secret = "humedad-cancha-lodo";
-			const newtoken = jwt.sign(usuario , secret);
-			console.log(newtoken);
-			console.log(prevImg);
-			
-			const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
+		
+           let UserPas = usuario.password;
+             let datos = await bd.DataUser({email: usuario.email})
+              let pasAnterior = datos.password;
+			  try{
+				  const secret = "humedad-cancha-lodo";
+				  if(UserPas === '' || UserPas === undefined){
+					  UserPas = pasAnterior;
+					  console.log("se mantiene la contraseña anterior" , UserPas)
+					 
+				const newtoken = jwt.sign(usuario = {
+					nombre: usuario.nombre, 
+					apellido: usuario.apellido,
+					email: usuario.email,
+					imagen: usuario.imagen,
+				}, secret)
+				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
-			try{
 				if(imageUrl){
 					fs.unlink(previusfilePath, (err) => {
 						if (err) {
@@ -163,6 +170,32 @@ import bd from "../model/bd.js";
 			
 			await bd.UpdatePerfil(usuario);
 			res.status(200).json({token: newtoken})
+			}
+			
+			else{
+
+				const newtoken = jwt.sign(usuario , secret);
+				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
+			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
+			
+				if(imageUrl){
+					fs.unlink(previusfilePath, (err) => {
+						if (err) {
+							console.error('Error al eliminar la imagen anterior:', err);
+							return res.status(500).send('Error al actualizar la imagen');
+						}
+						console.log('Imagen anterior eliminada correctamente');
+					})
+				}else{
+				console.log('Manteniendo la imagen anterior:', prevImg);
+			}
+			
+			await bd.UpdatePerfil(usuario);
+			res.status(200).json({token: newtoken})
+		}
+			
+			
+			
 			
 		}catch(err){
 			console.log(err),

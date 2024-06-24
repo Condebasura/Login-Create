@@ -1,7 +1,7 @@
 let body = document.querySelector("body");
 const form = document.querySelector(".form");
 let email = document.querySelector(".e-mail");
-let pass = document.querySelector(".contraseña");
+let password = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 
@@ -9,7 +9,7 @@ const btnRegistro = document.querySelector(".registro");
 form.addEventListener("submit", (e) =>{
     e.preventDefault(); 
     
-        const verifiDatos = async (email , pass)=>{
+        const verifiDatos = async (email , password)=>{
 
             try {
                 const res = await fetch("usuario", {
@@ -17,7 +17,7 @@ form.addEventListener("submit", (e) =>{
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ email, pass })
+                    body: JSON.stringify({ email, password })
                 });
                 const data = await res.text();
                    
@@ -42,7 +42,7 @@ form.addEventListener("submit", (e) =>{
 
     };
 
-    verifiDatos(email.value , pass.value);
+    verifiDatos(email.value , password.value);
 
 })
 

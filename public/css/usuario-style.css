@@ -77,6 +77,10 @@ height: 5em;
     opacity: 0%;
 }
 
+.inputPass{
+    display: none;
+}
+
 
 /* Caja de Redes */
 
@@ -113,3 +117,4 @@ height: 5em;
 .selecRed{
     cursor:pointer;
 }
+
