@@ -91,6 +91,7 @@ newBox.addEventListener("mouseout", e =>{
 
 EliminarBox.addEventListener("click", e =>{
     if(e.target){
+        
         ContRedChat.removeChild(newBox);
     }
 })
