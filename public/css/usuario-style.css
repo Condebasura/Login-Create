@@ -87,13 +87,15 @@ height: 5em;
 .cont_redesChats{
     margin-top: 6em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2em;
+    grid-template-columns: repeat(auto-fill ,minmax(200px, 1fr));
+    gap: 15em;
     max-width: 95%;
     height: 100%;
 }
 
-.box_RedChat{display: flex;
+.box_RedChat{
+    position: relative;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -118,3 +120,12 @@ height: 5em;
     cursor:pointer;
 }
 
+.BtnEliminar{
+    display: none;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor:pointer;
+    border: solid 1px #454545;
+    border-radius: 50% 50%;
+}
