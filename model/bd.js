@@ -139,6 +139,26 @@ const UpdatePerfil = async (usuario)=>{
 }
 }
 
+const UpdatePerfilSinPassword = async (usuario)=>{
+    try{
+        
+        const sql = 'UPDATE usuarios SET  nombre = ? , apellido = ? , email = ?  , imagen = ?  WHERE email = ?';
+        bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , usuario.imagen, usuario.email] , (err)=>{
+            if(err){
+                console.log(err.message);
+            }else{
+                console.log("Se actualizaron los datos correctamente");
+            }
+        })
+    }
+    catch(error){
+        console.log(error.message)
+}
+}
+
+
+
+
 export default{bd,
     DeleteAll,
 ConsultUser,
@@ -147,4 +167,5 @@ EmailenUso,
 NoCoincide,
 DataUser,
 UpdatePerfil,
+UpdatePerfilSinPassword ,
 };

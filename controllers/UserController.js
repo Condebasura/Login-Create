@@ -154,6 +154,7 @@ import bd from "../model/bd.js";
 					email: usuario.email,
 					imagen: usuario.imagen,
 				}, secret)
+
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
 				if(imageUrl){
@@ -168,7 +169,7 @@ import bd from "../model/bd.js";
 				console.log('Manteniendo la imagen anterior:', prevImg);
 			}
 			
-			await bd.UpdatePerfil(usuario);
+			await bd.UpdatePerfilSinPassword(usuario);
 			res.status(200).json({token: newtoken})
 			}
 			
