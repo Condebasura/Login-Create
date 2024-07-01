@@ -34,8 +34,10 @@ const  LoadBoxesSeionStorage = () =>{
 
             EliminarBox.addEventListener("click", e =>{
                 if(e.target){
-               ContRedChat.removeChild(box);
-                   
+                    ContRedChat.removeChild(box);
+                    let boxes = JSON.parse(sessionStorage.getItem('boxes')) || [];
+                    boxes = boxes.filter(box = box.innreText);
+                    sessionStorage.setItem('boxes', JSON.stringify('boxes'))
                 }
                 });
 
@@ -134,7 +136,7 @@ newBox.removeChild(btnaddRedChat);
 
 }    
 const saveBoxEnSesionStorage = ()=>{
-    const boxes = Array.from(ContRedChat.children).map(box => box.innerText);
+    const boxes = Array.from(ContRedChat.children).map(box => box.innerText );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
 }
 
