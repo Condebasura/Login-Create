@@ -282,6 +282,7 @@ logout.addEventListener("click", async (e) => {
              await fetch("/logout", {
                 method: "GET",
                 })
+                sessionStorage.removeItem('boxes');
             return window.location.href = "/";
 
         }
