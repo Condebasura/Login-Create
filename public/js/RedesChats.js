@@ -32,19 +32,26 @@ const  LoadBoxesSeionStorage = () =>{
                 }
             });
             if(boxtext == "+ add" || boxtext == ""){
-                boxtext = "+ add";
+                boxtext = boxtext;
               }else{
                 box.style.backgroundImage = boxtext;
                 box.style.backgroundSize = "cover";
                 box.style.backgroundPosition = "start";  
                 box.removeChild(btnaddRedChat);
               }
+
+
             EliminarBox.addEventListener("click", e =>{
                 if(e.target){
                     ContRedChat.removeChild(box);
-                    let boxes = JSON.parse(sessionStorage.getItem('boxes')) || [];
-                    boxes = boxes.filter(box = box.innreText);
-                    sessionStorage.setItem('boxes', JSON.stringify('boxes'))
+                    const EliminarBoxDeSesionStorage = () =>{
+                        let boxes = Array.from(ContRedChat.children).map(box => box.style.backgroundImage);
+                        if(boxes.length > 0){
+                            console.log(boxes.length);
+                            sessionStorage.removeItem(boxes)
+                        }
+                    }
+                    EliminarBoxDeSesionStorage();
                 }
                 });
                   
@@ -89,6 +96,7 @@ const  LoadBoxesSeionStorage = () =>{
             contSelect.appendChild(Teleg);
             box.appendChild(contSelect);
             contSelect.style.display = "flex";
+
             box.addEventListener("mouseover", e =>{
         if(e.target){
             EliminarBox.style.display = "block";
@@ -109,6 +117,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";   
                     box.removeChild(contSelect);
+                    const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
             
                 }
             })
@@ -118,6 +131,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";  
                     box.removeChild(contSelect);
+                    const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
                 }
             })
             
@@ -127,6 +145,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";  
                     box.removeChild(contSelect);
+                    const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
                 };
             });
 
@@ -136,6 +159,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";  
                     box.removeChild(contSelect);
+                    const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
                 };
             });
             Whatsapp.addEventListener("click", (e)=>{
@@ -144,6 +172,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";  
                     box.removeChild(contSelect);
+                    const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
                 };
             });
 
@@ -153,6 +186,11 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";  
                     box.removeChild(contSelect);
+                      const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
                 };
             });
             };
@@ -166,7 +204,9 @@ LoadBoxesSeionStorage();
 
 // Fuera del load
 
-
+const saveBoxEnSesionStorage = ()=>{
+    const boxes = Array.from(ContRedChat.children).map(newBox => newBox.style.backgroundImage );
+    sessionStorage.setItem('boxes' , JSON.stringify(boxes));
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");
@@ -186,12 +226,10 @@ ContRedChat.appendChild(newBox);
 let computeStyle = window.getComputedStyle(newBox);
 if(computeStyle.backgroundImage !== 'none'){
 newBox.removeChild(btnaddRedChat);
+return computeStyle;
 
 }    
-const saveBoxEnSesionStorage = ()=>{
-    const boxes = Array.from(ContRedChat.children).map(box => box );
-    sessionStorage.setItem('boxes' , JSON.stringify(boxes));
-}
+
 
 btnaddRedChat.addEventListener("click", (e)=>{
     if(e.target){
@@ -246,7 +284,12 @@ face.addEventListener("click", (e)=>{
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";   
         newBox.removeChild(contSelect);
-        let Imgbox = newBox.style.backgroundImage;
+          const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
+       
 
     }
 })
@@ -256,6 +299,11 @@ insta.addEventListener("click", (e)=>{
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
         newBox.removeChild(contSelect);
+          const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
     }
 })
 
@@ -265,6 +313,11 @@ twit.addEventListener("click", (e)=>{
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
         newBox.removeChild(contSelect);
+          const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
     }
 });
 
@@ -274,6 +327,11 @@ Disc.addEventListener("click", (e)=>{
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
         newBox.removeChild(contSelect);
+          const saveimgEnBoxEnSesionStorage = ()=>{
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+        };
+        saveimgEnBoxEnSesionStorage()
     }
 });
 
@@ -322,14 +380,19 @@ newBox.addEventListener("mouseout", e =>{
 
 
 EliminarBox.addEventListener("click", e =>{
- if(e.target){
-ContRedChat.removeChild(newBox)
+    if(e.target){
+        ContRedChat.removeChild(newBox)
+        const EliminarBoxDeSesionStorage = () =>{
+            let boxes = Array.from(ContRedChat.children).map(newBox => newBox.innerText);
+            sessionStorage.removeItem(boxes)
+        }
+        EliminarBoxDeSesionStorage();
+    }
     
- }
-
 })
-saveBoxEnSesionStorage();
 }
 
-    
+
 })
+}
+saveBoxEnSesionStorage();
