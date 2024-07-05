@@ -5,7 +5,7 @@ let boxCount = 0;
 const  LoadBoxesSeionStorage = () =>{
     const SaveBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     if(SaveBoxes){
-        SaveBoxes.forEach(boxtext => {
+        SaveBoxes.forEach((boxtext ) => {
             const box = document.createElement('div');
             const EliminarBox = document.createElement("span");
             const btnaddRedChat = document.createElement("button");
@@ -43,17 +43,14 @@ const  LoadBoxesSeionStorage = () =>{
 
             EliminarBox.addEventListener("click", e =>{
                 if(e.target){
-                    ContRedChat.removeChild(box);
-                    const EliminarBoxDeSesionStorage = () =>{
-                        let boxes = Array.from(ContRedChat.children).map(box => box.style.backgroundImage);
-                        if(boxes.length > 0){
-                            console.log(boxes.length);
-                            sessionStorage.removeItem(boxes)
-                        }
-                    }
-                    EliminarBoxDeSesionStorage();
+                 ContRedChat.removeChild(box);
+                 let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
+                 boxes = boxes.filter(box => box !== boxtext); 
+                 sessionStorage.setItem('boxes', JSON.stringify(boxes));
                 }
                 });
+
+                
                   
             btnaddRedChat.addEventListener("click", (e)=>{
                 if(e.target){
@@ -207,6 +204,7 @@ LoadBoxesSeionStorage();
 const saveBoxEnSesionStorage = ()=>{
     const boxes = Array.from(ContRedChat.children).map(newBox => newBox.style.backgroundImage );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
+
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");
@@ -381,15 +379,15 @@ newBox.addEventListener("mouseout", e =>{
 
 EliminarBox.addEventListener("click", e =>{
     if(e.target){
-        ContRedChat.removeChild(newBox)
-        const EliminarBoxDeSesionStorage = () =>{
-            let boxes = Array.from(ContRedChat.children).map(newBox => newBox.innerText);
-            sessionStorage.removeItem(boxes)
-        }
-        EliminarBoxDeSesionStorage();
+        ContRedChat.removeChild(newBox);
+        let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
+        boxes = boxes.filter(box => box !== newBox.style.backgroundImage);
+sessionStorage.setItem('boxes', JSON.stringify(boxes));
     }
     
-})
+});
+
+
 }
 
 
