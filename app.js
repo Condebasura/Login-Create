@@ -15,7 +15,7 @@ const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", imp
 const app = express();
 const port = 3000;
 const corsOptions = {
-    origin: [`http://localhost:${port}/`, `http://localhost:${port}/create` , `http://localhost:${port}/layout` , `http://localhost:${port}/logout` ],  // Origen permitido (puedes usar * para permitir todo)
+    origin: '*' [`http://localhost:${port}/`, `http://localhost:${port}/create` , `http://localhost:${port}/layout` , `http://localhost:${port}/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type,Authorization',
      // Encabezados permitidos
@@ -45,7 +45,16 @@ app.use("usuario",expressjwt({
 
  
 app.use(cors(corsOptions));
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy:{
+  directives:{
+    defaultSrc:["'self'"],
+   
+    styleSrc: ["'self'", "https://kit.fontawesome.com/523f183385.js","https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css" ,"'unsafe-inline'"],
+
+    fontSrc: ["'self'", "https://kit.fontawesome.com/", "https://maxcdn.bootstrapcdn.com/", "cdnjs.cloudflare.com"],
+
+  }
+}}));
 app.use(morgan("dev"));
 app.use((err, req, res, next) => {
     console.error('Error en el servidor:', err);

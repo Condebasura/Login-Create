@@ -6,7 +6,7 @@ body{
   background-color: #dcdedf8a;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 1em;
   box-shadow: 4px 10px 16px #2424252f;
@@ -26,11 +26,11 @@ body{
   background-size: cover;
   background-position: center;
   width: 7vmin;
-    color: rgb(22, 21, 21);
-    font-size: 16em;
-    font-style: italic;
-    padding-top: 7vmin ;
-border-radius: 50%;
+      color: rgb(22, 21, 21);
+      font-size: 16em;
+      font-style: italic;
+      padding-top: 7vmin ;
+  border-radius: 50%;
 
 
 
@@ -124,4 +124,35 @@ label{
     padding: 2px;
   }
 
-  
+  footer{
+
+    background-color: #000000c9;
+    border-top-color: rgb(241, 102, 10);
+    border-top-style: solid;
+    color: cornsilk;
+    height: 8em;
+    margin:  14em 0 -1px 0 ;
+    max-width:  100%;
+    text-align: center;
+   
+}
+    
+    .fa-linkedin , .fa-hashtag{
+        color: white;
+        font-size:  24px;
+        margin-left: .3em;
+        position: relative;left: 2px;
+        text-decoration: none;
+        top: 5px;
+    }
+    
+    .sig{
+        
+        font-size: 16px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-left: 2em;
+       
+       
+    }
+    
+    .der{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}

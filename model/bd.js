@@ -145,7 +145,7 @@ const UpdatePerfilSinPassword = async (usuario)=>{
         const sql = 'UPDATE usuarios SET  nombre = ? , apellido = ? , email = ?  , imagen = ?  WHERE email = ?';
         bd.run(sql , [usuario.nombre , usuario.apellido,usuario.email , usuario.imagen, usuario.email] , (err)=>{
             if(err){
-                console.log(err.message);
+                console.log("Ocurrio un error al querer actualizar" ,err.message);
             }else{
                 console.log("Se actualizaron los datos correctamente");
             }

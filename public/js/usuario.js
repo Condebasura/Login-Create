@@ -15,7 +15,6 @@ const dataUsuario = async () => {
     const cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
 
     const cookie = cookies.find(([name, value]) => name === tokenName);
-    console.log(cookie);
     const tokenValue = cookie[1];
     const tokenPayload = tokenValue.split('.')[1];
     const decodedPayload = JSON.parse(window.atob(tokenPayload));
@@ -27,7 +26,6 @@ const dataUsuario = async () => {
 }
    
 let separacokie = getCookie(tokenName);
-console.log(separacokie)
     try {
 
 
@@ -56,7 +54,6 @@ console.log(separacokie)
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
-                console.log(datos)
 
                 const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
                 const imagenResponse = await fetch(imageURL);

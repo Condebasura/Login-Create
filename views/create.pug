@@ -1,5 +1,14 @@
-extends layowt 
-block content 
+doctype html
+html(lang='es')
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel="icon", href="/img/logo_sesions.jpeg")
+  link(rel='stylesheet',  href='/css/create-style.css')
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css"  crossorigin="anonymous")
+  title= title
+body
+block content  
  nav.brra_nav_create 
   div.ContentLogo
    div(class="logo")
@@ -24,4 +33,14 @@ block content
   p(class="Tienes_cuenta") Ya tienes una cuenta??
      a( class="Sesion") Iniciar Sesion
  dialog(id="modal")
+ footer
+   br
+   br
+   span.sig
+    | Contacto:
+    a.fab.fa-linkedin(href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb')
+    a.fas.fa-hashtag(href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
+   br
+   br
+   p.der Pablo C. Zabala &copy; 2024 
  script( type="module" src="../js/create.js")  

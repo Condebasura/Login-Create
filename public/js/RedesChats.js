@@ -7,15 +7,14 @@ const  LoadBoxesSeionStorage = () =>{
     if(SaveBoxes){
         SaveBoxes.forEach((boxtext ) => {
             const box = document.createElement('div');
-            const EliminarBox = document.createElement("span");
+            const EliminarBox = document.createElement("i");
             const btnaddRedChat = document.createElement("button");
             box.setAttribute("class", "box_RedChat");
-         EliminarBox.setAttribute("class", "BtnEliminar");
+         EliminarBox.setAttribute("class", "far fa-times-circle");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
-        EliminarBox.innerHTML = "X";
         btnaddRedChat.textContent = "+ add";
-      
+        EliminarBox.style.display = "none";
        box.appendChild(EliminarBox);
         box.appendChild(btnaddRedChat);
             ContRedChat.appendChild(box);
@@ -208,16 +207,15 @@ const saveBoxEnSesionStorage = ()=>{
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");
-        const EliminarBox = document.createElement("span");
+        const EliminarBox = document.createElement("i");
         const btnaddRedChat = document.createElement("button");
 
         newBox.setAttribute("class", "box_RedChat");
-        EliminarBox.setAttribute("class", "BtnEliminar");
+        EliminarBox.setAttribute("class", "far fa-times-circle");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
-        EliminarBox.innerHTML = "X";
         btnaddRedChat.textContent = "+ add";
-     
+        EliminarBox.style.display = "none";
        newBox.appendChild(EliminarBox);
         newBox.appendChild(btnaddRedChat);
 ContRedChat.appendChild(newBox);
