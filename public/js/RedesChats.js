@@ -10,7 +10,7 @@ const  LoadBoxesSeionStorage = () =>{
             const EliminarBox = document.createElement("i");
             const btnaddRedChat = document.createElement("button");
             box.setAttribute("class", "box_RedChat");
-         EliminarBox.setAttribute("class", "far fa-times-circle");
+         EliminarBox.setAttribute("class", "fa-regular fa-circle-xmark");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
@@ -211,7 +211,7 @@ btnAddBox.addEventListener("click", (e)=>{
         const btnaddRedChat = document.createElement("button");
 
         newBox.setAttribute("class", "box_RedChat");
-        EliminarBox.setAttribute("class", "far fa-times-circle");
+        EliminarBox.setAttribute("class", "fa-regular fa-circle-xmark");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
