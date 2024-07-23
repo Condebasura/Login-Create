@@ -1,159 +1,62 @@
-body{
+body{ display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
   background-color: #a78ee057;
 }
 
-.brra_nav{
-  background-color: #dcdedf8a;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 1em;
-  box-shadow: 0px 1px 10px #363636;
+.caja_1{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #454545;
 }
 .ContentLogo{
   display: flex;
   flex-direction: row;
-  gap: .4em;
-  
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.logo{
+background-image: url("/img/logo_sesions.jpeg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+height: 1dvh;
+width: 8dvh;
+  color: rgb(22, 21, 21);
+  font-style: italic;
+  padding-top: 7vmin ;
+border-radius: 3em;
+position: relative; top: -16px;
+}
+
+.ContentLogoAndBars{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.textlogo{
+  display: flex;
+  flex-direction: column;
+
 }
 .nameLogo{
-  text-align: left;
+  margin: 0.5em 0 0 0 ;
+  font-size: 30px;
 }
 
-.logo{
-  background: url("/img/logo_sesions.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 7vmin;
-      color: rgb(22, 21, 21);
-      font-size: 16em;
-      font-style: italic;
-      padding-top: 7vmin ;
-  border-radius: 50%;
-
-
-
-}
-.form{
-  background-color: rgb(255, 255, 255);
-  border-radius: .5rem;
-  display: flex;
- flex-direction: column;
- justify-content: center;
-  gap: .7rem;
-  margin-top: 3em;
-   max-width: 80%;
-   width: 300px;
- align-items:center;
- padding: 2em 1em;
-  box-shadow:  inset  18px 18px 28px 0 hsla(41, 83%, 60%, 0.562) , inset -18px -18px 28px 0 hsla(41, 83%, 60%, 0.562), 25px 25px 16px #41414228;
-
-
- }
-
-.login_name{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
-  color: #363636;
+.TextFrase{
+  margin: 0 0 2em 0 ;
 }
 
-label{
-  font-size: 13px;
-  font-family: Arial, Helvetica, sans-serif;
+.fa-bars{
+  font-size: 1.6em;
 }
-	.e-mail , .contraseña{
-		height: 30px;
-    max-width: 100%;
-   border: 1px solid  rgb(180, 187, 178);
-   background-color: transparent;
-   box-shadow: inset -1px -1.7px 6px #36363665 ;
-    
-	}
+.caja_2{
+  width: 100%;
+  height: auto;
 
-.e-mail:focus , .contraseña:focus{
-  border: 1px solid rgba(0, 128, 0, 0.781);
-  outline: none;
+  border: 1px solid #454545;
 }
-
-  .login{
-    margin: 0 1em  ;
-    padding:  10px ;
-    width: 80%;
-    background-color: rgba(63, 155, 10, 0.822);
-    color: aliceblue;
-    font-size: 18px;
-    border-style: none;
-    box-shadow: 2px 2px 8px #444444e0;
-    cursor: pointer;
-  }
-.login:active{
-  box-shadow: none;
-}
-  .no_cuenta{
-    color: red;
-    font-size: 15px;
-    
-  }
-
-  .registro{
-    margin: 1em;
-    padding: 10px;
-    background-color: rgba(50, 60, 172, 0.89);
-    color: aliceblue;
-    font-size: 18px;
-    border-style: none;
-    box-shadow: 2px 2px 8px #444444e0;
-    cursor: pointer;
-    width: 80%;
-  }
-
-  .registro:active{
-    box-shadow: none;
-  }
-
-  .parrafo{
-    font-size: 15px;
-    color: rgb(228, 18, 18);
-    padding: 2px;
-  }
-
-  .sesionCaduca{
-    color: blue;
-    font-size: 15px;
-    padding: 2px;
-  }
-
-  footer{
-
-    background-color: #000000c9;
-    border-top-color: rgb(241, 102, 10);
-    border-top-style: solid;
-    color: cornsilk;
-    height: 8em;
-    margin:  14em 0 -1px 0 ;
-    max-width:  100%;
-    text-align: center;
-    padding-bottom: 0;
-   
-}
-    
-    .fa-linkedin , .fa-hashtag{
-        color: white;
-        font-size:  24px;
-        margin-left: .3em;
-        position: relative;left: 2px;
-        text-decoration: none;
-        top: 5px;
-    }
-    
-    .sig{
-        
-        font-size: 16px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin-left: 2em;
-       
-       
-    }
-    
-    .der{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}

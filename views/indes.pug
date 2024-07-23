@@ -1,0 +1,43 @@
+doctype html
+html(lang='es')
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel="icon", href="/img/logo_sesions.jpeg")
+  link(rel='stylesheet',  href='/css/login.css')
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"  crossorigin="anonymous")
+  title= title
+body
+block content
+ nav.brra_nav
+  div.ContentLogo
+   div(class="logo")
+   div.textlogo
+    h1.nameLogo Sesions
+    spam.TextFrase Muchas redes en un solo lugar
+  h2.login_name Iniciar Sesion
+ form(class="form" action="/usuario" method="POST")
+  br
+  label(for="email") Email
+  input(id="email" , class="e-mail" ,type='email', name="email")
+  label(for='pass') Password
+  input(type="password", name="password" , class="contraseña" , id="pass")
+  h3.parrafo= mensaje
+  button.login(type='submit') Iniciar sesion
+  br
+  p.no_cuenta No tienes una cuenta?
+  button.registro(type='button') Registrarse
+ dialog#modal
+ footer
+   br
+   br
+   span.sig
+    | Contacto:
+    a.fab.fa-linkedin(href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb')
+    a.fas.fa-hashtag(href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
+   br
+   br
+   p.der Pablo C. Zabala &copy; 2024 
+ script(type="module", src='../js/login.js')
+
+
