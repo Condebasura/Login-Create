@@ -11,11 +11,26 @@ body
 block content
  div.caja_1
   div.ContentLogoAndBars
-   div.ContentLogo
-    div(class="logo")
-    div.textlogo
-     h1.nameLogo Sesions 
-     p.TextFrase Tus redes en un mismo lugar
-   div.ContentBars
-    ul.fa-solid.fa-bars     
+   nav
+    div.ContentLogo
+     div(class="logo")
+     div.textlogo
+      h1.nameLogo Sesions 
+      p.TextFrase Tus redes en un mismo lugar
+    div.ContentBars
+     ul.fa-solid.fa-bars
+  form(class="form" action="/usuario" method="post")
+   br
+   h2.login_name Iniciar Sesion
+   label(for="email") Email 
+   input(id="email" , class="e-mail" , type="email" , name="email")
+   label(for="pass") Password 
+   input(type="password", name="password", class="contraseña" , id="pass")
+   h3.parrafo= mensaje
+   button.login(type="submit") Iniciar sesion
+   br
+   p.no_cuenta No tienes una cuenta?
+    p.registro Registrarse 
+   dialog#modal
  div.caja_2 
+script(type="module", src='../js/login.js') 

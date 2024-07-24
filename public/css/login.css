@@ -9,7 +9,8 @@ body{ display: flex;
 .caja_1{
   width: 100%;
   height: 100%;
-  border: 1px solid #454545;
+  border: 1px solid #08c359;
+  
 }
 .ContentLogo{
   display: flex;
@@ -32,10 +33,14 @@ border-radius: 3em;
 position: relative; top: -16px;
 }
 
-.ContentLogoAndBars{
+
+
+nav{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  ;
+  border: 2px solid #454545;
 }
 .textlogo{
   display: flex;
