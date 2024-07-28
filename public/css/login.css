@@ -157,7 +157,7 @@ font-size: 2vh;
   gap: 2em;
   background-color: rgba(208, 206, 206, 0.38);
   position: fixed;bottom: 2px;
-  width: 100vh;
+  width: 46%;
 }
 .Contact{
   display: flex;
