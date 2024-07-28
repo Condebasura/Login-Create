@@ -70,7 +70,7 @@ position: relative; bottom: 3vh;
 }
 
 
-.fa-bars{
+.fa-bars ,  .fa-bars-staggered{
   font-size: 1.6em;
   color: #625f5f;
  
@@ -100,9 +100,13 @@ position: relative; bottom: 3vh;
   height: 4.4vh;
   width: 30vh;
 border-radius: 5px;
+border: 1px solid black;
 
 }
-
+.e-mail:focus , .contraseña:focus{
+  border: 1px solid rgb(4, 189, 4);
+    outline: none;
+}
 
 .parrafo{
   color: rgb(248, 243, 243);
@@ -151,9 +155,9 @@ font-size: 2vh;
   justify-content: center;
   align-items: center;
   gap: 2em;
-  background-color: rgba(245, 239, 239, 0.38);
+  background-color: rgba(208, 206, 206, 0.38);
   position: fixed;bottom: 2px;
-  width: 50%;
+  width: 100vh;
 }
 .Contact{
   display: flex;
@@ -179,7 +183,7 @@ font-size: 2vh;
   width: 100%;
   padding: 2em;
   gap: 2em;
-  margin: 2em 2em 2em 0;
+  margin: 1em 1em 1em 0;
   box-shadow: 2px 2px 12px 2px #918f8f;
   border-radius: 2em;
   
