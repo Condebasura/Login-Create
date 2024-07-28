@@ -36,12 +36,12 @@ nav{
 
 
 .logo{
-width: 2.5em;
-height: 2.5em;
+width: 5vh;
+height: 5vh;
   color: rgb(22, 21, 21);
   font-style: italic;
 border-radius: 3em;
-position: relative; bottom: 30px;
+position: relative; bottom: 3vh;
 }
 
 
@@ -55,7 +55,7 @@ position: relative; bottom: 30px;
 }
 .nameLogo{
   margin: 0.5em 0 0 0 ;
-  font-size: 24px;
+  font-size: 3.4vh;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic ;
   font-weight: 620;
@@ -63,7 +63,7 @@ position: relative; bottom: 30px;
 
 .TextFrase{
   margin: 0 0 4em 0.4em ;
-  font-size: 16px;
+  font-size: 2vh;
   font-style: italic ;
   font-family: 'Times New Roman', Times, serif;
 
@@ -97,8 +97,8 @@ position: relative; bottom: 30px;
 }
 .e-mail , .contraseña{
   margin: 1em 0 ;
-  height: 27px;
-  width: 100%;
+  height: 4.4vh;
+  width: 30vh;
 border-radius: 5px;
 
 }
@@ -114,13 +114,14 @@ border-radius: 5px;
 }
 
 .login{
-  width: 25vmin;
-  height: 2.8em;
+  width: 25vh;
+  height: 3.4em;
   background-color: rgba(28, 60, 202, 1);
   color: white;
   border-style: none;
   letter-spacing: 5px;
   line-height: 36px;
+  border-radius: 5px;
 }
 
 .login:active{
@@ -131,10 +132,19 @@ border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   gap: 1em;
   margin: 2em;
 }
+.no_cuenta{
+color: red;
+font-size: 2vh;
+}
 
+.registro{
+  cursor: pointer;
+  color: blue;
+}
 .pie{
   display: flex;
   flex-direction: row;
@@ -167,7 +177,7 @@ border-radius: 5px;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  padding: 3em;
+  padding: 2em;
   gap: 2em;
   margin: 2em 2em 2em 0;
   box-shadow: 2px 2px 12px 2px #918f8f;
@@ -179,8 +189,8 @@ border-radius: 5px;
 .ConteinerTitulo {
   display: flex;
   background-color: rgba(255, 254, 254, 0.67);
-  width: 50%;
-  height: 40%;
+  width: 50vh;
+  height: 25vh;
   box-shadow: 2px 2px 1px rgba(161, 158, 158, 0.66);
   border-radius: 30px;
   justify-content: center;
@@ -189,7 +199,7 @@ border-radius: 5px;
 
 .titulo{
   margin: 0.3em;
-font-size: 42px; 
+font-size: 4.5vh; 
 font-family: 'Times New Roman', Times, serif;
 letter-spacing: 5px;
 font-weight: 100;
@@ -203,13 +213,13 @@ color: rgba(72, 70, 70, 1);
   align-items: center; 
   text-align: center  ;
   background-color: rgba(255, 254, 254, 0.67);
-  width: 50%;
+  width: 50vh;
   box-shadow: 2px 2px 1px rgba(161, 158, 158, 0.66);
   border-radius: 30px;
 }
 
 .SubTitulo{
-  font-size: 20px;
+  font-size: 2.3vh;
   font-family: 'Times New Roman', Times, serif;
 letter-spacing: 6px;
 font-weight: 300;
@@ -220,8 +230,8 @@ color: rgba(72, 70, 70, 1);
 
 .PageInBrowser{
   
-  height: 30%;
-width: 30%;
+  height: 23vh;
+width: 30vh;
 
 
 
