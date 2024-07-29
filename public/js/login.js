@@ -6,25 +6,29 @@ const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 const btnMenu = document.querySelector(".fa-bars");
 
+
 btnMenu.addEventListener("click", (e)=>{
     if(btnMenu.classList.contains("fa-bars")){
         btnMenu.classList.add("fa-bars-staggered");
         btnMenu.classList.remove("fa-bars");
+        
     }
 
     else{
         btnMenu.classList.add("fa-bars");
         btnMenu.classList.remove("fa-bars-staggered");
+       
+
     }
     
-})
+});
 
 document.addEventListener("click", (e)=>{
    if(e.target != btnMenu){
     btnMenu.classList.add("fa-bars");
     btnMenu.classList.remove("fa-bars-staggered");
 
-}})
+}});
 
 form.addEventListener("submit", (e) =>{
     e.preventDefault(); 

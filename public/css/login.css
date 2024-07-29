@@ -73,7 +73,26 @@ position: relative; bottom: 3vh;
 .fa-bars ,  .fa-bars-staggered{
   font-size: 1.6em;
   color: #625f5f;
+  display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+       cursor: pointer;
+       font-size: 20px;
+       text-align: center;
+       list-style-type: none;
+       text-shadow: 1px 1px 12px rgba(148, 146, 146, 0.795);
+       margin-top: 2em;
+  
  
+}
+
+
+
+.ContentBars{
+  display: flex;
+  flex-direction: row;
+  
 }
 .form{
   display: flex;
