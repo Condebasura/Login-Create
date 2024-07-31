@@ -8,39 +8,51 @@ head
   link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"  crossorigin="anonymous")
   title= title
 body
-block content  
- nav.brra_nav_create 
+block content
+div.caja_1  
+ nav 
   div.ContentLogo
-   div(class="logo")
+   img(class="logo", src="/img/Logo_sesions.jpeg", alt="logo")
    div.textlogo
     h1.nameLogo Sesions
-    spam.TextFrase Muchas redes en un solo lugar
-  h2.create_name Registrarse 
+    p.TextFrase Tus redes en un mismo lugar
+  div.ContenTerm
+     a(href="#", class="QSomos") Quienes Somos 
+     a(href="#", class="Term") Terminos y Condiciones 
  form.formCreate(action="/create" , method="post" , enctype="multipart/form-data")
-  label(for="Nombre") Nombre 
-  input( type="text" ,class="Name", id="Nombre", placeholder="Ingresa tu nombre" , required)
-  label(for="Apellido") Apellido 
-  input(type="text", id="Apellido", class="Ap" , placeholder="Ingresa tu apellido" , required)
-  label(for="C-email") Email 
-  input(type="email" , class="C-mail", id="C-email", placeholder="Ingresa un email" required)
-  label(for="pass") Contraseña 
-  input(type="password", id="pass", class="Pasword" , placeholder="crear contraseña", required)
-  label(for="Re-pass") Repetir Contraseña
-  input(type="password", id="Re-pass", class="Re-Contraseña", placeholder="Repetir contraseña", required)
-  label(for="img") seleciona un imagen
-  input(type="file", class="CreaArchivo", id="img" , name= "Archivo" )
-  button(type="submit", class="Regis_fin") Registrarse 
-  p(class="Tienes_cuenta") Ya tienes una cuenta??
-     a( class="Sesion") Iniciar Sesion
+  br
+  h2.create_name Registrarse
+  div.inputs 
+   label(for="Nombre") Nombre 
+   input( type="text" ,class="Name", id="Nombre", placeholder="Ingresa tu nombre" , required)
+   label(for="Apellido") Apellido 
+   input(type="text", id="Apellido", class="Ap" , placeholder="Ingresa tu apellido" , required)
+   label(for="C-email") Email 
+   input(type="email" , class="C-mail", id="C-email", placeholder="Ingresa un email" required)
+   label(for="pass") Contraseña 
+   input(type="password", id="pass", class="Pasword" , placeholder="crear contraseña", required)
+   label(for="Re-pass") Repetir Contraseña
+   input(type="password", id="Re-pass", class="Re-Contraseña", placeholder="Repetir contraseña", required)
+   label(for="img") seleciona un imagen
+   input(type="file", class="CreaArchivo", id="img" , name= "Archivo" )
+  button(type="submit", class="Regis_fin") Enviar
+  br
+  div.Reg
+   p(class="Tienes_cuenta") Ya tienes una cuenta??
+   p( class="Sesion") Inicia Sesion
  dialog(id="modal")
- footer
-   br
-   br
-   span.sig
-    | Contacto:
-    a.fab.fa-linkedin(href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb')
-    a.fas.fa-hashtag(href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
-   br
-   br
+ footer.pie
+   p.Contact Contacto :
+    a.fab.fa-linkedin(href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb' target='_blank')
+    a.fa-brands.fa-instagram(href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
+    a.fa-brands.fa-github(href="https://github.com/Condebasura" target='_blank')
+    br
+    br
    p.der Pablo C. Zabala &copy; 2024 
- script( type="module" src="../js/create.js")  
+div.caja_2
+  div.ConteinerTitulo 
+   h1.titulo Conectate a tus redes  y chats sin perdidas de tiempo.
+  div.ContSubTitulo
+   h4.SubTitulo Mantén el foco en tu trabajo mientras socializas !!
+  img(src="/img/pageinbrowser.jpg", alt="").PageInBrowser 
+script( type="module" src="../js/create.js")  
