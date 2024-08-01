@@ -90,17 +90,18 @@ import bd from "../model/bd.js";
 
 	
 	const CrarUsuario = async (req, res)=>{
-	
+	 const ImgDefault = 'Default.jpg';
+
 		let usuario = {
 			nombre: req.body.nombre,
 			apellido: req.body.apellido , 
 			email: req.body.email, 
 			password: req.body.password, 
-			imagen: req.file.filename,
+			imagen: req.file ? req.file.filename : ImgDefault ,
 		};
 		
 		
-		const imageUrl = req.file.filename ? `./public/uploads/${req.file.filename}` : null;
+		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
          
 		try{
 			
@@ -125,7 +126,7 @@ import bd from "../model/bd.js";
 	
 	 
 	
-
+// tengo que hacer que la imagen por defecto no se elimine si la actualiza en su perfil
 
 	const ActualizarPerfil = async (req, res)=>{
 	         
@@ -154,7 +155,7 @@ import bd from "../model/bd.js";
 					email: usuario.email,
 					imagen: usuario.imagen,
 				}, secret)
-
+                
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
 				if(imageUrl){
