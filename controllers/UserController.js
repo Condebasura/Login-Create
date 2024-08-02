@@ -154,11 +154,15 @@ import bd from "../model/bd.js";
 					apellido: usuario.apellido,
 					email: usuario.email,
 					imagen: usuario.imagen,
-				}, secret)
+				}, secret) 
                 
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
+				
+				const imgDefault = path.join(__dirname, './public/uploads/Default.jpg');
+				
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
-				if(imageUrl){
+			
+				if(imageUrl &&  previusfilePath !== imgDefault){
 					fs.unlink(previusfilePath, (err) => {
 						if (err) {
 							console.error('Error al eliminar la imagen anterior:', err);
@@ -166,7 +170,17 @@ import bd from "../model/bd.js";
 						}
 						console.log('Imagen anterior eliminada correctamente');
 					})
-				}else{
+				}else if(imageUrl && previusfilePath === imgDefault){
+                   fs.writeFile(previusfilePath, imageUrl, (err) =>{
+					if(err){
+						console.error('Error al remplazar la imagen anterior:', err);
+							return res.status(500).send('Error al actualizar la imagen');
+					}
+					console.log("Imagen anterior reemplazada con exito")
+				   })
+				}
+				
+				else{
 				console.log('Manteniendo la imagen anterior:', prevImg);
 			}
 			
@@ -177,10 +191,12 @@ import bd from "../model/bd.js";
 			else{
 
 				const newtoken = jwt.sign(usuario , secret);
+				const imgDefault = path.join(__dirname, './public/uploads/Default.jpg');
+
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
 			
-				if(imageUrl){
+				if(imageUrl && previusfilePath !== imgDefault){
 					fs.unlink(previusfilePath, (err) => {
 						if (err) {
 							console.error('Error al eliminar la imagen anterior:', err);
@@ -188,7 +204,17 @@ import bd from "../model/bd.js";
 						}
 						console.log('Imagen anterior eliminada correctamente');
 					})
-				}else{
+				}else if(imageUrl && previusfilePath === imgDefault){
+					fs.writeFile(previusfilePath, imageUrl, (err) =>{
+					 if(err){
+						 console.error('Error al remplazar la imagen anterior:', err);
+							 return res.status(500).send('Error al actualizar la imagen');
+					 }
+					 console.log("Imagen anterior reemplazada con exito")
+					})
+				 }
+				
+				else{
 				console.log('Manteniendo la imagen anterior:', prevImg);
 			}
 			
