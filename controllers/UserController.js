@@ -90,7 +90,7 @@ import bd from "../model/bd.js";
 
 	
 	const CrarUsuario = async (req, res)=>{
-	 const ImgDefault = 'Default.jpg';
+	 const ImgDefault = '6a358764ceea57cc78c265af5eab9fab';
 
 		let usuario = {
 			nombre: req.body.nombre,
@@ -158,10 +158,10 @@ import bd from "../model/bd.js";
                 
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 				
-				const imgDefault = path.join(__dirname, './public/uploads/Default.jpg');
+				const imgDefault = path.join(__dirname, './public/uploads/',"6a358764ceea57cc78c265af5eab9fab");
 				
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
-			
+			console.log(previusfilePath , imgDefault)
 				if(imageUrl &&  previusfilePath !== imgDefault){
 					fs.unlink(previusfilePath, (err) => {
 						if (err) {
@@ -171,7 +171,7 @@ import bd from "../model/bd.js";
 						console.log('Imagen anterior eliminada correctamente');
 					})
 				}else if(imageUrl && previusfilePath === imgDefault){
-                   fs.writeFile(previusfilePath, imageUrl, (err) =>{
+                   fs.appendFile(previusfilePath, imageUrl, (err) =>{
 					if(err){
 						console.error('Error al remplazar la imagen anterior:', err);
 							return res.status(500).send('Error al actualizar la imagen');
@@ -191,7 +191,7 @@ import bd from "../model/bd.js";
 			else{
 
 				const newtoken = jwt.sign(usuario , secret);
-				const imgDefault = path.join(__dirname, './public/uploads/Default.jpg');
+				const imgDefault = path.join(__dirname, './public/uploads/',"6a358764ceea57cc78c265af5eab9fab");
 
 				const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
 			const previusfilePath = path.join(__dirname, './public/uploads/', prevImg);
@@ -205,7 +205,7 @@ import bd from "../model/bd.js";
 						console.log('Imagen anterior eliminada correctamente');
 					})
 				}else if(imageUrl && previusfilePath === imgDefault){
-					fs.writeFile(previusfilePath, imageUrl, (err) =>{
+					fs.appendFile(previusfilePath, imageUrl, (err) =>{
 					 if(err){
 						 console.error('Error al remplazar la imagen anterior:', err);
 							 return res.status(500).send('Error al actualizar la imagen');
