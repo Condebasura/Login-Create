@@ -108,25 +108,45 @@ form.addEventListener("submit", async (e)=>{
                     
                     let modal = document.getElementById("modal");
                     let p = document.createElement("h2");
+                    let ok = document.createElement("button");
                     p.setAttribute("class", "msgError");
+                    ok.setAttribute("class", "ok");
                     modal.innerHTML = "";
                     p.innerHTML = data.mensaje;
+                    ok.innerHTML = "OK";
                     modal.showModal();
-                    setTimeout(() => { modal.appendChild(p), 500000 });
+                    modal.appendChild(p)
+                    modal.appendChild(ok)
+                    
+                    ok.addEventListener("click",(e)=>{
+                        e.preventDefault();
+                        if(e.target){
+                          modal.close();
+                          modal.style.display = "none";
+                        }
+                    })
                    
                 }else if(res.status === 200){
                     
                     let modal = document.getElementById("modal");
+                    let btnSesion = document.createElement("button");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgExito");
+                    btnSesion.setAttribute("class", "btnSesion");
                     modal.innerHTML = "";
                     p.innerHTML = data.mensaje;
+                    btnSesion.innerHTML = "Iniciar Sesion";
                     modal.showModal();
-                    
-                    setTimeout(() => { modal.appendChild(p), window.location.href = "/", 200000 });
-
-                }
-            }
+                    modal.appendChild(p)
+                    modal.appendChild(btnSesion);
+                    btnSesion.addEventListener("click", (e)=>{
+                        e.preventDefault();
+                        if(e.target){
+                            return window.location.href = "/";
+                        }
+                    })
+            
+            }}
         }catch(error){
     
             return console.log(error)

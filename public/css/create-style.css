@@ -270,8 +270,39 @@ body{ display: flex;
         
         height: 23vh;
       width: 30vh;
-      
-      
-      
-      
-      }
+     }
+
+     #modal{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-style: none;
+      background-color: #fbfafd;
+      font-size: 18px;
+      font-family: 'Times New Roman', Times,cursive, serif;
+      color: rgb(6, 196, 6);
+      text-shadow: 1px 1px 1px #000;
+     }
+
+     .ok{
+      border-style: none;
+      background-color: red;
+      color: white;
+      width: 5vh;
+    border-radius: 3px;
+     }
+
+     .ok:focus , .btnSesion:focus{
+       
+      box-shadow: 2px 2px 12px #918f8f;
+     }
+
+     .btnSesion{
+      border-style: none;
+      background-color: rgba(28, 60, 202, 1);
+      color: white;
+      height: 2em;
+      border-radius: 4px;
+
+     }

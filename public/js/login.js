@@ -4,7 +4,20 @@ let email = document.querySelector(".e-mail");
 let password = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
+let parrafo = document.querySelector(".parrafo");
 
+email.addEventListener("keyup", ()=>{
+    if(email.value === ""){
+       parrafo.innerHTML = "";
+
+    }
+})
+
+password.addEventListener("keyup" , () =>{
+    if(password.value === ""){
+        parrafo.innerHTML = "";
+    }
+})
 
 form.addEventListener("submit", (e) =>{
     e.preventDefault(); 
