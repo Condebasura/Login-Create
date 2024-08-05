@@ -113,16 +113,24 @@ form.addEventListener("submit", async (e)=>{
                     ok.setAttribute("class", "ok");
                     modal.innerHTML = "";
                     p.innerHTML = data.mensaje;
+                    p.style.color = "red";
                     ok.innerHTML = "OK";
                     modal.showModal();
                     modal.appendChild(p)
                     modal.appendChild(ok)
                     
+                    setTimeout(()=>{
+                        modal.close();
+                        modal.style.display = "none";
+                        window.location.reload();
+
+                    }, 5000);
                     ok.addEventListener("click",(e)=>{
                         e.preventDefault();
                         if(e.target){
-                          modal.close();
-                          modal.style.display = "none";
+                            modal.close();
+                            modal.style.display = "none";
+                            window.location.reload();
                         }
                     })
                    
