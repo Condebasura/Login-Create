@@ -14,6 +14,7 @@ const  LoadBoxesSeionStorage = () =>{
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
+        btnaddRedChat.style.border = "dashed";
         EliminarBox.style.display = "none";
        box.appendChild(EliminarBox);
         box.appendChild(btnaddRedChat);
@@ -111,7 +112,7 @@ const  LoadBoxesSeionStorage = () =>{
             
                     box.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
                     box.style.backgroundSize = "cover";
-                    box.style.backgroundPosition = "start";   
+                    box.style.backgroundPosition = "start";    
                     box.removeChild(contSelect);
                     const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
@@ -215,6 +216,7 @@ btnAddBox.addEventListener("click", (e)=>{
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
+        btnaddRedChat.style.border = "dashed #9c9c9ccb";
         EliminarBox.style.display = "none";
        newBox.appendChild(EliminarBox);
         newBox.appendChild(btnaddRedChat);
