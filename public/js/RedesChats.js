@@ -33,6 +33,7 @@ const  LoadBoxesSeionStorage = () =>{
             });
             if(boxtext == "+ add" || boxtext == ""){
                 boxtext = boxtext;
+                
               }else{
                 box.style.backgroundImage = boxtext;
                 box.style.backgroundSize = "cover";
@@ -113,6 +114,7 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
                     box.style.backgroundSize = "cover";
                     box.style.backgroundPosition = "start";    
+                    box.style.border = "none";
                     box.removeChild(contSelect);
                     const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
@@ -218,6 +220,7 @@ btnAddBox.addEventListener("click", (e)=>{
         btnaddRedChat.textContent = "+ add";
         btnaddRedChat.style.border = "dashed #9c9c9ccb";
         EliminarBox.style.display = "none";
+        newBox.style.border = "0.2px ,  dashed , #9c9c9ccb";
        newBox.appendChild(EliminarBox);
         newBox.appendChild(btnaddRedChat);
 ContRedChat.appendChild(newBox);
@@ -273,7 +276,7 @@ contSelect.appendChild(Teleg);
 newBox.appendChild(contSelect);
 contSelect.style.display = "flex";
 
-
+// Continuar con la eliminacion de border al elegir img
 face.addEventListener("click", (e)=>{
     if(e.target){
 
@@ -281,6 +284,7 @@ face.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";   
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
