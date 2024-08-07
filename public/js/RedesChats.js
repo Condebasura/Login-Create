@@ -23,16 +23,21 @@ const  LoadBoxesSeionStorage = () =>{
             box.addEventListener("mouseover", e =>{
                 if(e.target){
                     EliminarBox.style.display = "block";
+                    const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+                    box.style.boxShadow = `2px 2px 12px 4px ${randomColor}`;
                 }
             });
             
             box.addEventListener("mouseout", e =>{
                 if(e.target){
                     EliminarBox.style.display = "none";
+                    box.style.boxShadow = "2px 2px 12px #a3a3a3";
                 }
             });
             if(boxtext == "+ add" || boxtext == ""){
                 boxtext = boxtext;
+              box.style.border = "3px ,  dashed , #9c9c9ccb";
+
                 
               }else{
                 box.style.backgroundImage = boxtext;
@@ -220,7 +225,7 @@ btnAddBox.addEventListener("click", (e)=>{
         btnaddRedChat.textContent = "+ add";
         btnaddRedChat.style.border = "dashed #9c9c9ccb";
         EliminarBox.style.display = "none";
-        newBox.style.border = "0.2px ,  dashed , #9c9c9ccb";
+        newBox.style.border = "3px ,  dashed , #9c9c9ccb";
        newBox.appendChild(EliminarBox);
         newBox.appendChild(btnaddRedChat);
 ContRedChat.appendChild(newBox);
@@ -300,6 +305,7 @@ insta.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/Instagram.jpg')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
@@ -314,6 +320,7 @@ twit.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/twiter_chat.jpg')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
@@ -328,6 +335,7 @@ Disc.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/discord.png')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
@@ -342,6 +350,7 @@ Whatsapp.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/watsapp.webp')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
         const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
@@ -356,6 +365,7 @@ Teleg.addEventListener("click", (e)=>{
         newBox.style.backgroundImage = "url('/img/Telegram-600x1008.jpg')";
         newBox.style.backgroundSize = "cover";
         newBox.style.backgroundPosition = "start";  
+        newBox.style.border = "none";
         newBox.removeChild(contSelect);
         const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
@@ -371,12 +381,15 @@ Teleg.addEventListener("click", (e)=>{
 newBox.addEventListener("mouseover", e =>{
     if(e.target){
         EliminarBox.style.display = "block";
+        const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+                    newBox.style.boxShadow = `2px 2px 12px 4px ${randomColor}`;
     }
 })
 
 newBox.addEventListener("mouseout", e =>{
     if(e.target){
         EliminarBox.style.display = "none";
+        newBox.style.boxShadow = "2px 2px 12px #a3a3a3";
     }
 })
 

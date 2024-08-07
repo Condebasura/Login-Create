@@ -8,6 +8,7 @@ justify-content: space-evenly;
 text-align: center;
 height: 5em;
 background-color: rgba(121, 174, 253, 0.26);
+gap: 10vh;
 
 }
 
@@ -65,6 +66,10 @@ background-color: rgba(121, 174, 253, 0.26);
 
 }
 
+.img_default:active{
+    box-shadow: none;
+}
+
 .logout{
     cursor: pointer;
 }
@@ -76,11 +81,33 @@ background-color: rgba(121, 174, 253, 0.26);
 
 .ul_on{
     margin: 1em;
-    position: absolute;right: 10em;
+    float: right;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 2em;
+    
+}
+.contDesp{
+    list-style-type: none;
+    text-align: center;
+    padding: 3px;
+    border: 3px dashed #a3a3a3;
+    margin: 1px;
+   
+}
+
+.contDesp:hover{
+    background-color: rgb(130, 238, 130);
+color: white;
+border-color: rgba(249, 247, 247, 0.615);
+box-shadow: 1px 2px 2px rgba(68, 85, 68, 0.614);
+text-shadow: 1px 1px 2px rgb(9, 9, 9);
+}
+
+.contDesp:active{
+    box-shadow: none;
+    outline: none;
 }
 
 .add_box{
@@ -138,7 +165,7 @@ text-shadow: 1px 1px 2px rgb(9, 9, 9);
 /* Caja de Redes */
 
 .cont_redesChats{
-    margin-top: 6em;
+    margin-top: 8em;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -161,7 +188,6 @@ text-shadow: 1px 1px 2px rgb(9, 9, 9);
     width: 50dvh;
     height: 70dvh;
     text-shadow: 2px 2px 2px  rgb(136, 134, 134);
-    box-shadow: 2px 2px 12px #a3a3a3;
     border-radius: 1.5em 0 1.5em 0;
     
 }
