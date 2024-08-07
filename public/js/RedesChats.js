@@ -211,7 +211,7 @@ LoadBoxesSeionStorage();
 const saveBoxEnSesionStorage = ()=>{
     const boxes = Array.from(ContRedChat.children).map(newBox => newBox.style.backgroundImage );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
-
+// usar en el pie de pagina position fixed para cuando no hay ningun box y static para cuando se crea uno nuevo!!
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");

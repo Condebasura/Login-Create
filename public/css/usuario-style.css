@@ -1,6 +1,11 @@
 *{
     margin:  auto;
 }
+
+body{
+    min-height: 100vh;
+    margin: 0%;
+}
 .conteiner{
 display: flex;
 flex-direction: row;
@@ -85,7 +90,7 @@ gap: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2em;
+    gap: 1em;
     
 }
 .contDesp{
@@ -220,35 +225,32 @@ text-shadow: 1px 1px 2px rgb(9, 9, 9);
    color: rgb(255, 0, 0);
    
 }
+.pie{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    background-color: rgba(208, 206, 206, 0.893);
+position: fixed;bottom: 1px;
+margin-top: 2em;
+    width: 100%;
+    height: 3em;
+  }
 
-footer{
 
-    background-color: #000000c9;
-    border-top-color: rgb(241, 102, 10);
-    border-top-style: solid;
-    color: cornsilk;
-    height: 10em;
-    margin:  27em 0 -1px 0 ;
-    max-width:  100%;
-    text-align: center;
-}
+.Contact{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
     
-    .fa-linkedin , .fa-hashtag{
-        color: white;
-        font-size:  24px;
-        margin-left: .3em;
-        position: relative;left: 2px;
-        text-decoration: none;
-        top: 5px;
-    }
-    
-    .sig{
-        
-        font-size: 16px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin-left: 2em;
-       
-       
-    }
+  }
+  
+  .fa-linkedin:visited , .fa-instagram:visited , .fa-github:visited{
+    color: #000;
+  }
+  
     
     .der{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
