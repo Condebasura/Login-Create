@@ -5,8 +5,20 @@ let boxCount = 0;
 const  LoadBoxesSeionStorage = () =>{
     const SaveBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     if(SaveBoxes){
+
+        const pieDePagina = document.querySelector(".pie");
+        if(SaveBoxes.length > 0){
+
+            
+            pieDePagina.style.position = "static";
+            pieDePagina.style.bottom = "1px";
+        }else{
+            pieDePagina.style.position = "fixed";
+            pieDePagina.style.bottom = "1px";
+        }
         SaveBoxes.forEach((boxtext ) => {
             const box = document.createElement('div');
+            
             const EliminarBox = document.createElement("i");
             const btnaddRedChat = document.createElement("button");
             box.setAttribute("class", "box_RedChat");
@@ -212,12 +224,16 @@ const saveBoxEnSesionStorage = ()=>{
     const boxes = Array.from(ContRedChat.children).map(newBox => newBox.style.backgroundImage );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
 // usar en el pie de pagina position fixed para cuando no hay ningun box y static para cuando se crea uno nuevo!!
+
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");
         const EliminarBox = document.createElement("i");
         const btnaddRedChat = document.createElement("button");
-
+          const pieDePagina = document.querySelector(".pie");
+  
+          pieDePagina.style.position = "static";
+          pieDePagina.style.bottom = "1px";
         newBox.setAttribute("class", "box_RedChat");
         EliminarBox.setAttribute("class", "fa-regular fa-circle-xmark");
         btnaddRedChat.setAttribute("class", "add_redchat");
@@ -400,6 +416,12 @@ EliminarBox.addEventListener("click", e =>{
         let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
         boxes = boxes.filter(box => box !== newBox.style.backgroundImage);
 sessionStorage.setItem('boxes', JSON.stringify(boxes));
+console.log(boxes.length);
+if(boxes.length === 0){
+    const pieDePagina = document.querySelector(".pie");
+    pieDePagina.style.position = "fixed";
+    pieDePagina.style.bottom = "1px";
+}
     }
     
 });
