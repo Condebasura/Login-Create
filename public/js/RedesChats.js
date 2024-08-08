@@ -17,8 +17,7 @@ const  LoadBoxesSeionStorage = () =>{
             pieDePagina.style.bottom = "1px";
         }
         SaveBoxes.forEach((boxtext ) => {
-            const box = document.createElement('div');
-            
+            const box = document.createElement('div');    
             const EliminarBox = document.createElement("i");
             const btnaddRedChat = document.createElement("button");
             box.setAttribute("class", "box_RedChat");
@@ -26,12 +25,14 @@ const  LoadBoxesSeionStorage = () =>{
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
-        btnaddRedChat.style.border = "dashed";
+        btnaddRedChat.style.border = "dashed #9c9c9ccb";
         EliminarBox.style.display = "none";
+        box.style.boxShadow = "2px 2px 12px #a3a3a3";
        box.appendChild(EliminarBox);
         box.appendChild(btnaddRedChat);
             ContRedChat.appendChild(box);
-           
+          
+      
             box.addEventListener("mouseover", e =>{
                 if(e.target){
                     EliminarBox.style.display = "block";
@@ -65,6 +66,12 @@ const  LoadBoxesSeionStorage = () =>{
                  let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
                  boxes = boxes.filter(box => box !== boxtext); 
                  sessionStorage.setItem('boxes', JSON.stringify(boxes));
+                 console.log(boxes.length)
+                 if(boxes.length === 0){
+                    const pieDePagina = document.querySelector(".pie");
+                    pieDePagina.style.position = "fixed";
+                    pieDePagina.style.bottom = "1px";
+                }
                 }
                 });
 
@@ -247,10 +254,11 @@ btnAddBox.addEventListener("click", (e)=>{
 ContRedChat.appendChild(newBox);
 let computeStyle = window.getComputedStyle(newBox);
 if(computeStyle.backgroundImage !== 'none'){
+    newBox.style.boxShadow = "2px 2px 12px #a3a3a3";
 newBox.removeChild(btnaddRedChat);
 return computeStyle;
 
-}    
+}  
 
 
 btnaddRedChat.addEventListener("click", (e)=>{
