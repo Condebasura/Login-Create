@@ -130,7 +130,32 @@ const  LoadBoxesSeionStorage = () =>{
             EliminarBox.style.display = "none";
         }
     })
+    tituloRed.addEventListener("click", (e) =>{
+        if(e.target){
+            tituloRed.style.display = "none";
+            face.style.display = "flex";
+            insta.style.display = "flex";
+            twit.style.display = "flex";
             
+         tituloChats.style.display = "flex";
+            Disc.style.display = "none";
+            Whatsapp.style.display = "none";
+            Teleg.style.display = "none";
+        }
+        });
+        tituloChats.addEventListener("click", (e) =>{
+            if(e.target){
+                tituloChats.style.display = "none";
+                Disc.style.display = "flex";
+            Whatsapp.style.display = "flex";
+            Teleg.style.display = "flex";
+        
+            tituloRed.style.display = "flex";
+            face.style.display = "none";
+            insta.style.display = "none";
+            twit.style.display = "none";
+            }
+        })
             face.addEventListener("click", (e)=>{
                 if(e.target){
             
@@ -283,16 +308,16 @@ tituloChats.textContent = "Chats";
 Disc.textContent = "Discord";
 Whatsapp.textContent = "WhatsApp";
 Teleg.textContent = "Telegram";
-
 contSelect.setAttribute("class", "contSelect");
 tituloRed.setAttribute("class", "titleRed");
 insta.setAttribute("class", "selecRed");
 face.setAttribute("class", "selecRed");
 twit.setAttribute("class", "selecRed");
 tituloChats.setAttribute("class", "titleChats");
-Disc.setAttribute("class", "selecRed");
-Whatsapp.setAttribute("class", "selecRed");
-Teleg.setAttribute("class", "selecRed");
+Disc.setAttribute("class", "selecChat");
+Whatsapp.setAttribute("class", "selecChat");
+Teleg.setAttribute("class", "selecChat");
+
 
 contSelect.appendChild(tituloRed);
 contSelect.appendChild(insta);
@@ -305,7 +330,33 @@ contSelect.appendChild(Teleg);
 newBox.appendChild(contSelect);
 contSelect.style.display = "flex";
 
-// Continuar con la eliminacion de border al elegir img
+tituloRed.addEventListener("click", (e) =>{
+if(e.target){
+    tituloRed.style.display = "none";
+    face.style.display = "flex";
+    insta.style.display = "flex";
+    twit.style.display = "flex";
+
+ tituloChats.style.display = "flex";
+    Disc.style.display = "none";
+    Whatsapp.style.display = "none";
+    Teleg.style.display = "none";
+}
+});
+tituloChats.addEventListener("click", (e) =>{
+    if(e.target){
+        tituloChats.style.display = "none";
+        Disc.style.display = "flex";
+    Whatsapp.style.display = "flex";
+    Teleg.style.display = "flex";
+
+    tituloRed.style.display = "flex";
+    face.style.display = "none";
+    insta.style.display = "none";
+    twit.style.display = "none";
+    }
+})
+
 face.addEventListener("click", (e)=>{
     if(e.target){
 
