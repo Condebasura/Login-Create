@@ -271,7 +271,6 @@ btnAddBox.addEventListener("click", (e)=>{
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
-        btnaddRedChat.style.border = "dashed #9c9c9ccb";
         EliminarBox.style.display = "none";
         newBox.style.border = "3px ,  dashed , #9c9c9ccb";
        newBox.appendChild(EliminarBox);

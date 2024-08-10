@@ -2,4 +2,115 @@
     display: flex;
     flex-direction: column;
     gap: .8em;
+    padding: 3em;
+}
+.divInputs{
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.input_Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 1em;
+margin: 1em;  
+    
+}
+
+.input_Container:hover{
+    color: rgb(11, 201, 11);
+}
+
+
+
+
+#modal{
+    box-shadow: 2px 2px 12px 2px #7d7a7a;
+    border-radius: 5px;
+    border-style: none;
+}
+
+label{
+    font-size: 16px;
+}
+
+input{
+        height: 3.4vh;
+        width: 30vh;
+        border-radius: 5px;
+        border: 1px solid black;
+}
+
+input:focus{
+    border: 1px solid rgb(4, 189, 4);
+        outline: none;
+}
+
+.btnPass{
+    background-color: rgb(4, 189, 4);
+    border: none;
+    height: 2em;
+    box-shadow: 2px 2px 8px 0.6px #615e5e;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    cursor: pointer;
+    margin-top: 2em;
+    border-radius: 3px;
+}
+.btnPass:active{
+    box-shadow: none;
+}
+
+.archivo{
+    opacity: 0%;
+}
+
+.inputPass{
+    display: none;
+}
+
+.ContentBtns{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-around;
+}
+.cancelar{
+    background-color: rgb(250, 48, 48);
+    border-style: none;
+    height: 2em;
+    box-shadow: 2px 2px 8px 0.6px #615e5e;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    cursor: pointer;
+    font-size: 15px;
+
+    border-radius: 3px;
+}
+
+.cancelar:hover{
+    background-color: rgba(250, 48, 48, 0.856)
+}
+
+.cancelar:active{
+    box-shadow: none;
+}
+
+.guardar{
+    background-color: rgb(4, 189, 4);
+    border-style: none;
+    height: 2em;
+    box-shadow: 2px 2px 8px 0.6px #615e5e;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.guardar:hover{
+    background-color: rgba(4, 189, 4, 0.856);
 }

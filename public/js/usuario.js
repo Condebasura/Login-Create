@@ -73,6 +73,7 @@ let separacokie = getCookie(tokenName);
              
             const form = document.createElement("form");
         let ContainerImput = document.createElement("span");
+        let divInputs = document.createElement("div");
     let archivo = document.createElement("input");
 let NameArchivo = document.createElement("p");
 let PrevArchivo = document.createElement("input");
@@ -82,16 +83,16 @@ let labelApellido = document.createElement("label");
 let inputApellido = document.createElement("input");
 let labelEmail = document.createElement("label");
 let inputEmail = document.createElement("input");
-let labelPass = document.createElement("label");
+let btnPass = document.createElement("button");
 let inputPass = document.createElement("input");
-let divBotones = document.createElement("div");
+const divBtns = document.createElement("div");
 const btnCancelar = document.createElement("button");
 const btnGuardar = document.createElement("button");
 
 labelNombre.innerHTML = "Nombre de usuario";
 labelApellido.innerHTML = "Apelido";
 labelEmail.innerHTML = "Email";
-labelPass.innerHTML = "Cambiar Contraseña";
+btnPass.innerHTML = "Cambiar Contraseña";
 ContainerImput.innerHTML = "Cambiar Imagen";
 
 
@@ -106,6 +107,7 @@ PrevArchivo.value = datos.imagen;
 
 
 form.setAttribute("class", "formEditPerfil");
+divInputs.setAttribute("class", "divInputs");
 inputEmail.setAttribute("type", "email");
 archivo.setAttribute("type", "file");
 archivo.setAttribute("class", "archivo");
@@ -115,21 +117,25 @@ PrevArchivo.setAttribute("name", "Prevarchivo");
 PrevArchivo.setAttribute("type", "hidden");
 ContainerImput.setAttribute("class", "input_Container")
 inputPass.setAttribute("class", "inputPass");
+btnPass.setAttribute("class", "btnPass");
 
-
+divBtns.setAttribute("class", "ContentBtns")
 btnCancelar.setAttribute("type", "button");
 btnGuardar.setAttribute("type", "submit");
+btnCancelar.setAttribute("class", "cancelar");
+btnGuardar.setAttribute("class", "guardar");
 modal.showModal();
 
-form.appendChild(labelNombre);
-form.appendChild(inputNombre);
-form.appendChild(labelApellido);
-form.appendChild(inputApellido);
-form.appendChild(labelEmail);
-form.appendChild(inputEmail);
-form.appendChild(labelPass);
+divInputs.appendChild(labelNombre);
+divInputs.appendChild(inputNombre);
+divInputs.appendChild(labelApellido);
+divInputs.appendChild(inputApellido);
+divInputs.appendChild(labelEmail);
+divInputs.appendChild(inputEmail);
+form.appendChild(divInputs);
+form.appendChild(btnPass);
 form.appendChild(inputPass);
-labelPass.addEventListener("click", (e) =>{
+btnPass.addEventListener("click", (e) =>{
     e.preventDefault();
     if(e.target){
         inputPass.style.display = "flex";
@@ -141,8 +147,9 @@ ContainerImput.appendChild(PrevArchivo);
 ContainerImput.appendChild(NameArchivo);
 form.appendChild(ContainerImput);
 
-form.appendChild(btnCancelar);
-form.appendChild(btnGuardar);
+divBtns.appendChild(btnCancelar);
+divBtns.appendChild(btnGuardar);
+form.appendChild(divBtns);
 modal.appendChild(form);
 
 ContainerImput.addEventListener("click", (e)=>{
