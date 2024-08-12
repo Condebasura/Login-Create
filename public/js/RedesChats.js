@@ -132,28 +132,59 @@ const  LoadBoxesSeionStorage = () =>{
     })
     tituloRed.addEventListener("click", (e) =>{
         if(e.target){
+            const back = document .createElement("button");
+            back.innerHTML = "Volver";
+            back.setAttribute("class", "volver");
+            contSelect.appendChild(back);
             tituloRed.style.display = "none";
+            tituloChats.style.display = "none";
             face.style.display = "flex";
             insta.style.display = "flex";
             twit.style.display = "flex";
-            
-         tituloChats.style.display = "flex";
-            Disc.style.display = "none";
+        back.addEventListener("click", (e)=>{
+        if(e.target){
+        
+            tituloChats.style.display = "flex";
+                Disc.style.display = "none";
             Whatsapp.style.display = "none";
             Teleg.style.display = "none";
-        }
-        });
-        tituloChats.addEventListener("click", (e) =>{
-            if(e.target){
-                tituloChats.style.display = "none";
-                Disc.style.display = "flex";
-            Whatsapp.style.display = "flex";
-            Teleg.style.display = "flex";
         
             tituloRed.style.display = "flex";
             face.style.display = "none";
             insta.style.display = "none";
             twit.style.display = "none";
+            contSelect.removeChild(back);
+        }
+        })
+        }
+        });
+        tituloChats.addEventListener("click", (e) =>{
+            if(e.target){
+                const back = document .createElement("button");
+                back.innerHTML = "Volver";
+        back.setAttribute("class", "volver");
+                contSelect.appendChild(back);
+                tituloChats.style.display = "none";
+                tituloRed.style.display = "none";
+                Disc.style.display = "flex";
+            Whatsapp.style.display = "flex";
+            Teleg.style.display = "flex";
+            back.addEventListener("click", (e)=>{
+                if(e.target){
+                
+                    tituloChats.style.display = "flex";
+                        Disc.style.display = "none";
+                    Whatsapp.style.display = "none";
+                    Teleg.style.display = "none";
+                
+                    tituloRed.style.display = "flex";
+                    face.style.display = "none";
+                    insta.style.display = "none";
+                    twit.style.display = "none";
+                    contSelect.removeChild(back);
+                }
+                })
+        
             }
         })
             face.addEventListener("click", (e)=>{
@@ -331,28 +362,59 @@ contSelect.style.display = "flex";
 
 tituloRed.addEventListener("click", (e) =>{
 if(e.target){
+    const back = document .createElement("button");
+    back.innerHTML = "Volver";
+    back.setAttribute("class", "volver");
+    contSelect.appendChild(back);
     tituloRed.style.display = "none";
+    tituloChats.style.display = "none";
     face.style.display = "flex";
     insta.style.display = "flex";
     twit.style.display = "flex";
+back.addEventListener("click", (e)=>{
+if(e.target){
 
- tituloChats.style.display = "flex";
-    Disc.style.display = "none";
+    tituloChats.style.display = "flex";
+        Disc.style.display = "none";
     Whatsapp.style.display = "none";
     Teleg.style.display = "none";
-}
-});
-tituloChats.addEventListener("click", (e) =>{
-    if(e.target){
-        tituloChats.style.display = "none";
-        Disc.style.display = "flex";
-    Whatsapp.style.display = "flex";
-    Teleg.style.display = "flex";
 
     tituloRed.style.display = "flex";
     face.style.display = "none";
     insta.style.display = "none";
     twit.style.display = "none";
+    contSelect.removeChild(back);
+}
+})
+}
+});
+tituloChats.addEventListener("click", (e) =>{
+    if(e.target){
+        const back = document .createElement("button");
+        back.innerHTML = "Volver";
+back.setAttribute("class", "volver");
+        contSelect.appendChild(back);
+        tituloChats.style.display = "none";
+        tituloRed.style.display = "none";
+        Disc.style.display = "flex";
+    Whatsapp.style.display = "flex";
+    Teleg.style.display = "flex";
+    back.addEventListener("click", (e)=>{
+        if(e.target){
+        
+            tituloChats.style.display = "flex";
+                Disc.style.display = "none";
+            Whatsapp.style.display = "none";
+            Teleg.style.display = "none";
+        
+            tituloRed.style.display = "flex";
+            face.style.display = "none";
+            insta.style.display = "none";
+            twit.style.display = "none";
+            contSelect.removeChild(back);
+        }
+        })
+
     }
 })
 

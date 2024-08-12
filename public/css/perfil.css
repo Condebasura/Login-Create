@@ -60,6 +60,10 @@ input:focus{
     margin-top: 2em;
     border-radius: 3px;
 }
+.btnPass:hover{
+    background-color: rgba(4, 189, 4, 0.9);
+
+}
 .btnPass:active{
     box-shadow: none;
 }

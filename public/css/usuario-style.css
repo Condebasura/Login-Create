@@ -200,7 +200,7 @@ text-shadow: 1px 1px 2px rgb(9, 9, 9);
 }
 
 
-.titleRed , .titleChats{
+.titleRed , .titleChats , .volver{
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -213,14 +213,14 @@ gap: 2em;
 
 
 
-.titleRed:hover ,.titleChats:hover{
+.titleRed:hover ,.titleChats:hover , .volver:hover{
     background-color: rgba(82, 149, 238, 0.733);
 color: white;
 border-color: rgba(249, 247, 247, 0.615);
 box-shadow: 1px 2px 2px rgba(68, 85, 68, 0.614);
 text-shadow: 1px 1px 2px rgb(9, 9, 9);
 }
-.titleRed:active ,.titleChats:active , .add_redchat:active{
+.titleRed:active ,.titleChats:active , .add_redchat:active , .volver:active{
     box-shadow: none;
     outline: none;
 }
