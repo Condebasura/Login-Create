@@ -7,6 +7,18 @@ let RePasword = document.querySelector(".Re-Contraseña");
 const btnRegis = document.querySelector(".Regis-fin");
 let archivo = document.querySelector(".CreaArchivo");
 const sesion = document.querySelector(".Sesion");
+const AcercaDe = document.querySelector(".QSomos");
+const term = document.querySelector(".Term");
+
+term.addEventListener("click", (e)=>{
+    return window.location.href = "/TermCond";
+})
+
+AcercaDe.addEventListener("click", (e)=>{
+    if(e.target){
+        return window.location.href = "/AcercaDe";
+    }
+});
 
 //  Para emails.
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

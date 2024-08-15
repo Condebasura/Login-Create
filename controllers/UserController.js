@@ -11,6 +11,12 @@ import bd from "../model/bd.js";
 		
 	};
 	
+	const getAcercaDe = (req , res)=>{
+		res.render("AcercaDe", {title: "Acerca De"})
+	}
+	const getTerm = (req , res)=>{
+		res.render("TermCond", {title: "Terminos y Condiciones"})
+	}
 
 	const postUsers  = async (req, res) => {
 		
@@ -125,9 +131,6 @@ import bd from "../model/bd.js";
 
 	
 	 
-	
-// tengo que hacer que la imagen por defecto no se elimine si la actualiza en su perfil
-
 	const ActualizarPerfil = async (req, res)=>{
 	         
 		const prevImg = req.body.Prevarchivo;
@@ -256,6 +259,8 @@ export default{
 	getIndex,
 	getWelcome,
 	getCreate,
+	getAcercaDe,
+	getTerm,
 	CrarUsuario,
 	ActualizarPerfil,
 	logout,	

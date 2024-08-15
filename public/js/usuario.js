@@ -6,7 +6,18 @@ const logout = document.querySelector(".logout");
 const modal = document.getElementById("modal");
 const textCambData = document.querySelector(".Camb_Dataoff");
 const textName = document.querySelector(".TextFrase");
+const AcercaDe = document.querySelector(".QSomos");
+const term = document.querySelector(".Term");
 
+term.addEventListener("click", (e)=>{
+    return window.location.href = "/TermCond";
+})
+
+AcercaDe.addEventListener("click", (e)=>{
+    if(e.target){
+        return window.location.href = "/AcercaDe";
+    }
+});
 
 
 const dataUsuario = async () => {

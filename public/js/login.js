@@ -5,6 +5,19 @@ let password = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 let parrafo = document.querySelector(".parrafo");
+const AcercaDe = document.querySelector(".QSomos");
+const term = document.querySelector(".Term");
+
+term.addEventListener("click", (e)=>{
+    return window.location.href = "/TermCond";
+})
+
+AcercaDe.addEventListener("click", (e)=>{
+    if(e.target){
+        return window.location.href = "/AcercaDe";
+    }
+});
+
 
 email.addEventListener("keyup", ()=>{
     if(email.value === ""){
