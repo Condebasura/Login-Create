@@ -3,6 +3,9 @@ import bd from "../model/bd.js";
 	import { __dirname } from "../app.js";
 	import path from "path";
 	import fs from 'fs';
+	import nodemailer from "nodemailer";
+	import dotenv from "dotenv";
+dotenv.config();
 
 	
 
@@ -93,7 +96,29 @@ import bd from "../model/bd.js";
 		res.render("create", {title: "Registrarse"})
 	}
 
+const transport = nodemailer.createTransport({
+	host: "smtp.outlook.com",
+	port: 587,
+	secure: false,
+	auth:{ 
+		user: process.env.EMAIL_USER,
+		pass: process.env.EMAIL_PASS,
+	},
+}); 
+let ahora = new Date();
+async function main() {  
+	const info = await transport.sendMail({
+     from: '"condebasura" <condebasura@outlook.com>',
+	 to: "could_2032@outlook.com",
+	 subject: `Bienvenido `,
+	  text: `enviado a las ${ahora}`,
+	  html: `<p> Gracias por registrarte en nuestra web, por favor confirma tu mail en el siguiente enlace:</p>
+	  <a href="#">Confirmar Mail</a>`,
 
+	})
+	console.log("mensage enviado: %s", info);
+}
+	
 	
 	const CrarUsuario = async (req, res)=>{
 	 const ImgDefault = '6a358764ceea57cc78c265af5eab9fab';
@@ -119,7 +144,7 @@ import bd from "../model/bd.js";
 			}else if(!CorreoEnUso ){
 			
 				await bd.InsertUser(usuario);
-				
+				main();
 				res.status(200);
 				res.json({mensaje: `Usuario registrado con exito`});
 			}
