@@ -96,28 +96,9 @@ dotenv.config();
 		res.render("create", {title: "Registrarse"})
 	}
 
-const transport = nodemailer.createTransport({
-	host: "smtp.outlook.com",
-	port: 587,
-	secure: false,
-	auth:{ 
-		user: process.env.EMAIL_USER,
-		pass: process.env.EMAIL_PASS,
-	},
-}); 
-let ahora = new Date();
-async function main() {  
-	const info = await transport.sendMail({
-     from: '"condebasura" <condebasura@outlook.com>',
-	 to: "could_2032@outlook.com",
-	 subject: `Bienvenido `,
-	  text: `enviado a las ${ahora}`,
-	  html: `<p> Gracias por registrarte en nuestra web, por favor confirma tu mail en el siguiente enlace:</p>
-	  <a href="#">Confirmar Mail</a>`,
 
-	})
-	console.log("mensage enviado: %s", info);
-}
+let ahora = new Date();
+
 	
 	
 	const CrarUsuario = async (req, res)=>{
@@ -130,7 +111,42 @@ async function main() {
 			password: req.body.password, 
 			imagen: req.file ? req.file.filename : ImgDefault ,
 		};
+		// Envio de e-mail para validacion al registrarse
+		const transport = nodemailer.createTransport({
+			host: "smtp.outlook.com",
+			port: 587,
+			secure: false,
+			auth:{ 
+				user: process.env.EMAIL_USER,
+				pass: process.env.EMAIL_PASS,
+			},
+		}); 
+		async function main() {  
+			const info = await transport.sendMail({
+			 from: '"Sesions" <S.esions@outlook.com>',
+			 to: `${usuario.email}`,
+			 subject: `Bienvenido `,
+			  text: `enviado a las ${ahora}`,
+			  html: `<div style="display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  background-color: rgb(6, 196, 8,0.40);
+			  padding: 2em;
+			  margin:2em;
+			  box-shadow: 2px 2px 12px #444545;">
+			  <h2>Hola ${usuario.nombre}!! gracias por ser parte de <b style="color: blue; letter-spacing: 2px;font-family: cursive , sant-serif;">Sesions</b>, se confirmó tu registro, esperamos que disfrutes de esta experiencia!! </h2>
+			  <a href="http://localhost:3000" style="border-style: none;
+      background-color: rgba(28, 60, 202, 1);
+      color: white;
+      padding: 3px;
+	  text-decoration: none;
+      border-radius: 4px;
+			  ">Iniciar Sesion</a> </div>`,
 		
+			})
+			console.log("mensage enviado: %s", info.to);
+		}
 		
 		const imageUrl = req.file ? `./public/uploads/${req.file.filename}` : null;
          
