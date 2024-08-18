@@ -5,8 +5,12 @@ let password = document.querySelector(".contraseña");
 const btnLogin = document.querySelector(".login");
 const btnRegistro = document.querySelector(".registro");
 let parrafo = document.querySelector(".parrafo");
+let modal = document.getElementById("modal");
 const AcercaDe = document.querySelector(".QSomos");
 const term = document.querySelector(".Term");
+const NoPass = document.querySelector(".noPassword");
+
+
 
 term.addEventListener("click", (e)=>{
     return window.location.href = "/TermCond";
@@ -50,6 +54,7 @@ form.addEventListener("submit", (e) =>{
                 if(res.status === 409){
                     const obj = JSON.parse(data);
                     return document.querySelector(".parrafo").innerHTML = obj.mensaje;
+
                 }else if(res.status === 200){
                     const obj = JSON.parse(data);
                     const tokenJWT = obj.token;
@@ -69,6 +74,30 @@ form.addEventListener("submit", (e) =>{
     };
 
     verifiDatos(email.value , password.value);
+
+    NoPass.addEventListener("click", async(e)=>{
+        if(e.target){
+            
+          const res = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+           })
+           const result = await res.json();
+           try{
+
+               modal.innerHTML = "";
+               let parrafoRecu = document.createElement("h2");
+               parrafoRecu.innerHTML = result.message;
+               modal.appendChild(parrafoRecu);
+               modal.showModal();
+            }catch(err){
+                console.log(err);
+            }
+        }
+    })
 
 })
 

@@ -21,6 +21,8 @@ dotenv.config();
 		res.render("TermCond", {title: "Terminos y Condiciones"})
 	}
 
+    
+
 	const postUsers  = async (req, res) => {
 		
 		try{
@@ -59,8 +61,56 @@ dotenv.config();
 	}
 		
 	};
-
-	
+       
+	// Corregir problema de envio de email , en las rutas / y Rec_email no toma el campo email como campo valido pero en /usuario si.
+	const postRecuPass = async (req, res)=>{
+        console.log(req.body.email);
+		const usuario = {
+			email : req.body.email,
+		}
+		// Envio de e-mail para validacion al registrarse
+		const transport = nodemailer.createTransport({
+			host: "smtp.outlook.com",
+			port: 587,
+			secure: false,
+			auth:{ 
+				user: process.env.EMAIL_USER,
+				pass: process.env.EMAIL_PASS,
+			},
+		}); 
+		async function main() {  
+			const info = await transport.sendMail({
+			 from: '"Sesions" <S.esions@outlook.com>',
+			 to: `${usuario.email}`,
+			 subject: `Cambio de Contraseña`,
+			  text: ``,
+			  html: `<div style="display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  background-color: rgb(156, 6, 8,0.40);
+			  padding: 2em;
+			  margin:2em;
+			  box-shadow: 2px 2px 12px #444545;">
+			  <h2>En el siguiente enlace podras cambiar tu contraseña</h2>
+			  <a href="http://localhost:3000" style="border-style: none;
+      background-color: rgba(28, 60, 202, 1);
+      color: white;
+      padding: 3px;
+	  text-decoration: none;
+      border-radius: 4px;
+			  ">Cambiar Contraseña</a> </div>`,
+		
+			})
+			console.log("mensage enviado: %s", info);
+		}
+		try{
+			await main();
+			res.status(200).json({message: `Se envio el mail de recuperacion a ${usuario.email}`})
+		}catch(err){
+			console.log(err);
+		}
+	}
 
 	const getWelcome = async (req , res ) =>{
 		
@@ -96,8 +146,6 @@ dotenv.config();
 		res.render("create", {title: "Registrarse"})
 	}
 
-
-let ahora = new Date();
 
 	
 	
@@ -297,6 +345,7 @@ const logout = async (req,res)=>{
 
 export default{
 	postUsers,
+	postRecuPass,
 	getIndex,
 	getWelcome,
 	getCreate,
