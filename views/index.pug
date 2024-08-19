@@ -25,9 +25,9 @@ block content
    h2.login_name Iniciar Sesion
    div.inputs
     label(for="email") Email 
-    input(id="email" , class="e-mail" , type="email" , name="email")
+    input(id="email" , class="e-mail" , type="email" , name="email", required)
     label(for="pass") Password 
-    input(type="password", name="password", class="contraseña" , id="pass")
+    input(type="password", name="password", class="contraseña" , id="pass", required)
     a.noPassword Olvidaste tu contraseña? 
    h3.parrafo= mensaje
    button.login(type="submit") Entrar

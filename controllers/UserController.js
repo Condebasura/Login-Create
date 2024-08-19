@@ -62,26 +62,25 @@ dotenv.config();
 		
 	};
        
-	// Corregir problema de envio de email , en las rutas / y Rec_email no toma el campo email como campo valido pero en /usuario si.
+	
 	const postRecuPass = async (req, res)=>{
-        console.log(req.body.email);
-		const usuario = {
-			email : req.body.email,
-		}
-		// Envio de e-mail para validacion al registrarse
+		try{
+		const userEmail = req.body.mail;
+
+		// Envio de e-mail para recuperacion (cambio) de contraseña
 		const transport = nodemailer.createTransport({
-			host: "smtp.outlook.com",
-			port: 587,
+			host: "smtp.freesmtpservers.com",
+			port: 25,
 			secure: false,
 			auth:{ 
-				user: process.env.EMAIL_USER,
-				pass: process.env.EMAIL_PASS,
+				user: "",
+				pass: "",
 			},
 		}); 
 		async function main() {  
 			const info = await transport.sendMail({
 			 from: '"Sesions" <S.esions@outlook.com>',
-			 to: `${usuario.email}`,
+			 to: `${userEmail}`,
 			 subject: `Cambio de Contraseña`,
 			  text: ``,
 			  html: `<div style="display: flex;
@@ -104,9 +103,8 @@ dotenv.config();
 			})
 			console.log("mensage enviado: %s", info);
 		}
-		try{
 			await main();
-			res.status(200).json({message: `Se envio el mail de recuperacion a ${usuario.email}`})
+			res.status(250).json({message: `Se envio el mail de recuperacion a ${userEmail}`})
 		}catch(err){
 			console.log(err);
 		}

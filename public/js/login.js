@@ -77,22 +77,31 @@ form.addEventListener("submit", (e) =>{
 
     NoPass.addEventListener("click", async(e)=>{
         if(e.target){
+            const loader = document.createElement("div");
+            loader.setAttribute("class", "fa-solid fa-circle-notch"); 
+            NoPass.appendChild(loader);
+            let mail = document.querySelector(".e-mail").value;
             
-          const res = await fetch("/", {
+          const res = await fetch("RecuPass", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({mail })
            })
-           const result = await res.json();
+           const result = await res.text();
+           const datos = await JSON.parse(result);
            try{
+             if(res.status === 250){
 
-               modal.innerHTML = "";
-               let parrafoRecu = document.createElement("h2");
-               parrafoRecu.innerHTML = result.message;
-               modal.appendChild(parrafoRecu);
-               modal.showModal();
+                   modal.innerHTML = "";
+                   let parrafoRecu = document.createElement("h2");
+                   parrafoRecu.innerHTML = datos.message;
+                   modal.appendChild(parrafoRecu);
+                   modal.showModal();
+                   NoPass.removeChild(loader);
+                }
+                
             }catch(err){
                 console.log(err);
             }

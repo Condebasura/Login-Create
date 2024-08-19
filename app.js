@@ -91,7 +91,7 @@ app.get("/AcercaDe", UserControllers.getAcercaDe);
 app.get("/TermCond", UserControllers.getTerm);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
-app.post("/", UserControllers.postRecuPass);
+app.post("/RecuPass", UserControllers.postRecuPass);
 app.post("/usuario" , UserControllers.postUsers);
 app.get("/usuario" , UserControllers.getWelcome);
 app.get("/create", UserControllers.getCreate);
