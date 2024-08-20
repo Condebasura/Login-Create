@@ -5,6 +5,7 @@ import bd from "../model/bd.js";
 	import fs from 'fs';
 	import nodemailer from "nodemailer";
 	import dotenv from "dotenv";
+import { token } from "morgan";
 dotenv.config();
 
 	
@@ -13,7 +14,11 @@ dotenv.config();
 		res.render("index", {title: "Login-Create" } )
 		
 	};
-	
+	const getRecuPass = (req, res)=>{
+       res.render("RecuPass", {title: "Recuperar Password"});
+	}
+
+
 	const getAcercaDe = (req , res)=>{
 		res.render("AcercaDe", {title: "Acerca De"})
 	}
@@ -77,7 +82,12 @@ dotenv.config();
 				pass: "",
 			},
 		}); 
+
 		async function main() {  
+			const secret = "humedad-cancha-lodo";
+	
+			const token = jwt.sign({ userEmail }, secret, { expiresIn: '1h' });
+			
 			const info = await transport.sendMail({
 			 from: '"Sesions" <S.esions@outlook.com>',
 			 to: `${userEmail}`,
@@ -92,7 +102,7 @@ dotenv.config();
 			  margin:2em;
 			  box-shadow: 2px 2px 12px #444545;">
 			  <h2>En el siguiente enlace podras cambiar tu contraseña</h2>
-			  <a href="http://localhost:3000" style="border-style: none;
+			  <a href= "http://localhost:3000/RecuPass?token=${token}&email=${userEmail}" style="border-style: none;
       background-color: rgba(28, 60, 202, 1);
       color: white;
       padding: 3px;
@@ -108,7 +118,21 @@ dotenv.config();
 		}catch(err){
 			console.log(err);
 		}
-	}
+	};
+
+
+// Ver tanto aca como en el front para que aparezcan los datos correctos al enviar
+const postrePasword = async(req, res)=>{
+ const usuario = {
+	email: req.body.email,
+	password: req.body.password,
+ }
+ let datos = await bd.DataUser({email: usuario.email});
+    
+	console.log(usuario.email);
+
+}
+
 
 	const getWelcome = async (req , res ) =>{
 		
@@ -344,9 +368,11 @@ const logout = async (req,res)=>{
 export default{
 	postUsers,
 	postRecuPass,
+	postrePasword,
 	getIndex,
 	getWelcome,
 	getCreate,
+	getRecuPass,
 	getAcercaDe,
 	getTerm,
 	CrarUsuario,

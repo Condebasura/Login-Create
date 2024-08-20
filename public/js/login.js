@@ -82,7 +82,7 @@ form.addEventListener("submit", (e) =>{
             NoPass.appendChild(loader);
             let mail = document.querySelector(".e-mail").value;
             
-          const res = await fetch("RecuPass", {
+          const res = await fetch("RecuperarPass", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
