@@ -75,11 +75,14 @@ form.addEventListener("submit", (e) =>{
 
     verifiDatos(email.value , password.value);
 
+    const loader = document.createElement("div");
+    loader.setAttribute("class", "fa-solid fa-circle-notch"); 
     NoPass.addEventListener("click", async(e)=>{
+        e.preventDefault();
+        NoPass.appendChild(loader);
         if(e.target){
-            const loader = document.createElement("div");
-            loader.setAttribute("class", "fa-solid fa-circle-notch"); 
-            NoPass.appendChild(loader);
+            loader.style.display = "inline-block";
+            
             let mail = document.querySelector(".e-mail").value;
             
           const res = await fetch("RecuperarPass", {
@@ -96,6 +99,7 @@ form.addEventListener("submit", (e) =>{
 
                    modal.innerHTML = "";
                    let parrafoRecu = document.createElement("h2");
+                   parrafoRecu.setAttribute("class", "SendEmail");
                    parrafoRecu.innerHTML = datos.message;
                    modal.appendChild(parrafoRecu);
                    modal.showModal();

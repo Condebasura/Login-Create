@@ -31,6 +31,7 @@ window.addEventListener("DOMContentLoaded", (e)=>{
         inputPass.setAttribute("type", "password");
         inputPass.setAttribute("name", "password");
         inputPass.setAttribute("class", "contraseña");
+        inputPass.setAttribute("required", "");
         Parrafo.style.display = "none";
     
         
@@ -78,14 +79,27 @@ window.addEventListener("DOMContentLoaded", (e)=>{
 
                 const data = await res.text();
                 const obj = JSON.parse(data);
-                Parrafo.style.display = "flex";
+                Parrafo.style.display = "block";
+                Parrafo.style.fontSize = "16px";
+                Parrafo.style.color = "red";
+                Parrafo.style.margin = "0";
                 Parrafo.innerHTML =  obj.mensaje;
             }else if(res.status === 200){
                 const data = await res.text();
                 const obj = JSON.parse(data);
-                Parrafo.style.display = "flex";
+                const volviendo = document.createElement("span");
+                volviendo.innerHTML = "Volviendo al inicio...";
+                modal.removeChild(form);
+                modal.appendChild(Parrafo);
+                modal.appendChild(volviendo);
+                Parrafo.style.display = "block";
+                Parrafo.style.fontSize = "18px";
+                Parrafo.style.color = "green";
                 Parrafo.innerHTML =  obj.mensaje;
-               return  window.location.href = "/";
+                setTimeout(() => {
+                    return  window.location.href = "/";
+                    
+                }, 5000);
             }
          
         
