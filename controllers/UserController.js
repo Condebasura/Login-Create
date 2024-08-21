@@ -121,15 +121,29 @@ dotenv.config();
 	};
 
 
-// Ver tanto aca como en el front para que aparezcan los datos correctos al enviar
+
 const postrePasword = async(req, res)=>{
- const usuario = {
-	email: req.body.elmail,
-	password: req.body.password,
+ try{
+
+	 const usuario = {
+	email: req.body.inputEmail,
+	password: req.body.inputPass,
  }
- let datos = await bd.DataUser({email: usuario.email});
-    
-	console.log(req.body);
+ let datos = await bd.DataUser({email:usuario.email});
+ 
+ if(usuario.password === ""){
+	console.log("esta vacio");
+	 res.status(409);
+	 res.json({mensaje: "NO se actualizo la contraseña 'EL CAMPO ESTA VACIO!!'"});
+ }else{
+	
+	await bd.UpdatePass(usuario);
+	res.status(200);
+	res.json({mensaje: "Se actualizo la contraseña correctamente"})
+ }
+}catch(err){
+	console.log(err)
+}
 
 }
 
