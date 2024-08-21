@@ -121,6 +121,22 @@ console.log(err)
 
 }
 
+const UpdatePass = async (usuario)=>{
+    try {  
+        const hashedPassword = await bcrypt.hash(usuario.password , saltRounds);
+        const sql ='UPDATE usuarios SET email = ?, password = ? WHERE email = ?';
+        bd.run(sql, [usuario.email , hashedPassword , usuario.email], (err)=>{
+            if(err){
+                console.log(err.message);
+            }else{
+                console.log("Se actualizo la contraseña correctamente")
+            }
+        })
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
 const UpdatePerfil = async (usuario)=>{
     try{
@@ -166,6 +182,7 @@ InsertUser,
 EmailenUso, 
 NoCoincide,
 DataUser,
+UpdatePass,
 UpdatePerfil,
 UpdatePerfilSinPassword ,
 };

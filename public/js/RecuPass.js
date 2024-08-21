@@ -6,7 +6,8 @@ window.addEventListener("DOMContentLoaded", (e)=>{
     if(e.target){
         const urlparams = new URLSearchParams(window.location.search);
         const token = urlparams.get('token');
-        const email = urlparams.get("email");
+        const dataDecode =  jwt_decode(token);
+        const email = dataDecode.userEmail;
         
          
         modal.innerHTML = "";
@@ -15,8 +16,7 @@ window.addEventListener("DOMContentLoaded", (e)=>{
         const inputEmail = document.createElement("input");
         const LabelPass = document.createElement("label");
         const inputPass = document.createElement("input");
-        const LabelRepPass = document.createElement("label");
-        const inputRecuPass = document.createElement("input");
+        const Parrafo = document.createElement("p");
         const btnSubmit = document.createElement("button");
 
         LabelEmail.setAttribute("id", "e-mail");
@@ -24,16 +24,16 @@ window.addEventListener("DOMContentLoaded", (e)=>{
         inputEmail.setAttribute("type", "email");
         inputEmail.setAttribute("class", "email");
         inputEmail.setAttribute("name", "elmail");
+        inputEmail.setAttribute( "readonly", "");
         inputEmail.value = email;
         LabelPass.setAttribute("id", "Pass");
         inputPass.setAttribute("id", "Pass");
         inputPass.setAttribute("type", "password");
         inputPass.setAttribute("name", "password");
         inputPass.setAttribute("class", "contraseña");
-        LabelRepPass.setAttribute("id", "RPass");
-        inputRecuPass.setAttribute("id", "RPass");
-        inputRecuPass.setAttribute("type", "password");
-        inputRecuPass.setAttribute("class", "Recontraseña");
+        inputPass.setAttribute("required", "");
+        Parrafo.style.display = "none";
+    
         
 
         btnSubmit.setAttribute("type", "submit");
@@ -43,24 +43,28 @@ window.addEventListener("DOMContentLoaded", (e)=>{
 
          LabelEmail.innerHTML = "Email";
          LabelPass.innerHTML = "Nueva Contraseña";
-         LabelRepPass.innerHTML = "Repetir Contraseña";
+        
 
 
         form.appendChild(LabelEmail);
         form.appendChild(inputEmail);
         form.appendChild(LabelPass);
         form.appendChild(inputPass);
-        form.appendChild(LabelRepPass);
-        form.appendChild(inputRecuPass);
+        form.appendChild(Parrafo);
         form.appendChild(btnSubmit);
         modal.appendChild(form);
         modal.showModal();
 
-const DataPass = async (inputEmail, inputPass)=>{
-
+        
+        
+        
+    
     form.addEventListener("submit",async(e)=>{
         e.preventDefault();
-       if(e.target){
+       
+        const DataPass = async (inputEmail, inputPass)=>{
+        try{
+        
 
            const res = await fetch("RecuPass/changPass", {
                method: "PUT",
@@ -71,14 +75,42 @@ const DataPass = async (inputEmail, inputPass)=>{
                 body: JSON.stringify({inputEmail, inputPass})
             });
             
-            const data = await res.json();
-           console.log(data);
-        }
+            if(res.status === 409){
+
+                const data = await res.text();
+                const obj = JSON.parse(data);
+                Parrafo.style.display = "block";
+                Parrafo.style.fontSize = "16px";
+                Parrafo.style.color = "red";
+                Parrafo.style.margin = "0";
+                Parrafo.innerHTML =  obj.mensaje;
+            }else if(res.status === 200){
+                const data = await res.text();
+                const obj = JSON.parse(data);
+                const volviendo = document.createElement("span");
+                volviendo.innerHTML = "Volviendo al inicio...";
+                modal.removeChild(form);
+                modal.appendChild(Parrafo);
+                modal.appendChild(volviendo);
+                Parrafo.style.display = "block";
+                Parrafo.style.fontSize = "18px";
+                Parrafo.style.color = "green";
+                Parrafo.innerHTML =  obj.mensaje;
+                setTimeout(() => {
+                    return  window.location.href = "/";
+                    
+                }, 5000);
+            }
+         
         
         
-    })
-};
+        
+    }catch(err){
+        console.log(err);
+    }  
+}
 DataPass(inputEmail.value, inputPass.value );
+})
 
     }
 })

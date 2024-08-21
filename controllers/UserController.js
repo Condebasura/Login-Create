@@ -102,7 +102,7 @@ dotenv.config();
 			  margin:2em;
 			  box-shadow: 2px 2px 12px #444545;">
 			  <h2>En el siguiente enlace podras cambiar tu contraseña</h2>
-			  <a href= "http://localhost:3000/RecuPass?token=${token}&email=${userEmail}" style="border-style: none;
+			  <a href= "http://localhost:3000/RecuPass?token=${token}"  style="border-style: none;
       background-color: rgba(28, 60, 202, 1);
       color: white;
       padding: 3px;
@@ -121,15 +121,29 @@ dotenv.config();
 	};
 
 
-// Ver tanto aca como en el front para que aparezcan los datos correctos al enviar
+
 const postrePasword = async(req, res)=>{
- const usuario = {
-	email: req.body.elmail,
-	password: req.body.password,
+ try{
+
+	 const usuario = {
+	email: req.body.inputEmail,
+	password: req.body.inputPass,
  }
- let datos = await bd.DataUser({email: usuario.email});
-    
-	console.log(req.body);
+ let datos = await bd.DataUser({email:usuario.email});
+ 
+ if(usuario.password.length < 6){
+	console.log("esta vacio");
+	 res.status(409);
+	 res.json({mensaje: "Ingrese al menos 6 digitos"});
+ }else{
+	
+	await bd.UpdatePass(usuario);
+	res.status(200);
+	res.json({mensaje: "Se actualizo la contraseña correctamente"})
+ }
+}catch(err){
+	console.log(err)
+}
 
 }
 

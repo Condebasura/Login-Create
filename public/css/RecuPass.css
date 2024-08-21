@@ -1,7 +1,62 @@
+body{
+    background-color: rgba(0, 0, 0, 0.514);
+}
+ 
+#modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    border-style: none;
+    box-shadow: 2px 2px 9px #111111;
+    border-radius: 5px;
+
+}
+
 form{
+    background-color: rgba(223, 255, 196, 0.89);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap:  1em;
+    padding: 2em;
+}
+
+label{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+
+.email{
+    height: 2em;
+    border: 1px solid gray;
+    outline: none;
+    background-color: rgba(128, 128, 128, 0.308);
+    
+}
+.email:focus{
+    border: 1px solid gray; 
+}
+
+.contraseña{
+    height: 2em;
+    border:  1px solid grey;
+    outline: none;
+
+}
+
+.contraseña:focus{
+    border:  1px solid rgb(47, 255, 57);
+}
+
+.RecuFin{
+    padding: 5px;
+    background-color: rgb(30, 33, 238);
+    border-style: none;
+    color: white;
+    width: 15vh;
+    border-radius: 4px;
 }
