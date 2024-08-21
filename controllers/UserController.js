@@ -5,7 +5,7 @@ import bd from "../model/bd.js";
 	import fs from 'fs';
 	import nodemailer from "nodemailer";
 	import dotenv from "dotenv";
-import { token } from "morgan";
+
 dotenv.config();
 
 	
@@ -124,12 +124,12 @@ dotenv.config();
 // Ver tanto aca como en el front para que aparezcan los datos correctos al enviar
 const postrePasword = async(req, res)=>{
  const usuario = {
-	email: req.body.email,
+	email: req.body.elmail,
 	password: req.body.password,
  }
  let datos = await bd.DataUser({email: usuario.email});
     
-	console.log(usuario.email);
+	console.log(req.body);
 
 }
 

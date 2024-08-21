@@ -1,3 +1,5 @@
+
+
 const modal = document.getElementById("modal");
 
 window.addEventListener("DOMContentLoaded", (e)=>{
@@ -25,12 +27,14 @@ window.addEventListener("DOMContentLoaded", (e)=>{
         inputEmail.value = email;
         LabelPass.setAttribute("id", "Pass");
         inputPass.setAttribute("id", "Pass");
-        inputPass.setAttribute("type", "Password");
+        inputPass.setAttribute("type", "password");
+        inputPass.setAttribute("name", "password");
         inputPass.setAttribute("class", "contraseña");
         LabelRepPass.setAttribute("id", "RPass");
         inputRecuPass.setAttribute("id", "RPass");
-        inputRecuPass.setAttribute("type", "Password");
+        inputRecuPass.setAttribute("type", "password");
         inputRecuPass.setAttribute("class", "Recontraseña");
+        
 
         btnSubmit.setAttribute("type", "submit");
         btnSubmit.setAttribute("class", "RecuFin");
@@ -52,21 +56,29 @@ window.addEventListener("DOMContentLoaded", (e)=>{
         modal.appendChild(form);
         modal.showModal();
 
+const DataPass = async (inputEmail, inputPass)=>{
 
-     form.addEventListener("submit",async(e)=>{
+    form.addEventListener("submit",async(e)=>{
         e.preventDefault();
+       if(e.target){
 
-       let  formdata = new FormData(e.target);
-            formdata.append("email", inputEmail.value);
-        formdata.append("contraseña", inputPass.value);
-            const res = await fetch("RecuPass/changPass", {
-                method: "PUT",
-                body: formdata
+           const res = await fetch("RecuPass/changPass", {
+               method: "PUT",
+               headers:{
+                   
+                   "Content-Type": "application/json",
+                },
+                body: JSON.stringify({inputEmail, inputPass})
             });
-               const result = await res.json();
-               console.log(result, formdata);
+            
+            const data = await res.json();
+           console.log(data);
+        }
         
-     })
+        
+    })
+};
+DataPass(inputEmail.value, inputPass.value );
 
     }
 })
