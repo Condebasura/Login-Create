@@ -89,9 +89,11 @@ window.addEventListener("DOMContentLoaded", (e)=>{
                 const obj = JSON.parse(data);
                 const volviendo = document.createElement("span");
                 volviendo.innerHTML = "Volviendo al inicio...";
+                volviendo.style.color = "rgba(28, 60, 202, 1)"
                 modal.removeChild(form);
                 modal.appendChild(Parrafo);
                 modal.appendChild(volviendo);
+
                 Parrafo.style.display = "block";
                 Parrafo.style.fontSize = "18px";
                 Parrafo.style.color = "green";
