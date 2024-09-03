@@ -13,7 +13,7 @@ import bd from "./model/bd.js";
 const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 const app = express();
-const port = 3000;
+const port = 80;
 const corsOptions = {
     origin: '*' [`http://localhost:${port}/`, `http://localhost:${port}/create` , `http://localhost:${port}/layout` , `http://localhost:${port}/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
@@ -101,7 +101,7 @@ app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
 app.listen(port, ()=>{
-	console.log(`La APP est funcionando en http://localhost:${port}`);
+	console.log(`La APP esta escuchando el puerto ${port}`);
 });
 
 export {
