@@ -235,7 +235,7 @@ const imagenObjectURL = URL.createObjectURL(imgBlob);
 img.src = imagenObjectURL;
 
 document.cookie = `${tokenName}=${newToken}`;
-modal.close();
+ return modal.close();
 
 
 
