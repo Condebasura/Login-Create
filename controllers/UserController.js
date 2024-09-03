@@ -210,7 +210,7 @@ const postrePasword = async(req, res)=>{
 			 from: '"Sesions" <sesions2032@gmail.com>',
 			 to: `${usuario.email}`,
 			 subject: `Bienvenido `,
-			  text: `enviado a las ${ahora}`,
+			  text: ``,
 			  html: `<div style="display: flex;
 			  flex-direction: column;
 			  align-items: center;
