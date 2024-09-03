@@ -102,7 +102,7 @@ dotenv.config();
 			  margin:2em;
 			  box-shadow: 2px 2px 12px #444545;">
 			  <h2>En el siguiente enlace podras cambiar tu contraseña</h2>
-			  <a href= "http://localhost:3000/RecuPass?token=${token}"  style="border-style: none;
+			  <a href= "http://18.228.203.50:3000/RecuPass?token=${token}"  style="border-style: none;
       background-color: rgba(28, 60, 202, 1);
       color: white;
       padding: 3px;
