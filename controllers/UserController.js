@@ -2,7 +2,7 @@ import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
 	import { __dirname } from "../app.js";
 	import path from "path";
-	import fs from 'fs';
+	import fs, { access } from 'fs';
 	import nodemailer from "nodemailer";
 	import dotenv from "dotenv";
 
@@ -74,12 +74,12 @@ dotenv.config();
 
 		// Envio de e-mail para recuperacion (cambio) de contraseña
 		const transport = nodemailer.createTransport({
-			host: "smtp.freesmtpservers.com",
+			host: "smtp.gmail.com",
 			port: 25,
 			secure: false,
 			auth:{ 
-				user: "",
-				pass: "",
+				user: process.env.EMAIL_USER,
+				pass: process.env.EMAIL_PASS,
 			},
 		}); 
 
@@ -89,7 +89,7 @@ dotenv.config();
 			const token = jwt.sign({ userEmail }, secret, { expiresIn: '1h' });
 			
 			const info = await transport.sendMail({
-			 from: '"Sesions" <S.esions@outlook.com>',
+			 from: '"Sesions" <sesions2032@gmail.com>',
 			 to: `${userEmail}`,
 			 subject: `Cambio de Contraseña`,
 			  text: ``,
@@ -197,7 +197,7 @@ const postrePasword = async(req, res)=>{
 		};
 		// Envio de e-mail para validacion al registrarse
 		const transport = nodemailer.createTransport({
-			host: "smtp.outlook.com",
+			host: "smtp.gmail.com",
 			port: 587,
 			secure: false,
 			auth:{ 
@@ -207,7 +207,7 @@ const postrePasword = async(req, res)=>{
 		}); 
 		async function main() {  
 			const info = await transport.sendMail({
-			 from: '"Sesions" <S.esions@outlook.com>',
+			 from: '"Sesions" <sesions2032@gmail.com>',
 			 to: `${usuario.email}`,
 			 subject: `Bienvenido `,
 			  text: ``,
