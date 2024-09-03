@@ -2,7 +2,7 @@ import bd from "../model/bd.js";
 	import jwt from "jsonwebtoken";
 	import { __dirname } from "../app.js";
 	import path from "path";
-	import fs, { access } from 'fs';
+	import fs from 'fs';
 	import nodemailer from "nodemailer";
 	import dotenv from "dotenv";
 
@@ -75,7 +75,7 @@ dotenv.config();
 		// Envio de e-mail para recuperacion (cambio) de contraseña
 		const transport = nodemailer.createTransport({
 			host: "smtp.gmail.com",
-			port: 25,
+			port: 587,
 			secure: false,
 			auth:{ 
 				user: process.env.EMAIL_USER,
@@ -210,7 +210,7 @@ const postrePasword = async(req, res)=>{
 			 from: '"Sesions" <sesions2032@gmail.com>',
 			 to: `${usuario.email}`,
 			 subject: `Bienvenido `,
-			  text: ``,
+			  text: `enviado a las ${ahora}`,
 			  html: `<div style="display: flex;
 			  flex-direction: column;
 			  align-items: center;
