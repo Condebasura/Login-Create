@@ -228,7 +228,7 @@ const newdatos = delcodepaylodad;
 textName.innerHTML = `Redes de ${newdatos.nombre}`;            
 
 
-const imageURL = `http://http://18.228.203.50:3000/uploads/${newdatos.imagen}`;
+const imageURL = `http://18.228.203.50:3000/uploads/${newdatos.imagen}`;
 const imagenResponse = await fetch(imageURL);
 const imgBlob = await imagenResponse.blob();
 const imagenObjectURL = URL.createObjectURL(imgBlob);
