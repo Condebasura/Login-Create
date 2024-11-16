@@ -96,9 +96,6 @@ app.use(cookieParser());
 const upload = multer({dest: 'public/uploads/'});
 
 const httpsServer = https.createServer(sslOptions , app);
-httpsServer.listen(port, () => {
-  console.log('Servidor HTTPS corriendo en https://sesions.hopto.org');
-});
 
 
 
@@ -119,6 +116,9 @@ app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
+httpsServer.listen(port, () => {
+  console.log('Servidor HTTPS corriendo en https://sesions.hopto.org');
+});
 
 
 export {
