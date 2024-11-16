@@ -122,7 +122,7 @@ httpApp.get("/create", UserControllers.getCreate);
 httpApp.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 httpApp.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 httpApp.get("/logout", UserControllers.logout);
-httpApp.listen(80, ()=>{
+httpApp.listen(3000, ()=>{
 	console.log(`Redirigiendo trafico http  a https`);
 });
 
