@@ -25,9 +25,9 @@ const corsOptions = {
 };
 
 const sslOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/cert.pem'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/chain.pem'),
+  key: fs.readFileSync('/home/ubuntu/privkey.pem'),
+  cert: fs.readFileSync('/home/ubuntu/cert.pem'),
+  ca: fs.readFileSync('/home/ubuntu/chain.pem'),
 };
 
 
