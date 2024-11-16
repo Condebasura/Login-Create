@@ -9,6 +9,8 @@ import cookieParser from "cookie-parser";
 import {fileURLToPath} from "url";
 import   UserControllers from "./controllers/UserController.js";
 import bd from "./model/bd.js";
+import https from "https";
+import fs from "fs";
 
 const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
@@ -21,6 +23,14 @@ const corsOptions = {
      // Encabezados permitidos
   
 };
+
+const sslOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/tu-dominio.com/chain.pem'),
+};
+
+
 
 app.use("usuario",expressjwt({
      secret: ScrT , algorithms: ['HS256'],
@@ -85,23 +95,35 @@ app.use(cookieParser());
 
 const upload = multer({dest: 'public/uploads/'});
 
-app.get("/Delete" , bd.DeleteAll);
-app.get("/consulta" , bd.ConsultUser);
-app.get("/AcercaDe", UserControllers.getAcercaDe);
-app.get("/TermCond", UserControllers.getTerm);
-app.get("/" , UserControllers.getIndex);
-app.post("/" , UserControllers.postUsers);
-app.post("/RecuperarPass", UserControllers.postRecuPass);
-app.get("/RecuPass", UserControllers.getRecuPass);
-app.put("/RecuPass/changPass", UserControllers.postrePasword)
-app.post("/usuario" , UserControllers.postUsers);
-app.get("/usuario" , UserControllers.getWelcome);
-app.get("/create", UserControllers.getCreate);
-app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
-app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
-app.get("/logout", UserControllers.logout);
-app.listen(port, ()=>{
-	console.log(`La APP esta escuchando el puerto ${port}`);
+const httpsServer = https.createServer(sslOptions , app);
+httpsServer.listen(port, () => {
+  console.log('Servidor HTTPS corriendo en https://sesions.hopto.org');
+});
+
+const httpApp = express();
+httpApp.get("*", (req, res)=>{
+  res.redirect(`https://${req.headers.host}${req.url}`)
+});
+
+
+
+httpApp.get("/Delete" , bd.DeleteAll);
+httpApp.get("/consulta" , bd.ConsultUser);
+httpApp.get("/AcercaDe", UserControllers.getAcercaDe);
+httpApp.get("/TermCond", UserControllers.getTerm);
+httpApp.get("/" , UserControllers.getIndex);
+httpApp.post("/" , UserControllers.postUsers);
+httpApp.post("/RecuperarPass", UserControllers.postRecuPass);
+httpApp.get("/RecuPass", UserControllers.getRecuPass);
+httpApp.put("/RecuPass/changPass", UserControllers.postrePasword)
+httpApp.post("/usuario" , UserControllers.postUsers);
+httpApp.get("/usuario" , UserControllers.getWelcome);
+httpApp.get("/create", UserControllers.getCreate);
+httpApp.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
+httpApp.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
+httpApp.get("/logout", UserControllers.logout);
+httpApp.listen(80, ()=>{
+	console.log(`Redirigiendo trafico http  a https`);
 });
 
 export {
