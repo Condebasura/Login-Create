@@ -100,31 +100,26 @@ httpsServer.listen(port, () => {
   console.log('Servidor HTTPS corriendo en https://sesions.hopto.org');
 });
 
-const httpApp = express();
-httpApp.get("*", (req, res)=>{
-  res.redirect(`https://${req.headers.host}${req.url}`)
-});
 
 
 
-httpApp.get("/Delete" , bd.DeleteAll);
-httpApp.get("/consulta" , bd.ConsultUser);
-httpApp.get("/AcercaDe", UserControllers.getAcercaDe);
-httpApp.get("/TermCond", UserControllers.getTerm);
-httpApp.get("/" , UserControllers.getIndex);
-httpApp.post("/" , UserControllers.postUsers);
-httpApp.post("/RecuperarPass", UserControllers.postRecuPass);
-httpApp.get("/RecuPass", UserControllers.getRecuPass);
-httpApp.put("/RecuPass/changPass", UserControllers.postrePasword)
-httpApp.post("/usuario" , UserControllers.postUsers);
-httpApp.get("/usuario" , UserControllers.getWelcome);
-httpApp.get("/create", UserControllers.getCreate);
-httpApp.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
-httpApp.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
-httpApp.get("/logout", UserControllers.logout);
-httpApp.listen(3000, ()=>{
-	console.log(`Redirigiendo trafico http  a https`);
-});
+
+httpsServer.get("/Delete" , bd.DeleteAll);
+httpsServer.get("/consulta" , bd.ConsultUser);
+httpsServer.get("/AcercaDe", UserControllers.getAcercaDe);
+httpsServer.get("/TermCond", UserControllers.getTerm);
+httpsServer.get("/" , UserControllers.getIndex);
+httpsServer.post("/" , UserControllers.postUsers);
+httpsServer.post("/RecuperarPass", UserControllers.postRecuPass);
+httpsServer.get("/RecuPass", UserControllers.getRecuPass);
+httpsServer.put("/RecuPass/changPass", UserControllers.postrePasword)
+httpsServer.post("/usuario" , UserControllers.postUsers);
+httpsServer.get("/usuario" , UserControllers.getWelcome);
+httpsServer.get("/create", UserControllers.getCreate);
+httpsServer.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
+httpsServer.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
+httpsServer.get("/logout", UserControllers.logout);
+
 
 export {
   __dirname,
