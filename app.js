@@ -104,21 +104,21 @@ httpsServer.listen(port, () => {
 
 
 
-httpsServer.get("/Delete" , bd.DeleteAll);
-httpsServer.get("/consulta" , bd.ConsultUser);
-httpsServer.get("/AcercaDe", UserControllers.getAcercaDe);
-httpsServer.get("/TermCond", UserControllers.getTerm);
-httpsServer.get("/" , UserControllers.getIndex);
-httpsServer.post("/" , UserControllers.postUsers);
-httpsServer.post("/RecuperarPass", UserControllers.postRecuPass);
-httpsServer.get("/RecuPass", UserControllers.getRecuPass);
-httpsServer.put("/RecuPass/changPass", UserControllers.postrePasword)
-httpsServer.post("/usuario" , UserControllers.postUsers);
-httpsServer.get("/usuario" , UserControllers.getWelcome);
-httpsServer.get("/create", UserControllers.getCreate);
-httpsServer.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
-httpsServer.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
-httpsServer.get("/logout", UserControllers.logout);
+app.get("/Delete" , bd.DeleteAll);
+app.get("/consulta" , bd.ConsultUser);
+app.get("/AcercaDe", UserControllers.getAcercaDe);
+app.get("/TermCond", UserControllers.getTerm);
+app.get("/" , UserControllers.getIndex);
+app.post("/" , UserControllers.postUsers);
+app.post("/RecuperarPass", UserControllers.postRecuPass);
+app.get("/RecuPass", UserControllers.getRecuPass);
+app.put("/RecuPass/changPass", UserControllers.postrePasword)
+app.post("/usuario" , UserControllers.postUsers);
+app.get("/usuario" , UserControllers.getWelcome);
+app.get("/create", UserControllers.getCreate);
+app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
+app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
+app.get("/logout", UserControllers.logout);
 
 
 export {
