@@ -65,8 +65,9 @@ let separacokie = getCookie(tokenName);
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;            
-
-                const imageURL = `https://sesions.hopto.org/uploads/${datos.imagen}`;
+              // CAMBIAR AL TERMINAR!!
+            // const imageURL = `https://sesions.hopto.org/uploads/${datos.imagen}`;
+             const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
                 const imagenResponse = await fetch(imageURL);
                 const imgBlob = await imagenResponse.blob();
                 const imagenObjectURL = URL.createObjectURL(imgBlob);
@@ -226,9 +227,10 @@ const newdatos = delcodepaylodad;
 
 
 textName.innerHTML = `Redes de ${newdatos.nombre}`;            
+// CAMBIAR AL TERMINAR
+//const imageURL = `https://sesions.hopto.org/uploads/${newdatos.imagen}`;
 
-
-const imageURL = `https://sesions.hopto.org/uploads/${newdatos.imagen}`;
+ const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
 const imagenResponse = await fetch(imageURL);
 const imgBlob = await imagenResponse.blob();
 const imagenObjectURL = URL.createObjectURL(imgBlob);
