@@ -1,4 +1,7 @@
-
+.nameLogo{
+  font-family: Inter regular;
+  font-size: 24px;
+}
 .caja_2{
   height: 100vh;
   background-image: url("/img/img_Login.jpeg")  ;
@@ -8,9 +11,13 @@
 }
 .cortina{
   height: 100vh;
-  margin-left: 15rem;
-  opacity: 50%;
+  margin-left: 10rem !important;
+  background-color: rgba(0, 0, 200, 0.5);
   
+}
+.titulo{
+  font-family: Inter italic;
+  font-size: 40px;
 }
 .titulo ,.subtitulo{
   text-shadow: 2px 2px 2px #000;
