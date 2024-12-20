@@ -15,31 +15,37 @@ body
  block content
  div(class="container-fluid")
   div(class="row")
-   div(class="caja_1 col-5  ")
-     nav(class="navbar navbar-expand-lg bg-body-tertiary ")
+   div(class="caja_1 col-5")
+     nav(class=" border navbar navbar-expand-lg bg-body-tertiary ")
        div(class="container-fluid")
-        a(class="col navbar-brand")
-         img(src="/img/Logo_Sessions.jpeg", class="logo" , alt="Logo" width="40", height="40")
-       div(class="col-6")
-         h1.nameLogo Sessions 
-       div(class="col-2") 
-       a( class="QSomos") Acerca De 
-       a( class="Term") Terminos y Condiciones 
-     form(class="form" action="/usuario" method="post")
-     br
-     h2.login_name Iniciar Sesion
-     div.inputs
-      label(for="email") Email 
-      input(id="email" , class="e-mail" , type="email" , name="email", required)
-      label(for="pass") Password 
-      input(type="password", name="password", class="contraseña" , id="pass", required)
-      a.noPassword Olvidaste tu contraseña? 
-     h3.parrafo= mensaje
-     button.login(type="submit") Entrar
-     br
-     div.Reg
-      p.no_cuenta No tienes una cuenta?
-      p.registro Registrate 
+        a(class="col navbar-brand") 
+         img(src="/img/Logo_Sessions.jpeg", class="logo d-inline-block align-text-top" , alt="Logo" width="40", height="40") 
+         h4(class="nameLogo d-inline-block align-text-top") Sessions 
+        button( class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+         span(class="navbar-toggler-icon") 
+        div(class="col-2 collapse navbar-collapse align-self-end " id="navbarNav")
+         ul(class="navbar-nav")
+          li(class="nav-item")
+           a( class="QSomos nav-link") Acerca De
+          li(class="nav-item")
+           a( class="Term nav-link") Terminos y Condiciones 
+     form(class="form m-5  " action="/usuario" method="post")
+      br
+      h2.login_name Iniciar Sesion
+      div(class="inputs")
+       div(class="form-floating ")
+        input(id="floatingInput" , class="e-mail form-control" , type="email" , name="email", placeholder="name@example.com", required)
+        label(for="floatingInput") Email 
+       div(class="form-floating ")
+        input(type="password", name="password", class="contraseña form-control" , id="floatingPassword",placeholder="Password", required)
+        label(for="floatingPassword") Password 
+       a.noPassword Olvidaste tu contraseña? 
+      h3.parrafo= mensaje
+      button.login(type="submit") Entrar
+      br
+      div.Reg
+       p.no_cuenta No tienes una cuenta?
+       p.registro Registrate 
      dialog#modal
      footer.pie 
      p.Contact Contacto :
@@ -51,9 +57,9 @@ body
      p.der Pablo C. Zabala &copy; 2024 
    div(class="caja_2 col-7 rounded-start-5  container ")
     div(class="cortina  rounded-start-5 position-absolute row ")
-     div(class="col align-self-start mt-4 ms-4  text-start") 
-      h1(class=" titulo text-light  ") Conectate a tus redes  y chats sin perdidas de tiempo.
-     div(class="col align-self-end  mb-3 me-2 p-1 text-end")
+     div(class="col-10  align-self-start mt-4 ms-4") 
+      h1(class=" titulo text-light ") Conectate a tus redes  y chats sin perdidas de tiempo.
+     div(class="col  align-self-end  mb-5 me-2 p-1 ")
       h4(class=" subtitulo text-light ") Mantén el foco en tu trabajo mientras socializas !!   
  script(type="module", src='../js/login.js') 
  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous")

@@ -11,7 +11,7 @@ dotenv.config();
 	
 
 	const getIndex = (req , res) =>{
-		res.render("index", {title: "Login-Create" } )
+		res.render("index", {title: "Login-Create"  } )
 		
 	};
 	const getRecuPass = (req, res)=>{
