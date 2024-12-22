@@ -2,6 +2,24 @@
   font-family: "Inter Regular" ;
   font-size: 24px;
 }
+a{
+  text-decoration: none !important;
+  cursor: pointer;
+ 
+}
+
+
+p , a{
+  font-size: 12px;
+}
+.login_name{
+  font-family: "Inter Extra-Bold";
+  font-size: 30px;
+  text-align: center;
+}
+.pie{
+  background-color: rgba(196, 197, 193, 0.404);
+}
 .caja_2{
   height: 100vh;
   background-image: url("/img/img_Login.jpeg")  ;
@@ -29,9 +47,11 @@
 }
 .QSomos , .Term{
   font-family: "Inter Regular";
-  font-size: 14px;
+  font-size: 12px !important;
   cursor: pointer;
 }
+
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 
