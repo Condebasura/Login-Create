@@ -41,22 +41,32 @@ p , a{
   font-family: "Inter Medium";
   text-align: end;
 }
-.titulo ,.subtitulo{
-  text-shadow: 2px 2px 2px #000;
-  
-}
+
 .QSomos , .Term{
   font-family: "Inter Regular";
   font-size: 12px !important;
   cursor: pointer;
 }
 
+.parrafo{
+  text-align: center;
+  font-size: 13px;
+}
+
 
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {  }
+@media (max-width: 576px) { 
+  .caja_2{
+    display: none;
+  }
+ }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {  }
+@media (max-width: 768px) { 
+  .caja_2{
+    display: none;
+  }
+ }
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {  }
