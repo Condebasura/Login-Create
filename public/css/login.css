@@ -17,6 +17,8 @@ p , a{
   font-size: 30px;
   text-align: center;
 }
+
+
 .pie{
   background-color: rgba(196, 197, 193, 0.404);
 }
@@ -56,6 +58,13 @@ p , a{
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) { 
+.login_name , .no_cuenta {
+  color: aliceblue !important;
+}
+.link-success{
+  color: aliceblue !important;
+}
+
  }
  @media (min-width: 768px) {
   
@@ -74,27 +83,42 @@ p , a{
     background-color:  rgba(196, 197, 193, 0.664);
    }
    .form{
+    
+      margin: 50% 3em !important ;
+    
    
-    background-color:  rgba(196, 197, 193, 0.664);
+  background-color: rgba(0, 0, 200, 0.5);
+  
     
    }
    .noPassword{
     text-shadow: 1px 1px 1px #000;
    }
-
+.registro{
+  text-shadow: 1px 1px 1px #0e0d0d;
+}
    .pie{
     background-color:rgba(196, 197, 193, 0.884) ;
    }
+   .login_name , .no_cuenta {
+    color: aliceblue !important;
+  }
+  .link-success{
+    color: aliceblue !important;
+  }
   
  }
 
 /*Large devices (desktops, 992px and up)*/
-@media (max-width: 992px) {  }
+@media (max-width: 992px) { 
+
+ 
+ }
 
 /*X-Large devices (large desktops, 1200px and up)*/
 @media (max-width: 1200px) {  }
 
 /* XX-Large devices (larger desktops, 1400px and up)*/
 @media (max-width: 1400px) { 
-  
+
  }
