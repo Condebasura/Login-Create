@@ -14,9 +14,9 @@ head
 body
  block content
  div(class="container-fluid")
-  div(class="row")
-   div(class="caja_1 col-5 position-relative")
-     nav(class="navbar navbar-expand-lg   ")
+  div(class="row ")
+   div(class="caja_1 col-md-5 col-12  position-relative")
+     nav(class="navbar navbar-expand-lg ")
        div(class="container-fluid")
         a(class="col navbar-brand") 
          img(src="/img/Logo_Sessions.jpeg", class="logo d-inline-block align-text-top" , alt="Logo" width="40", height="40") 
@@ -29,22 +29,22 @@ body
            a( class="QSomos nav-link") Acerca De
           li(class="nav-item")
            a( class="Term nav-link") Terminos y Condiciones 
-     form(class="form m-5 p-5" action="/usuario" method="post")
+     form(class="form m-5 p-5 rounded   " action="/usuario" method="post")
       br
       h2(class="login_name  m-2 p-2 ") Iniciar Sesion
       div(class="inputs")
        div(class="form-floating mb-3")
-        input(id="floatingInput " , class="e-mail form-control" , type="email" , name="email", placeholder="name@example.com", required)
+        input(id="floatingInput " , class="e-mail form-control " , type="email" , name="email", placeholder="name@example.com", required)
         label(for="floatingInput") Email 
        div(class="form-floating mt-3")
-        input(type="password", name="password", class="contraseña form-control" , id="floatingPassword",placeholder="Password", required)
+        input(type="password", name="password", class="contraseña form-control " , id="floatingPassword",placeholder="Password", required)
         label(for="floatingPassword") Password 
        a(class="noPassword link-danger ") Olvidaste tu contraseña? 
       h3(class="parrafo text-bg-danger m-3")= mensaje
       div(class="row  justify-content-center mt-5 mb-4")
        button( class="login btn btn-primary col-8" type="submit") Entrar
       div(class="Reg d-flex")
-        p(class="no_cuenta col") No tienes una cuenta?
+        p(class="no_cuenta col ") No tienes una cuenta?
          a(class="registro ms-2 link-success") Registrate  
       br
       
@@ -59,7 +59,7 @@ body
           br
           br
          p(class="der col m-3") Pablo C. Zabala &copy; 2024 
-   div(class="caja_2 col-7 rounded-start-5  container ")
+   div(class="caja_2 col-md-7 d-none  d-md-block rounded-start-5  container ")
     div(class="cortina  rounded-start-5 position-absolute row ")
      div(class="col-10  align-self-start mt-4  text-bg-light opacity-75") 
       h1(class=" titulo  ") Conectate a tus redes  y chats sin perdidas de tiempo.
