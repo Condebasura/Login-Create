@@ -16,15 +16,19 @@ block content
 dic(class="container-fluid")
  div(class="row")
    div(class="caja_1 col-md-5 col-12 position-relative")  
-    nav 
-     div.ContentLogo
-      img(class="logo", src="/img/logo_sesions.jpeg", alt="logo")
-      div.textlogo
-       h1.nameLogo Sesions
-       p.TextFrase Tus redes en un mismo lugar
-     div.ContenTerm
-        a(class="QSomos") Acerca De 
-        a(href="#", class="Term") Terminos y Condiciones 
+    nav(class="navbar navbar-expand-lg") 
+     div(class="container-fluid")
+      a(class="col navbar-brand")
+       img(class="logo d-inline- block align-text-top", src="/img/Logo_Sessions.jpeg", alt="logo" , width="40" height="40")
+       h4(class="nameLogo d-inline-block align-text-top") Sesions
+      button( class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+       span(class="navbar-toggler-icon") 
+      div(class="col-2 collapse navbar-collapse justify-content-end " id="navbarNav")
+       ul(class="navbar-nav")
+        li(class="nav-item")
+         a(class="QSomos nav-link") Acerca De
+        li(class="nav-item")   
+         a(href="#", class="Term nav-link") Terminos y Condiciones 
     form.formCreate(action="/create" , method="post" , enctype="multipart/form-data")
      br
      h2.create_name Registrarse
