@@ -1,6 +1,57 @@
+.nameLogo{
+  font-family: "Inter Regular" ;
+  font-size: 24px;
+}
+a{
+  text-decoration: none !important;
+  cursor: pointer;
+ 
+}
+
+p , a{
+  font-size: 12px;
+}
+
+.create_name{
+  font-family: "Inter Extra-Bold";
+  font-size: 30px;
+  text-align: center;
+}
+.Sesion{
+  color: green !important;
+ }
+.pie{
+  background-color: rgba(196, 197, 193, 0.404);
+}
+
+.cortina{
+  position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+  margin-left: 10rem !important;
+  background-color: rgba(0, 0, 200, 0.5);
+  
+}
+.titulo{
+  font-family: "Inter Light italic" ;
+  font-size: 40px;
+}
+.subtitulo{
+  font-family: "Inter Medium";
+  text-align: end;
+}
+
+.QSomos , .Term{
+  font-family: "Inter Regular";
+  font-size: 12px !important;
+  cursor: pointer;
+}
+
 
 .caja_2{
-  height: 100vh;
+  height: auto;
   background-image: url("/img/img_Login.jpeg")  ;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,10 +62,43 @@
 
 
 /*`sm` applies to x-small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) { }
+@media (max-width: 575.98px) {
+  .create_name,.Tienes_cuenta , .Sesion{
+    color: aliceblue !important
+  }
+ 
+ }
 
 /* `md` applies to small devices (landscape phones, less than 768px)*/
-@media (max-width: 767.98px) { }
+@media (max-width: 767.98px) {
+
+  .caja_1{
+    height: 100vh;
+    background-image: url("/img/img_Login.jpeg")  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    ;
+   }
+   .navbar{
+    background-color:  rgba(196, 197, 193, 0.664);
+   }
+   .form{
+    
+      margin: 50% 3em !important ;
+    
+   
+  background-color: rgba(0, 0, 200, 0.5);
+  
+    
+   }
+   .pie{
+    background-color:rgba(196, 197, 193, 0.884) ;
+   }
+.create_name,.Tienes_cuenta , .Sesion{
+  color: aliceblue !important
+}
+
+ }
 
 /* `lg` applies to medium devices (tablets, less than 992px)*/
 @media (max-width: 991.98px) {  }

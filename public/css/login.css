@@ -17,20 +17,26 @@ p , a{
   font-size: 30px;
   text-align: center;
 }
-
+.registro{
+  color: green !important;
+ }
 
 .pie{
   background-color: rgba(196, 197, 193, 0.404);
 }
 .caja_2{
-  height: 100vh;
+  height: auto;
   background-image: url("/img/img_Login.jpeg")  ;
   background-repeat: no-repeat;
   background-size: cover;
   
 }
 .cortina{
-  height: 100vh;
+  position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
   margin-left: 10rem !important;
   background-color: rgba(0, 0, 200, 0.5);
   
@@ -94,13 +100,11 @@ p , a{
    .noPassword{
     text-shadow: 1px 1px 1px #000;
    }
-.registro{
-  text-shadow: 1px 1px 1px #0e0d0d;
-}
+
    .pie{
     background-color:rgba(196, 197, 193, 0.884) ;
    }
-   .login_name , .no_cuenta {
+   .login_name , .no_cuenta, .registro {
     color: aliceblue !important;
   }
   .link-success{
