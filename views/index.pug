@@ -20,14 +20,14 @@ body
        div(class="container-fluid ")
         a(class="col navbar-brand") 
          img(src="/img/Logo_Sessions.jpeg", class="logo d-inline-block align-text-top" , alt="Logo" width="40", height="40") 
-         h4(class="nameLogo d-inline-block align-text-top") Sessions 
+         h4(class="nameLogo d-inline-block") Sessions 
         button( class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
          span(class="navbar-toggler-icon") 
         div(class="col-2 collapse navbar-collapse justify-content-end " id="navbarNav")
          ul(class="navbar-nav")
-          li(class="nav-item")
+          li(class="nav-item ms-2")
            a( class="QSomos nav-link") Acerca De
-          li(class="nav-item")
+          li(class="nav-item ms-2")
            a( class="Term nav-link") Terminos y Condiciones 
      form(class="form my-2 mx-5 m-lg-5 p-5 rounded" action="/usuario" method="post")
       br
@@ -48,8 +48,8 @@ body
          a(class="registro ms-2 ") Registrate  
       br
       
-     dialog#modal
-     footer(class="pie row  fixed-bottom position-md-absolute position-relative  ms-1 me-1 py-3 mt-auto")
+     dialog(id="modal")
+     footer(class="pie row  fixed-bottom position-md-absolute position-relative  py-3 mt-auto")
       div(class=" pata-cont container row text-center align-items-center")
         
          p(class="Contact align-items-center col d-flex m-3 justify-content-between") Contacto :

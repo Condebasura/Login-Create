@@ -1,6 +1,24 @@
+.container-fluid{
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
+.navbar-brand{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  margin-left: 10px;
+  text-align: center;
+align-items: center;
+}
+
+.logo{
+  border-radius: 1em;
+}
+
 .nameLogo{
   font-family: "Inter Regular" ;
   font-size: 24px;
+  
 }
 a{
   text-decoration: none !important;
@@ -12,10 +30,34 @@ a{
 p , a{
   font-size: 12px;
 }
+
+
 .login_name{
   font-family: "Inter Extra-Bold";
   font-size: 30px;
   text-align: center;
+}
+
+#modal{
+width: 50%;
+overflow: hidden;
+border: none;
+overflow-wrap: break-word;
+
+}
+.btn-close{
+  float: right;
+  color: white !important;
+  
+}
+.SendEmail{
+  text-align: center;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+.btn-close:hover{
+  background-color: red !important;
 }
 .registro{
   color: green !important;
@@ -64,8 +106,12 @@ p , a{
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) { 
-.login_name , .no_cuenta {
+
+  .login_name , .no_cuenta {
   color: aliceblue !important;
+}
+.navbar-toggler{
+  margin-right: 1em;
 }
 .registro{
   color: aliceblue !important;
@@ -77,7 +123,9 @@ p , a{
 }
 /* Medium devices (tablets, 768px and up)*/
 @media (max-width: 767.98px) { 
- 
+  .navbar-toggler{
+    margin-right: 1em;
+  }
   .caja_1{
     height: 100vh;
     background-image: url("/img/img_Login.jpeg")  ;

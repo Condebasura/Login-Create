@@ -76,7 +76,8 @@ form.addEventListener("submit", (e) =>{
     verifiDatos(email.value , password.value);
 
     const loader = document.createElement("div");
-    loader.setAttribute("class", "fa-solid fa-circle-notch"); 
+    loader.setAttribute("class", "spinner-border spinner-border-sm text-primary");
+    loader.setAttribute("role", "status") 
     NoPass.addEventListener("click", async(e)=>{
         e.preventDefault();
         NoPass.appendChild(loader);
@@ -98,9 +99,14 @@ form.addEventListener("submit", (e) =>{
              if(res.status === 250){
 
                    modal.innerHTML = "";
+                   modal.setAttribute("class", "text-bg-dark p-3")
                    let parrafoRecu = document.createElement("h2");
+                   let btn = document.createElement("button");
                    parrafoRecu.setAttribute("class", "SendEmail");
+                   btn.setAttribute("class", "btn-close");
+                   btn.setAttribute("type", "button")
                    parrafoRecu.innerHTML = datos.message;
+                   modal.appendChild(btn)
                    modal.appendChild(parrafoRecu);
                    modal.showModal();
                    NoPass.removeChild(loader);
