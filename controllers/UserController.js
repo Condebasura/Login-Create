@@ -11,9 +11,16 @@ dotenv.config();
 	
 
 	const getIndex = (req , res) =>{
-		res.render("index", {title: "Login-Create"  } )
+		res.render("index", {title: "Sessions"  } )
 		
 	};
+
+	const getCreate = (req , res )=>{
+
+		res.render("create", {title: "Registrarse"})
+	};
+
+	
 	const getRecuPass = (req, res)=>{
        res.render("RecuPass", {title: "Recuperar Password"});
 	}
@@ -177,10 +184,7 @@ const postrePasword = async(req, res)=>{
 
 
 
-	const getCreate = (req , res )=>{
-
-		res.render("create", {title: "Registrarse"})
-	}
+	
 
 
 	
