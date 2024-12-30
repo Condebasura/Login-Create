@@ -1,7 +1,11 @@
+
 .container-fluid{
   padding-left: 0% !important;
   padding-right: 0% !important;
+ 
 }
+
+
 .navbar-brand{
   display: flex;
   flex-direction: row;
@@ -9,6 +13,7 @@
   margin-left: 10px;
   text-align: center;
 align-items: center;
+
 }
 
 .logo{
