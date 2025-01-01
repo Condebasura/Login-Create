@@ -9,6 +9,7 @@ const textName = document.querySelector(".TextFrase");
 const AcercaDe = document.querySelector(".QSomos");
 const term = document.querySelector(".Term");
 
+
 term.addEventListener("click", (e)=>{
     return window.location.href = "/TermCond";
 })
