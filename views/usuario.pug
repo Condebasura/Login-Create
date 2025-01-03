@@ -17,16 +17,16 @@ block content
  div(class="container-fluid")
   div(class="row") 
    nav(class="navbar navbar-expand-lg ")
-     div(class="container row")
-      img(src="/img/Logo_Sessions.jpeg",class="logo d-inline-block col", alt="logo" ,width="40" , height="40")
-      div(class="row mt-4 justify-content-start")
-       h4(class="nameLogo d-inline-block col-9") Sessions
-       spam(class="TextFrase d-inline-block col-4", name="nombre")
-     button(type="button", class="add_box") Add Box +
-     a(class="btn btn-primary" ,data-bs-toggle="offcanvas", href="#offcanvasExample", role="button", aria-controls="offcanvasExample",data-bs-target="#offcanvasExample")
+    div(class="container-fluid")
+      a(class="col-1 navbar-brand"  href="#")
+       img(src="/img/Logo_Sessions.jpeg",class="logo d-inline-block ", alt="logo" ,width="40" , height="40")
+       h4(class="nameLogo  d-inline-block") Sessions
+      button(type="button", class="add_box") Add Box +
+      a(class="btn btn-primary" ,data-bs-toggle="offcanvas", href="#offcanvasExample", role="button", aria-controls="offcanvasExample",data-bs-target="#offcanvasExample")
        img(src="", class="img_default" ,width="40" , height="40")
    div(class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel")
       div(class="offcanvas-header")
+       spam(class="TextFrase", name="nombre")
        button(type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close") 
       div(class="offcanvas-body")   
        ul.ul_off 
@@ -34,19 +34,20 @@ block content
          spam(class="user_name")
         li.Sesion
          a(type="text" , class="logout") Cerrar Sesion
-       footer(class="pie justify-content-end ")
+      div(class="offcanvas-footer")   
+       footer(class="pie justify-content-end position-relative")
         div(class="pata-cont container row justify-content-end") 
-          p(class="Contact col row") Contacto :
-          a(class="fab fa-linkedin col-md-1 col-sm-1" ,href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb' target='_blank')
-          a(class="fa-brands fa-instagram col-md-1 col-sm-1", href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
-          a(class="fa-brands fa-github col-md-1 col-sm-1" ,href="https://github.com/Condebasura" target='_blank')
+          p(class="Contact col align-items-center row") Contacto :
+           a(class="fab fa-linkedin col-md-1 col-sm-1" ,href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb' target='_blank')
+           a(class="fa-brands fa-instagram col-md-1 col-sm-1", href='https://instagram.com/condebasura?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D' target='_blank')
+           a(class="fa-brands fa-github col-md-1 col-sm-1" ,href="https://github.com/Condebasura" target='_blank')
           div.ContentTerm 
            a( class="QSomos") Acerca De 
            a(href="#", class="Term") Terminos y Condiciones 
           p.der Pablo C. Zabala &copy; 2024 
-       dialog#modal
-         spam.Camb_Dataoff
-         div.cont_redesChats 
+ dialog#modal
+ spam.Camb_Dataoff 
+ div.cont_redesChats 
 script(type="module", src="/js/usuario.js")
 script(type="module", src="/js/RedesChats.js")    
 script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous")
