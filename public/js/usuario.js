@@ -8,6 +8,7 @@ const textCambData = document.querySelector(".Camb_Dataoff");
 const textName = document.querySelector(".TextFrase");
 const AcercaDe = document.querySelector(".QSomos");
 const term = document.querySelector(".Term");
+const perfil = document.querySelector(".Perfil");
 
 
 term.addEventListener("click", (e)=>{
@@ -78,8 +79,8 @@ let separacokie = getCookie(tokenName);
             
             
             
-            UserName.addEventListener("click", async (e) => {
-                if (e.target) {
+            perfil.addEventListener("click", async (e) => {
+                if (e.target ) {
                     modal.innerHTML = "";
                 
                  const datos = decodedPayload;

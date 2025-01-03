@@ -20,20 +20,20 @@ block content
     div(class="container-fluid")
       a(class="col-1 navbar-brand"  href="#")
        img(src="/img/Logo_Sessions.jpeg",class="logo d-inline-block ", alt="logo" ,width="40" , height="40")
-       h4(class="nameLogo  d-inline-block") Sessions
+       h4(class="nameLogo d-none d-lg-inline-block") Sessions
       button(type="button", class="add_box") Add Box +
       a(class="btn btn-primary" ,data-bs-toggle="offcanvas", href="#offcanvasExample", role="button", aria-controls="offcanvasExample",data-bs-target="#offcanvasExample")
        img(src="", class="img_default" ,width="40" , height="40")
-   div(class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel")
-      div(class="offcanvas-header")
+   div(class="offcanvas offcanvas-start p-0 " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel")
+      div(class="offcanvas-header border border-bottom")
        spam(class="TextFrase", name="nombre")
        button(type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close") 
-      div(class="offcanvas-body")   
-       ul.ul_off 
-        li.Perfil 
-         spam(class="user_name")
-        li.Sesion
-         a(type="text" , class="logout") Cerrar Sesion
+      div(class="offcanvas-body ")   
+       ul(class="ul_off list-group  ") 
+        li(class="Perfil  list-group-item list-group-item-action") 
+         span(class="user_name")
+        li(class="Sesion list-group-item list-group-item-action")
+         a(type="text" , class="logout icon-link link-danger icon-link-hover") Cerrar Sesion
       div(class="offcanvas-footer")   
        footer(class="pie justify-content-end position-relative")
         div(class="pata-cont container row justify-content-end") 
