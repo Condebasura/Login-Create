@@ -76,7 +76,7 @@ overflow-wrap: break-word;
   background-image: url("/img/img_Login.jpeg")  ;
   background-repeat: no-repeat;
   background-size: cover;
-  
+ 
 }
 .cortina{
   position: absolute;
@@ -156,6 +156,7 @@ overflow-wrap: break-word;
 
    .pie{
     background-color:rgba(196, 197, 193, 0.884) ;
+    margin: auto
    }
    .login_name , .no_cuenta, .registro {
     color: aliceblue !important;
@@ -176,6 +177,20 @@ overflow-wrap: break-word;
 @media (max-width: 1200px) {  }
 
 /* XX-Large devices (larger desktops, 1400px and up)*/
-@media (max-width: 1400px) { 
+@media (min-width: 1400px) { 
+  @media ( min-height:790px){
 
+    .caja_2{
+      min-height: 100vh;
+    }
+    .caja_1{
+      min-height: 100vh !important;
+  
+    }
+    .pie{
+      margin-top: 30em !important;
+    }
+   }
  }
+
+ 

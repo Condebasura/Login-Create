@@ -29,10 +29,16 @@ a , span{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
 }
-.offcanvas-body{
+.offcanvas-body , .pie{
   padding: 0 !important;
   margin: 2em 0em !important;
 }
+
+.QSomos , .Term {
+  font-size: 10px;
+  color: black !important;
+} 
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) { }
 
