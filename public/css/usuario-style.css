@@ -43,11 +43,13 @@ a , span{
   font-size: 12px;
 }
 
-.box_RedChat{
-  align-items: center;
-  justify-content: center;
-}
+.cerrar{
+  float: right;
 
+}
+.cerrar:hover{
+  color: red !important;
+}
 
 
 /* Small devices (landscape phones, 576px and up)*/

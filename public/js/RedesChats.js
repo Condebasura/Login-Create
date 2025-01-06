@@ -6,24 +6,25 @@ const  LoadBoxesSeionStorage = () =>{
     const SaveBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     if(SaveBoxes){
 
-        
+        // Reparar error de en la consola!!
         SaveBoxes.forEach((boxtext ) => {
             const box = document.createElement('div');
+            const header = document.createElement('div');
              box.style.maxWidth = "18rem"; 
              box.style.height = "65vh"   
             const EliminarBox = document.createElement("button");
             const btnaddRedChat = document.createElement("button");
-            box.setAttribute("class", "box_RedChat card ms-5 mt-5");  
-        // Crear un card-header para colocar el boton de cerrar arriba a la derecha
-          EliminarBox.setAttribute("class", "btn-close ");
+            box.setAttribute("class", "box_RedChat card ms-5 mt-5");
+            header.setAttribute("class", "card-header");  
+          EliminarBox.setAttribute("class", "btn-close cerrar");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         EliminarBox.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
-        EliminarBox.style.display = "none";
         box.style.boxShadow = "2px 2px 12px #a3a3a3";
-       box.appendChild(EliminarBox);
-        box.appendChild(btnaddRedChat);
+        header.appendChild(EliminarBox)
+        box.appendChild(header);
+       // box.appendChild(btnaddRedChat);
             ContRedChat.appendChild(box);
           
       
@@ -36,7 +37,7 @@ const  LoadBoxesSeionStorage = () =>{
             
             box.addEventListener("mouseout", e =>{
                 if(e.target){
-                    EliminarBox.style.display = "none";
+                    
                     box.style.boxShadow = "2px 2px 12px #a3a3a3";
                 }
             });
@@ -70,9 +71,8 @@ const  LoadBoxesSeionStorage = () =>{
 
                 
                   
-            btnaddRedChat.addEventListener("click", (e)=>{
-                if(e.target){
-                    box.removeChild(btnaddRedChat);
+            
+                
             const contSelect = document.createElement("ul");
             let tituloRed = document.createElement("p");
             let insta = document.createElement("li");
@@ -92,12 +92,12 @@ const  LoadBoxesSeionStorage = () =>{
             Whatsapp.textContent = "WhatsApp";
             Teleg.textContent = "Telegram";
             
-            contSelect.setAttribute("class", "contSelect list-group");
-            tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action");
+            contSelect.setAttribute("class", "contSelect list-group list-group-flush my-3  text-center");
+            tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action text-bg-success");
             insta.setAttribute("class", "selecRed list-group-item list-group-item-action");
             face.setAttribute("class", "selecRed list-group-item list-group-item-action");
             twit.setAttribute("class", "selecRed list-group-item list-group-item-action");
-            tituloChats.setAttribute("class", "titleChats list-group-item list-group-item-action");
+            tituloChats.setAttribute("class", "titleChats list-group-item list-group-item-action text-bg-success");
             Disc.setAttribute("class", "selecRed list-group-item list-group-item-action");
             Whatsapp.setAttribute("class", "selecRed list-group-item list-group-item-action");
             Teleg.setAttribute("class", "selecRed list-group-item list-group-item-action");
@@ -265,9 +265,7 @@ const  LoadBoxesSeionStorage = () =>{
         saveimgEnBoxEnSesionStorage()
                 };
             });
-            };
-            
-        });
+         
     });
       boxCount = SaveBoxes.length;
     }
@@ -284,22 +282,23 @@ const saveBoxEnSesionStorage = ()=>{
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
         const newBox = document.createElement("div");
+        const header = document.createElement('div');
         const EliminarBox = document.createElement("botton");
         const btnaddRedChat = document.createElement("button");
         
-  
-         
+        
         newBox.setAttribute("class", "box_RedChat card ms-5 mt-5");
+        header.setAttribute("class", "card-header");
         newBox.style.maxWidth = "18rem";
         newBox.style.height = "65vh";
-        EliminarBox.setAttribute("class", "btn-close");
+        EliminarBox.setAttribute("class", "btn-close cerrar");
         btnaddRedChat.setAttribute("class", "add_redchat");
         btnaddRedChat.setAttribute("type", "button");
         EliminarBox.setAttribute("type", "button");
         btnaddRedChat.textContent = "+ add";
-        EliminarBox.style.display = "none";
-       newBox.appendChild(EliminarBox);
-        newBox.appendChild(btnaddRedChat);
+        header.appendChild(EliminarBox)
+        newBox.appendChild(header);
+       // newBox.appendChild(btnaddRedChat);
 ContRedChat.appendChild(newBox);
 let computeStyle = window.getComputedStyle(newBox);
 if(computeStyle.backgroundImage !== 'none'){
@@ -310,9 +309,9 @@ return computeStyle;
 }  
 
 
-btnaddRedChat.addEventListener("click", (e)=>{
-    if(e.target){
-newBox.removeChild(btnaddRedChat);
+
+    
+
 const contSelect = document.createElement("ul");
 let tituloRed = document.createElement("p");
 let insta = document.createElement("li");
@@ -332,12 +331,12 @@ tituloChats.textContent = "Chats";
 Disc.textContent = "Discord";
 Whatsapp.textContent = "WhatsApp";
 Teleg.textContent = "Telegram";
-contSelect.setAttribute("class", "contSelect list-group ");
-tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action");
+contSelect.setAttribute("class", "contSelect list-group list-group-flush my-3 text-center");
+tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action text-bg-success");
 insta.setAttribute("class", "selecRed list-group-item list-group-item-action");
 face.setAttribute("class", "selecRed list-group-item list-group-item-action");
 twit.setAttribute("class", "selecRed list-group-item list-group-item-action");
-tituloChats.setAttribute("class", "titleChats list-group-item list-group-item-action");
+tituloChats.setAttribute("class", "titleChats list-group-item list-group-item-action text-bg-success");
 Disc.setAttribute("class", "selecChat list-group-item list-group-item-action");
 Whatsapp.setAttribute("class", "selecChat list-group-item list-group-item-action");
 Teleg.setAttribute("class", "selecChat list-group-item list-group-item-action");
@@ -504,9 +503,7 @@ Teleg.addEventListener("click", (e)=>{
         saveimgEnBoxEnSesionStorage()
     }
 })
-    };
-    
-});
+ 
 
 newBox.addEventListener("mouseover", e =>{
     if(e.target){
