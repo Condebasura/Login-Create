@@ -39,6 +39,17 @@ a , span{
   color: black !important;
 } 
 
+.Contact , .der{
+  font-size: 12px;
+}
+
+.box_RedChat{
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) { }
 
