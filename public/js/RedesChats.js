@@ -27,52 +27,6 @@ const  LoadBoxesSeionStorage = () =>{
        // box.appendChild(btnaddRedChat);
             ContRedChat.appendChild(box);
           
-      
-            box.addEventListener("mouseover", e =>{
-                if(e.target){
-                    EliminarBox.style.display = "block";
-                    box.style.boxShadow = `2px 2px 12px 4px #444`;
-                }
-            });
-            
-            box.addEventListener("mouseout", e =>{
-                if(e.target){
-                    
-                    box.style.boxShadow = "2px 2px 12px #a3a3a3";
-                }
-            });
-            if(boxtext == "+ add" || boxtext == ""){
-                boxtext = boxtext;
-              
-
-                
-              }else{
-                box.style.backgroundImage = boxtext;
-                box.style.backgroundSize = "cover";
-                box.style.backgroundPosition = "start";  
-                box.removeChild(btnaddRedChat);
-              }
-
-
-            EliminarBox.addEventListener("click", e =>{
-                if(e.target){
-                 ContRedChat.removeChild(box);
-                 let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
-                 boxes = boxes.filter(box => box !== boxtext); 
-                 sessionStorage.setItem('boxes', JSON.stringify(boxes));
-                 console.log(boxes.length)
-                 if(boxes.length === 0){
-                    const pieDePagina = document.querySelector(".pie");
-                    pieDePagina.style.position = "fixed";
-                    pieDePagina.style.bottom = "1px";
-                }
-                }
-                });
-
-                
-                  
-            
-                
             const contSelect = document.createElement("ul");
             let tituloRed = document.createElement("p");
             let insta = document.createElement("li");
@@ -111,6 +65,53 @@ const  LoadBoxesSeionStorage = () =>{
             contSelect.appendChild(Teleg);
             box.appendChild(contSelect);
             contSelect.style.display = "flex";
+      
+            box.addEventListener("mouseover", e =>{
+                if(e.target){
+                    EliminarBox.style.display = "block";
+                    box.style.boxShadow = `2px 2px 12px 4px #444`;
+                }
+            });
+            
+            box.addEventListener("mouseout", e =>{
+                if(e.target){
+                    
+                    box.style.boxShadow = "2px 2px 12px #a3a3a3";
+                }
+            });
+            if(boxtext == "+ add" || boxtext == ""){
+                boxtext = boxtext;
+              
+
+                
+              }else{
+                box.style.backgroundImage = boxtext;
+                box.style.backgroundSize = "cover";
+                box.style.backgroundPosition = "start";  
+                box.removeChild(contSelect);
+              }
+
+
+            EliminarBox.addEventListener("click", e =>{
+                if(e.target){
+                 ContRedChat.removeChild(box);
+                 let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
+                 boxes = boxes.filter(box => box !== boxtext); 
+                 sessionStorage.setItem('boxes', JSON.stringify(boxes));
+                 console.log(boxes.length)
+                 if(boxes.length === 0){
+                    const pieDePagina = document.querySelector(".pie");
+                    pieDePagina.style.position = "fixed";
+                    pieDePagina.style.bottom = "1px";
+                }
+                }
+                });
+
+                
+                  
+            
+                
+           
 
             box.addEventListener("mouseover", e =>{
         if(e.target){
@@ -303,7 +304,6 @@ ContRedChat.appendChild(newBox);
 let computeStyle = window.getComputedStyle(newBox);
 if(computeStyle.backgroundImage !== 'none'){
     newBox.style.boxShadow = "2px 2px 12px #a3a3a3";
-newBox.removeChild(btnaddRedChat);
 return computeStyle;
 
 }  
