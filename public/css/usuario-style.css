@@ -50,6 +50,13 @@ a , span{
 .cerrar:hover{
   color: red !important;
 }
+.card-header{
+  border: none !important;
+}
+
+.list-group , .list-group-item{
+  cursor: pointer;
+}
 
 
 /* Small devices (landscape phones, 576px and up)*/

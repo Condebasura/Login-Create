@@ -88,7 +88,9 @@ const  LoadBoxesSeionStorage = () =>{
               }else{
                 box.style.backgroundImage = boxtext;
                 box.style.backgroundSize = "cover";
-                box.style.backgroundPosition = "start";  
+                box.style.backgroundPosition = "start"; 
+                box.style.height = "55vh";
+                box.style.border = "none";
                 box.removeChild(cardbody);
               }
 
