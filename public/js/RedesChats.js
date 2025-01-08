@@ -293,9 +293,11 @@ LoadBoxesSeionStorage();
 // Fuera del load
 
 const saveBoxEnSesionStorage = ()=>{
-    const boxes = Array.from(ContRedChat.children).map(newBox => console.log(newBox.children[1].attributes[1].nodeValue) );
+
+    const boxes = Array.from(ContRedChat.children).map(newBox => newBox) ;
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
-// hacer que se cargue la imagen y ver si se guardan en sesionstorage
+    //encontrar la forma de mapear el card-body y su background!!
+
 
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
@@ -457,7 +459,7 @@ insta.addEventListener("click", (e)=>{
         cardBody.style.border = "none";
         cardBody.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( newBox => cardBody.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
