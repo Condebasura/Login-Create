@@ -135,6 +135,9 @@ const  LoadBoxesSeionStorage = () =>{
             face.style.display = "flex";
             insta.style.display = "flex";
             twit.style.display = "flex";
+            Disc.style.display = "none";
+            Whatsapp.style.display = "none";
+            Teleg.style.display = "none";
         back.addEventListener("click", (e)=>{
         if(e.target){
         
@@ -163,6 +166,9 @@ const  LoadBoxesSeionStorage = () =>{
                 Disc.style.display = "block";
             Whatsapp.style.display = "block";
             Teleg.style.display = "block";
+            face.style.display = "none";
+            insta.style.display = "none";
+            twit.style.display = "none";
             back.addEventListener("click", (e)=>{
                 if(e.target){
                 
@@ -287,9 +293,9 @@ LoadBoxesSeionStorage();
 // Fuera del load
 
 const saveBoxEnSesionStorage = ()=>{
-    const boxes = Array.from(ContRedChat.children).map(newBox => cardBody.style.backgroundImage );
+    const boxes = Array.from(ContRedChat.children).map(newBox => console.log(newBox.children[1].attributes[1].nodeValue) );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
-// usar en el pie de pagina position fixed para cuando no hay ningun box y static para cuando se crea uno nuevo!!
+// hacer que se cargue la imagen y ver si se guardan en sesionstorage
 
 btnAddBox.addEventListener("click", (e)=>{
     if(e.target){
