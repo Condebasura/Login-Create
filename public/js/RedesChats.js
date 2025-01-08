@@ -86,27 +86,24 @@ const  LoadBoxesSeionStorage = () =>{
 
                 
               }else{
-                box.style.backgroundImage = boxtext;
-                box.style.backgroundSize = "cover";
-                box.style.backgroundPosition = "start"; 
-                box.style.height = "55vh";
-                box.style.border = "none";
-                box.removeChild(cardbody);
+                cardbody.style.backgroundImage = boxtext;
+                cardbody.style.backgroundSize = "cover";
+                cardbody.style.backgroundPosition = "start"; 
+                cardbody.style.height = "55vh";
+                cardbody.style.border = "none";
+                cardbody.removeChild(contSelect);
               }
 
 
             EliminarBox.addEventListener("click", e =>{
                 if(e.target){
+                    box.removeChild(cardbody);
                  ContRedChat.removeChild(box);
                  let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
                  boxes = boxes.filter(box => box !== boxtext); 
                  sessionStorage.setItem('boxes', JSON.stringify(boxes));
                  console.log(boxes.length)
-                 if(boxes.length === 0){
-                    const pieDePagina = document.querySelector(".pie");
-                    pieDePagina.style.position = "fixed";
-                    pieDePagina.style.bottom = "1px";
-                }
+               
                 }
                 });
 
@@ -159,22 +156,22 @@ const  LoadBoxesSeionStorage = () =>{
             if(e.target){
                 const back = document .createElement("button");
                 back.innerHTML = "Volver";
-        back.setAttribute("class", "volver");
+        back.setAttribute("class", "volver btn btn-outline-primary");
                 contSelect.appendChild(back);
                 tituloChats.style.display = "none";
                 tituloRed.style.display = "none";
-                Disc.style.display = "flex";
-            Whatsapp.style.display = "flex";
-            Teleg.style.display = "flex";
+                Disc.style.display = "block";
+            Whatsapp.style.display = "block";
+            Teleg.style.display = "block";
             back.addEventListener("click", (e)=>{
                 if(e.target){
                 
-                    tituloChats.style.display = "flex";
+                    tituloChats.style.display = "block";
                         Disc.style.display = "none";
                     Whatsapp.style.display = "none";
                     Teleg.style.display = "none";
                 
-                    tituloRed.style.display = "flex";
+                    tituloRed.style.display = "block";
                     face.style.display = "none";
                     insta.style.display = "none";
                     twit.style.display = "none";
@@ -188,14 +185,14 @@ const  LoadBoxesSeionStorage = () =>{
                 if(e.target){
             
             
-                    box.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
-                    box.style.backgroundSize = "cover";
-                    box.style.backgroundPosition = "start";    
-                    box.style.height = "55vh";
-                    box.style.border = "none";
-                    box.removeChild(cardbody);
+                    cardbody.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
+                    cardbody.style.backgroundSize = "cover";
+                    cardbody.style.backgroundPosition = "start";    
+                    cardbody.style.height = "55vh";
+                    cardbody.style.border = "none";
+                    cardbody.removeChild(contSelect);
                     const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( box => box.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( box => cardbody.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
@@ -290,7 +287,7 @@ LoadBoxesSeionStorage();
 // Fuera del load
 
 const saveBoxEnSesionStorage = ()=>{
-    const boxes = Array.from(ContRedChat.children).map(newBox => newBox.style.backgroundImage );
+    const boxes = Array.from(ContRedChat.children).map(newBox => cardBody.style.backgroundImage );
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
 // usar en el pie de pagina position fixed para cuando no hay ningun box y static para cuando se crea uno nuevo!!
 
@@ -372,22 +369,22 @@ tituloRed.addEventListener("click", (e) =>{
 if(e.target){
     const back = document .createElement("button");
     back.innerHTML = "Volver";
-    back.setAttribute("class", "volver");
+    back.setAttribute("class", "volver btn btn-outline-primary");
     contSelect.appendChild(back);
     tituloRed.style.display = "none";
     tituloChats.style.display = "none";
-    face.style.display = "flex";
-    insta.style.display = "flex";
-    twit.style.display = "flex";
+    face.style.display = "block";
+    insta.style.display = "block";
+    twit.style.display = "block";
 back.addEventListener("click", (e)=>{
 if(e.target){
 
-    tituloChats.style.display = "flex";
+    tituloChats.style.display = "block";
         Disc.style.display = "none";
     Whatsapp.style.display = "none";
     Teleg.style.display = "none";
 
-    tituloRed.style.display = "flex";
+    tituloRed.style.display = "block";
     face.style.display = "none";
     insta.style.display = "none";
     twit.style.display = "none";
@@ -400,22 +397,22 @@ tituloChats.addEventListener("click", (e) =>{
     if(e.target){
         const back = document .createElement("button");
         back.innerHTML = "Volver";
-back.setAttribute("class", "volver");
+back.setAttribute("class", "volver btn btn-outline-primary");
         contSelect.appendChild(back);
         tituloChats.style.display = "none";
         tituloRed.style.display = "none";
-        Disc.style.display = "flex";
-    Whatsapp.style.display = "flex";
-    Teleg.style.display = "flex";
+        Disc.style.display = "block";
+    Whatsapp.style.display = "block";
+    Teleg.style.display = "block";
     back.addEventListener("click", (e)=>{
         if(e.target){
         
-            tituloChats.style.display = "flex";
+            tituloChats.style.display = "block";
                 Disc.style.display = "none";
             Whatsapp.style.display = "none";
             Teleg.style.display = "none";
         
-            tituloRed.style.display = "flex";
+            tituloRed.style.display = "block";
             face.style.display = "none";
             insta.style.display = "none";
             twit.style.display = "none";
@@ -430,14 +427,14 @@ face.addEventListener("click", (e)=>{
     if(e.target){
 
 
-        newBox.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
-        newBox.style.backgroundSize = "cover";
-        newBox.style.backgroundPosition = "start";   
-        newBox.style.border = "none";
-        newBox.style.height = "55vh";
-        newBox.removeChild(cardBody);
+        cardBody.style.backgroundImage = "url('/img/facebook-movil-640x598.jpg')";
+        cardBody.style.backgroundSize = "cover";
+        cardBody.style.backgroundPosition = "start";   
+        cardBody.style.border = "none";
+        cardBody.style.height = "55vh";
+        cardBody.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( newBox => cardBody.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
@@ -447,12 +444,12 @@ face.addEventListener("click", (e)=>{
 })
 insta.addEventListener("click", (e)=>{
     if (e.target){
-        newBox.style.backgroundImage = "url('/img/Instagram.jpg')";
-        newBox.style.backgroundSize = "cover";
-        newBox.style.backgroundPosition = "start";  
-        newBox.style.height = "55vh";
-        newBox.style.border = "none";
-        newBox.removeChild(cardBody);
+        cardBody.style.backgroundImage = "url('/img/Instagram.jpg')";
+        cardBody.style.backgroundSize = "cover";
+        cardBody.style.backgroundPosition = "start";  
+        cardBody.style.height = "55vh";
+        cardBody.style.border = "none";
+        cardBody.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
             const boxes = Array.from(ContRedChat.children).map( newBox => newBox.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
@@ -543,9 +540,10 @@ newBox.addEventListener("mouseout", e =>{
 
 EliminarBox.addEventListener("click", e =>{
     if(e.target){
+        newBox.removeChild(cardBody);
         ContRedChat.removeChild(newBox);
         let boxes = JSON.parse(sessionStorage.getItem('boxes') || '[]');
-        boxes = boxes.filter(box => box !== newBox.style.backgroundImage);
+        boxes = boxes.filter(box => box !== cardBody.style.backgroundImage);
 sessionStorage.setItem('boxes', JSON.stringify(boxes));
 console.log(boxes.length);
 
