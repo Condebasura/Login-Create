@@ -295,9 +295,9 @@ LoadBoxesSeionStorage();
 
 const saveBoxEnSesionStorage = ()=>{
 
-    const boxes = Array.from(ContRedChat.children).map(newBox => newBox) ;
+    const boxes = Array.from(ContRedChat.children).map(newBox => newBox.lastChild.style.backgroundImage) ;
     sessionStorage.setItem('boxes' , JSON.stringify(boxes));
-    //encontrar la forma de mapear el card-body y su background!!
+    
 
 
 btnAddBox.addEventListener("click", (e)=>{
@@ -466,7 +466,7 @@ insta.addEventListener("click", (e)=>{
         saveimgEnBoxEnSesionStorage()
     }
 })
-
+// continuar  las modificaciones aca y en box.
 twit.addEventListener("click", (e)=>{
     if (e.target){
         newBox.style.backgroundImage = "url('/img/twiter_chat.jpg')";
