@@ -40,6 +40,12 @@ a , span{
   margin: 2em 0em !important;
 }
 
+.Perfil:hover{
+ background-color: rgba(42, 180, 7, 0.877) !important;
+ color: white !important;
+}
+
+
 .QSomos , .Term {
   font-size: 10px;
   color: black !important;
@@ -56,8 +62,23 @@ a , span{
 .cerrar:hover{
   color: red !important;
 }
+
+.titleRed,.selecRed, .titleChats, .selecChat{
+  border-radius: 4px;
+}
+
+.selecRed:hover , .selecChat:hover{
+  background-color:  rgba(3, 80, 245, 0.966) !important;
+  color: white !important;
+  transition: .4s ease-out;
+
+}
 .card-header{
   border: none !important;
+}
+.card-body{
+  border-radius: 1em !important;
+  margin-bottom: 2rem !important;
 }
 
 .list-group , .list-group-item{
@@ -69,7 +90,7 @@ a , span{
 @media (max-width: 576px) { }
 
 @media (min-width: 768px) {
-  
+
 }
 /* Medium devices (tablets, 768px and up)*/
 @media (max-width: 767.98px) { }
