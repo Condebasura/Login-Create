@@ -8,6 +8,7 @@ const  LoadBoxesSeionStorage = () =>{
 
         // Reparar error de en la consola!!
         SaveBoxes.forEach((boxtext ) => {
+            console.log(boxtext)
             const box = document.createElement('div');
             const header = document.createElement('div');
              box.style.maxWidth = "18rem";    
@@ -80,7 +81,7 @@ const  LoadBoxesSeionStorage = () =>{
                     box.style.boxShadow = "2px 2px 12px #a3a3a3";
                 }
             });
-            if(boxtext == "+ add" || boxtext == ""){
+            if( boxtext == ""){
                 boxtext = boxtext;
               
 
@@ -198,7 +199,7 @@ const  LoadBoxesSeionStorage = () =>{
                     cardbody.style.border = "none";
                     cardbody.removeChild(contSelect);
                     const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( box => cardbody.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( box => box.lastChild.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
@@ -442,7 +443,7 @@ face.addEventListener("click", (e)=>{
         cardBody.style.height = "55vh";
         cardBody.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( newBox => cardBody.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.lastChild.style.backgroundImage);
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
@@ -459,7 +460,7 @@ insta.addEventListener("click", (e)=>{
         cardBody.style.border = "none";
         cardBody.removeChild(contSelect);
           const saveimgEnBoxEnSesionStorage = ()=>{
-            const boxes = Array.from(ContRedChat.children).map( newBox => cardBody.style.backgroundImage );
+            const boxes = Array.from(ContRedChat.children).map( newBox => newBox.lastChild.style.backgroundImage );
             sessionStorage.setItem('boxes' , JSON.stringify(boxes));
         };
         saveimgEnBoxEnSesionStorage()
