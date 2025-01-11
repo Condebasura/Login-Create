@@ -17,7 +17,14 @@ term.addEventListener("click", (e)=>{
 
 AcercaDe.addEventListener("click", (e)=>{
     if(e.target){
-        return window.location.href = "/AcercaDe";
+       // return window.location.href = "/AcercaDe";
+       const modTabin = document.createElement("div");
+       const modalDialog = document.createElement("div");
+       const modalContent = document.createElement("div");
+       const modalHeader = document.createElement("div");
+        
+modal.showModal();
+
     }
 });
 

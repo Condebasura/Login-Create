@@ -6,19 +6,26 @@ head
   link(rel="icon", href="/img/logo_sesions.jpeg")
   link(rel='stylesheet',  href='/css/Acde.css')
   link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"  crossorigin="anonymous")
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css")
+  link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous")
+  link( rel="preconnect" href="https://fonts.googleapis.com")
+  link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+  link(href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet")
   title= title
 body
 block content
-   nav
-    div.ContentLogo
-     img(src="/img/logo_sesions.jpeg", class="logo" , alt="Logo")
-     div.textlogo
-      h1.nameLogo Sesions 
-      p.TextFrase Tus redes en un mismo lugar
-    h1.Name Acerca De
-    div.ContBack
-     span(class="fa-solid fa-circle-left")  
-   h2.bienvenido  Bienvenido a Sesions , una plataforma innovadora donde puedes utilizar tanto redes como chats por medio de autenticacion previa. Nuestra misión es ofrecerte una experiencia única al permitirte simular el uso de aplicaciones populares como Facebook, Instagram, WhatsApp, Slack y más, todo desde un solo lugar. Nos esforzamos por proporcionar un entorno seguro y amigable para que puedas explorar y disfrutar de estas funcionalidades ficticias en modo móvil.
+ div(class="container-fluid")
+   div(class="row") 
+    nav(class="navbar navbar-expand-lg ")
+     div(class="container-fluid row")
+       a(class="col-1 navbar-brand"  href="#")
+        img(src="/img/Logo_Sessions.jpeg",class="logo d-inline-block ", alt="logo" ,width="40" , height="40")
+        h4(class="nameLogo d-none d-lg-inline-block") Sessions
+       h4(class="Name col-1") Acerca De
+       div(class="ContBack col-1")
+        span(class="bi bi-arrow-left-circle-fill p-5")
+   section(class="sec_bienv container-fluid p-5") 
+    h2(class="bienvenido m-5")  Bienvenido a Sesions , una plataforma innovadora donde puedes utilizar tanto redes como chats por medio de autenticacion previa. Nuestra misión es ofrecerte una experiencia única al permitirte simular el uso de aplicaciones populares como Facebook, Instagram, WhatsApp, Slack y más, todo desde un solo lugar. Nos esforzamos por proporcionar un entorno seguro y amigable para que puedas explorar y disfrutar de estas funcionalidades ficticias en modo móvil.
    footer.pie 
     p.Contact Contacto :
     a.fab.fa-linkedin(href='https://www.linkedin.com/in/pablo-c%C3%A9sar-zabala-51055b1bb' target='_blank')
@@ -28,3 +35,4 @@ block content
     br
     p.der Pablo C. Zabala &copy; 2024 
 script(type="module",src="../js/AcercaDe.js") 
+script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous")

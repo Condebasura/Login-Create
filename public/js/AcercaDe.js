@@ -1,4 +1,4 @@
-const back = document.querySelector(".fa-circle-left");
+const back = document.querySelector(".bi-arrow-left-circle-fill");
 
 back.addEventListener("click", (e)=>{
     if(e.target){
