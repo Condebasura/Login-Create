@@ -105,8 +105,6 @@ const upload = multer({dest: 'public/uploads/'});
 
 app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
-app.get("/AcercaDe", UserControllers.getAcercaDe);
-app.get("/TermCond", UserControllers.getTerm);
 app.get("/" , UserControllers.getIndex);
 app.post("/" , UserControllers.postUsers);
 app.post("/RecuperarPass", UserControllers.postRecuPass);

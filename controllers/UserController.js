@@ -26,13 +26,7 @@ dotenv.config();
 	}
 
 
-	const getAcercaDe = (req , res)=>{
-		res.render("AcercaDe", {title: "Acerca De"})
-	}
-	const getTerm = (req , res)=>{
-		res.render("TermCond", {title: "Terminos y Condiciones"})
-	}
-
+	
     
 
 	const postUsers  = async (req, res) => {
@@ -391,8 +385,6 @@ export default{
 	getWelcome,
 	getCreate,
 	getRecuPass,
-	getAcercaDe,
-	getTerm,
 	CrarUsuario,
 	ActualizarPerfil,
 	logout,	
