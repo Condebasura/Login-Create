@@ -233,7 +233,6 @@ const dataUsuario = async () => {
                 let inputEmail = document.createElement("input");
 
                 let divPass = document.createElement("div");
-                let btnPass = document.createElement("button");
                 let inputPass = document.createElement("input");
                 let labelPass = document.createElement("label");
 
@@ -247,7 +246,6 @@ const dataUsuario = async () => {
                 labelApellido.innerHTML = "Apelido";
                 labelEmail.innerHTML = "Email";
                 labelPass.innerHTML = "Nueva Contraseña";
-                btnPass.innerHTML = "Cambiar Contraseña";
                 ContainerImput.innerHTML = "Cambiar Imagen";
 
 
@@ -277,9 +275,9 @@ const dataUsuario = async () => {
                 btnClose.setAttribute("data-bs-dismiss", "modal");
                 btnClose.setAttribute("aria-label", "Close");
                 modalBody.setAttribute("class", "modal-body");
-                divFooter.setAttribute("class", "modal-footer")
+                divFooter.setAttribute("class", "divFooter modal-footer")
 
-                form.setAttribute("class", "formEditPerfil form my-2 mx-5 m-lg-5  p-5 rounded");
+                form.setAttribute("class", "formEditPerfil form my-2 mx-5 m-lg-5  p-5 rounded p-3 mb-2 bg-light text-dark");
                 divInputs.setAttribute("class", "divInputs");
 
                 divNombre.setAttribute("class", "form-floating");
@@ -299,35 +297,36 @@ const dataUsuario = async () => {
                 labelEmail.setAttribute("for", "floatingInput");
 
 
-                divPass.setAttribute("class", "form-floating");
-                inputPass.setAttribute("class", "form-control");
+                divPass.setAttribute("class", "form-floating ");
+                inputPass.setAttribute("class", " inputPass form-control ");
                 inputPass.setAttribute("id", "floatingInput");
                 labelPass.setAttribute("for", "floatingInput");
-                       // continuar con el problema del cambio de password    
+                         
                        
-                divArchivo.setAttribute("class", "form-floating");
-                labelApellido.setAttribute("for", "floatingInput");
+                divArchivo.setAttribute("class", "mb-3");
+                labelArchivo.setAttribute("for", "formFile");
+                labelArchivo.setAttribute("class", "form-label");
+                archivo.setAttribute("class", "archivo form-control");
+                archivo.setAttribute("id", "formFile");
 
 
-
+               // falta dar formato responsivo al modal
 
 
                 inputEmail.setAttribute("type", "email");
                 archivo.setAttribute("type", "file");
-                archivo.setAttribute("class", "archivo");
                 archivo.setAttribute("name", "archivo");
                 archivo.setAttribute("accept", "image/*");
                 PrevArchivo.setAttribute("name", "Prevarchivo");
                 PrevArchivo.setAttribute("type", "hidden");
                 ContainerImput.setAttribute("class", "input_Container")
-                inputPass.setAttribute("class", "inputPass");
-                btnPass.setAttribute("class", "btnPass");
+                
 
                 divBtns.setAttribute("class", "ContentBtns")
                 btnCancelar.setAttribute("type", "button");
                 btnGuardar.setAttribute("type", "submit");
-                btnCancelar.setAttribute("class", "cancelar");
-                btnGuardar.setAttribute("class", "guardar");
+                btnCancelar.setAttribute("class", "cancelar  bg-danger text-white");
+                btnGuardar.setAttribute("class", "guardar bg-success text-white");
 
                 divNombre.appendChild(inputNombre);
                 divNombre.appendChild(labelNombre);
@@ -340,32 +339,34 @@ const dataUsuario = async () => {
                 
                 divPass.appendChild(inputPass);
                 divPass.appendChild(labelPass);
+                divArchivo.appendChild(labelArchivo)
+                divArchivo.appendChild(archivo)
                 
                 
                 divInputs.appendChild(divNombre);
                 divInputs.appendChild(divApellido);
                 divInputs.appendChild(divEmail);
                 divInputs.appendChild(divPass);
-                divInputs.appendChild(btnPass);
+                
                 
                 
                 form.appendChild(divInputs);
                
-                btnPass.addEventListener("click", (e) => {
+                /*btnPass.addEventListener("click", (e) => {
                     e.preventDefault();
                     if (e.target) {
                         inputPass.style.display = "block";
 
                     }
-                });
+                });*/
 
                 ContainerImput.appendChild(archivo);
                 ContainerImput.appendChild(PrevArchivo);
                 ContainerImput.appendChild(NameArchivo);
                 form.appendChild(ContainerImput);
-                 divFooter.appendChild(divBtns);
                 divBtns.appendChild(btnCancelar);
                 divBtns.appendChild(btnGuardar);
+                
                 form.appendChild(divBtns);
 
                 modalHeader.appendChild(modalTitle);
@@ -455,7 +456,7 @@ const dataUsuario = async () => {
                             img.src = imagenObjectURL;
 
                             document.cookie = `${tokenName}=${newToken}`;
-                            return modal.close();
+                            return window.location.reload();
 
 
 
@@ -477,7 +478,8 @@ const dataUsuario = async () => {
 
                 btnCancelar.addEventListener("click", (e) => {
                     if (e.target) {
-                        modal.close();
+                return window.location.reload();
+                        
                     }
                 });
             }
