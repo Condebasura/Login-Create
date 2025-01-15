@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: .8em;
     padding: 3em;
+   
 }
 .divInputs{
     display:flex;
@@ -41,11 +42,12 @@ input{
         height: 3.4vh;
         width: 30vh;
         border-radius: 5px;
-        border: 1px solid black;
+        border: 1px solid rgba(78, 76, 76, 0.274) !important;
 }
 
 input:focus{
-    border: 1px solid rgb(4, 189, 4);
+    border: none !important;
+    transition: .5s ease-out;
         outline: none;
 }
 
