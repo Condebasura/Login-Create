@@ -15,7 +15,7 @@
     justify-content: center;
     text-align: center;
     cursor: pointer;
-    padding: 1em;
+    
 margin: 1em;  
     
 }
@@ -85,19 +85,13 @@ input:focus{
 .cancelar{
     background-color: rgb(250, 48, 48);
     border-style: none;
-    height: 2em;
     box-shadow: 2px 2px 8px 0.6px #615e5e;
     color: white;
-    text-shadow: 2px 2px 2px black;
     cursor: pointer;
     font-size: 15px;
-
     border-radius: 3px;
 }
 
-.cancelar:hover{
-    background-color: rgba(250, 48, 48, 0.856)
-}
 
 .cancelar:active{
     box-shadow: none;
@@ -106,10 +100,8 @@ input:focus{
 .guardar{
     background-color: rgb(4, 189, 4);
     border-style: none;
-    height: 2em;
     box-shadow: 2px 2px 8px 0.6px #615e5e;
     color: white;
-    text-shadow: 2px 2px 2px black;
     cursor: pointer;
     font-size: 15px;
     border-radius: 3px;

@@ -31,7 +31,10 @@ a{
  
 }
 
-
+.form .parrafo{
+  align-items: center !important;
+  max-width: 23vh !important;
+}
 p , a{
   font-size: 12px;
 }

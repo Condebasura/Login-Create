@@ -267,7 +267,34 @@ form.addEventListener("submit", async (e)=>{
                    
                 }else if(res.status === 200){
                     
-                    let modal = document.getElementById("modal");
+                    const modTabin = document.createElement("div");
+                    const modalDialog = document.createElement("div");
+                    const modalContent = document.createElement("div");
+                    const modalHeader = document.createElement("div");
+                    const modalTitle = document.createElement("h4");
+                    const btnClose = document.createElement("button");
+                    const modalBody = document.createElement("div");
+                    const modalFooter = document.createElement("div");
+                    
+            
+            
+                    modTabin.setAttribute("class", "modal fade");
+                    modTabin.setAttribute("id", "exampleModal");
+                    modTabin.setAttribute("aria-labelledby", "exampleModalLabel");
+                    modTabin.setAttribute("tabindex", "-1");
+                    modTabin.setAttribute("aria-hidden", "true");
+                    modalDialog.setAttribute("class", "modal-dialog");
+                    modalContent.setAttribute("class", "modal-content");
+                    modalHeader.setAttribute("class", "modal-header text-bg-success");
+                    modalTitle.setAttribute("class", "modal-title");
+                    modalTitle.setAttribute("id", "exampleModalLabel");
+                    btnClose.setAttribute("type", "button");
+                    btnClose.setAttribute("class", "btn-close");
+                    btnClose.setAttribute("data-bs-dismiss", "modal");
+                    btnClose.setAttribute("aria-label", "Close");
+                    modalBody.setAttribute("class", "modal-body row");
+                    modalFooter.setAttribute("class", "modal-footer");
+
                     let btnSesion = document.createElement("button");
                     let p = document.createElement("h2");
                     p.setAttribute("class", "msgExito");
@@ -275,9 +302,25 @@ form.addEventListener("submit", async (e)=>{
                     modal.innerHTML = "";
                     p.innerHTML = data.mensaje;
                     btnSesion.innerHTML = "Iniciar Sesion";
-                    modal.showModal();
-                    modal.appendChild(p)
-                    modal.appendChild(btnSesion);
+
+                    modalHeader.appendChild(modalTitle);
+                    modalHeader.appendChild(btnClose);
+                    modalBody.appendChild(p);
+                    modalFooter.appendChild(btnSesion);
+                    modalContent.appendChild(modalHeader);
+                    modalContent.appendChild(modalBody);
+                    modalContent.appendChild(modalFooter);
+                    modalDialog.appendChild(modalContent);
+                    modTabin.appendChild(modalDialog);
+            
+                    modalContainer.innerHTML = "";
+                    modalContainer.appendChild(modTabin);
+            
+                    const bootstrapModal = new bootstrap.Modal(modTabin);
+                    bootstrapModal.show();
+
+
+                   
                     btnSesion.addEventListener("click", (e)=>{
                         e.preventDefault();
                         if(e.target){

@@ -215,18 +215,53 @@ form.addEventListener("submit", (e) =>{
            try{
              if(res.status === 250){
 
-                   modal.innerHTML = "";
-                   modal.setAttribute("class", "text-bg-dark p-3")
+                const modTabin = document.createElement("div");
+                const modalDialog = document.createElement("div");
+                const modalContent = document.createElement("div");
+                const modalHeader = document.createElement("div");
+                const modalTitle = document.createElement("h4");
+                const btnClose = document.createElement("button");
+                const modalBody = document.createElement("div");
+                
+        
+        
+                modTabin.setAttribute("class", "modal fade");
+                modTabin.setAttribute("id", "exampleModal");
+                modTabin.setAttribute("aria-labelledby", "exampleModalLabel");
+                modTabin.setAttribute("tabindex", "-1");
+                modTabin.setAttribute("aria-hidden", "true");
+                modalDialog.setAttribute("class", "modal-dialog");
+                modalContent.setAttribute("class", "modal-content");
+                modalHeader.setAttribute("class", "modal-header text-bg-success");
+                modalTitle.setAttribute("class", "modal-title");
+                modalTitle.setAttribute("id", "exampleModalLabel");
+                btnClose.setAttribute("type", "button");
+                btnClose.setAttribute("class", "btn-close");
+                btnClose.setAttribute("data-bs-dismiss", "modal");
+                btnClose.setAttribute("aria-label", "Close");
+                modalBody.setAttribute("class", "modal-body row");
+                   
+                
                    let parrafoRecu = document.createElement("h2");
-                   let btn = document.createElement("button");
                    parrafoRecu.setAttribute("class", "SendEmail");
-                   btn.setAttribute("class", "btn-close");
-                   btn.setAttribute("type", "button")
+                   modalTitle.innerHTML = "Recuperar Contraseña"
                    parrafoRecu.innerHTML = datos.message;
-                   modal.appendChild(btn)
-                   modal.appendChild(parrafoRecu);
-                   modal.showModal();
+
                    NoPass.removeChild(loader);
+                   modalHeader.appendChild(modalTitle);
+                   modalHeader.appendChild(btnClose);
+                   modalBody.appendChild(parrafoRecu);
+                   modalContent.appendChild(modalHeader);
+                   modalContent.appendChild(modalBody);
+                   modalDialog.appendChild(modalContent);
+                   modTabin.appendChild(modalDialog);
+           
+                   modalContainer.innerHTML = "";
+                   modalContainer.appendChild(modTabin);
+           
+                   const bootstrapModal = new bootstrap.Modal(modTabin);
+                   bootstrapModal.show();
+           
                 }
                 
             }catch(err){

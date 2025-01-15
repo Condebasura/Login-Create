@@ -85,9 +85,7 @@ a , span{
   cursor: pointer;
 }
 
-.divFooter{
-  justify-content: space-around !important;
-}
+
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) { }

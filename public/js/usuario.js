@@ -211,7 +211,7 @@ const dataUsuario = async () => {
 
                 const form = document.createElement("form");
 
-                let ContainerImput = document.createElement("span");
+                let ContainerImput = document.createElement("div");
                 let divInputs = document.createElement("div");
                 
                 let divArchivo = document.createElement("div");
@@ -275,9 +275,9 @@ const dataUsuario = async () => {
                 btnClose.setAttribute("data-bs-dismiss", "modal");
                 btnClose.setAttribute("aria-label", "Close");
                 modalBody.setAttribute("class", "modal-body");
-                divFooter.setAttribute("class", "divFooter modal-footer")
+                
 
-                form.setAttribute("class", "formEditPerfil form my-2 mx-5 m-lg-5  p-5 rounded p-3 mb-2 bg-light text-dark");
+                form.setAttribute("class", "formEditPerfil form  rounded  bg-light text-dark");
                 divInputs.setAttribute("class", "divInputs");
 
                 divNombre.setAttribute("class", "form-floating");
@@ -310,7 +310,7 @@ const dataUsuario = async () => {
                 archivo.setAttribute("id", "formFile");
 
 
-               // falta dar formato responsivo al modal
+               
 
 
                 inputEmail.setAttribute("type", "email");
@@ -325,8 +325,8 @@ const dataUsuario = async () => {
                 divBtns.setAttribute("class", "ContentBtns")
                 btnCancelar.setAttribute("type", "button");
                 btnGuardar.setAttribute("type", "submit");
-                btnCancelar.setAttribute("class", "cancelar  bg-danger text-white");
-                btnGuardar.setAttribute("class", "guardar bg-success text-white");
+                btnCancelar.setAttribute("class", "cancelar btn btn-outline-danger text-center");
+                btnGuardar.setAttribute("class", "guardar btn btn-outline-success text-center ");
 
                 divNombre.appendChild(inputNombre);
                 divNombre.appendChild(labelNombre);
@@ -374,7 +374,6 @@ const dataUsuario = async () => {
                 modalBody.appendChild(form);
                 modalContent.appendChild(modalHeader);
                 modalContent.appendChild(modalBody);
-                modalContent.appendChild(divFooter);
                 modalDialog.appendChild(modalContent);
                 modTabin.appendChild(modalDialog);
 
