@@ -158,7 +158,7 @@ const validaNombre = () => {
         nombre.setCustomValidity("El campo no puede estar vacio contener numeros o caracteres especiales");
         return false;
     } else {
-       nombre.style.border = "";
+        nombre.style.border = "";
         nombre.setCustomValidity("");
         return true;
     }
@@ -197,150 +197,151 @@ email.addEventListener("input", validaEmail);
 const ValidarRegisPass = () => {
 
     if (password.value !== RePasword.value) {
-       password.style.border = "1.5px solid red";
-       RePasword.style.border = "1.5px solid red";
-       RePasword.setCustomValidity("Las contraseñas no coinciden !!");
+        password.style.border = "1.5px solid red";
+        RePasword.style.border = "1.5px solid red";
+        RePasword.setCustomValidity("Las contraseñas no coinciden !!");
 
     } else {
-       password.style.border = "1.5px solid  #4ee989";
-       RePasword.style.border = "1.5px solid  #4ee989";
-       RePasword.setCustomValidity("");
+        password.style.border = "1.5px solid  #4ee989";
+        RePasword.style.border = "1.5px solid  #4ee989";
+        RePasword.setCustomValidity("");
 
     }
     RePasword.reportValidity();
- };
+};
 
- RePasword.addEventListener("input", ValidarRegisPass);
+RePasword.addEventListener("input", ValidarRegisPass);
 
- 
- 
-form.addEventListener("submit", async (e)=>{
+
+
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
-     
 
-        let  formdata = new FormData(e.target);
-         formdata.append("nombre", nombre.value);
-         formdata.append("apellido", apellido.value);
-         formdata.append("email", email.value);
-         formdata.append("password", password.value);
-         
-        try{
 
-            if(ValidarRegisPass && validaNombre && validaApellido && validaEmail){
-               let res =  await fetch("/create", {
-                    method: "POST", 
-                    body: formdata
-                });
+    let formdata = new FormData(e.target);
+    formdata.append("nombre", nombre.value);
+    formdata.append("apellido", apellido.value);
+    formdata.append("email", email.value);
+    formdata.append("password", password.value);
 
-                const data = await res.json();
-                 
-                console.log(data);
-                if(res.status === 409){
-                    
-                    let modal = document.getElementById("modal");
-                    let p = document.createElement("h2");
-                    let ok = document.createElement("button");
-                    p.setAttribute("class", "msgError");
-                    ok.setAttribute("class", "ok");
-                    modal.innerHTML = "";
-                    p.innerHTML = data.mensaje;
-                    p.style.color = "red";
-                    ok.innerHTML = "OK";
-                    modal.showModal();
-                    modal.appendChild(p)
-                    modal.appendChild(ok)
-                    
-                    setTimeout(()=>{
+    try {
+
+        if (ValidarRegisPass && validaNombre && validaApellido && validaEmail) {
+            let res = await fetch("/create", {
+                method: "POST",
+                body: formdata
+            });
+
+            const data = await res.json();
+
+            console.log(data);
+            if (res.status === 409) {
+
+                let modal = document.getElementById("modal");
+                let p = document.createElement("h2");
+                let ok = document.createElement("button");
+                p.setAttribute("class", "msgError");
+                ok.setAttribute("class", "ok");
+                modal.innerHTML = "";
+                p.innerHTML = data.mensaje;
+                p.style.color = "red";
+                ok.innerHTML = "OK";
+                modal.showModal();
+                modal.appendChild(p)
+                modal.appendChild(ok)
+
+                setTimeout(() => {
+                    modal.close();
+                    modal.style.display = "none";
+                    window.location.reload();
+
+                }, 5000);
+                ok.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (e.target) {
                         modal.close();
                         modal.style.display = "none";
                         window.location.reload();
+                    }
+                })
 
-                    }, 5000);
-                    ok.addEventListener("click",(e)=>{
-                        e.preventDefault();
-                        if(e.target){
-                            modal.close();
-                            modal.style.display = "none";
-                            window.location.reload();
-                        }
-                    })
-                   
-                }else if(res.status === 200){
-                    
-                    const modTabin = document.createElement("div");
-                    const modalDialog = document.createElement("div");
-                    const modalContent = document.createElement("div");
-                    const modalHeader = document.createElement("div");
-                    const modalTitle = document.createElement("h4");
-                    const btnClose = document.createElement("button");
-                    const modalBody = document.createElement("div");
-                    const modalFooter = document.createElement("div");
-                    
-            
-            
-                    modTabin.setAttribute("class", "modal fade");
-                    modTabin.setAttribute("id", "exampleModal");
-                    modTabin.setAttribute("aria-labelledby", "exampleModalLabel");
-                    modTabin.setAttribute("tabindex", "-1");
-                    modTabin.setAttribute("aria-hidden", "true");
-                    modalDialog.setAttribute("class", "modal-dialog");
-                    modalContent.setAttribute("class", "modal-content");
-                    modalHeader.setAttribute("class", "modal-header text-bg-success");
-                    modalTitle.setAttribute("class", "modal-title");
-                    modalTitle.setAttribute("id", "exampleModalLabel");
-                    btnClose.setAttribute("type", "button");
-                    btnClose.setAttribute("class", "btn-close");
-                    btnClose.setAttribute("data-bs-dismiss", "modal");
-                    btnClose.setAttribute("aria-label", "Close");
-                    modalBody.setAttribute("class", "modal-body row");
-                    modalFooter.setAttribute("class", "modal-footer");
+            } else if (res.status === 200) {
 
-                    let btnSesion = document.createElement("button");
-                    let p = document.createElement("h2");
-                    p.setAttribute("class", "msgExito");
-                    btnSesion.setAttribute("class", "btnSesion");
-                    modal.innerHTML = "";
-                    p.innerHTML = data.mensaje;
-                    btnSesion.innerHTML = "Iniciar Sesion";
-
-                    modalHeader.appendChild(modalTitle);
-                    modalHeader.appendChild(btnClose);
-                    modalBody.appendChild(p);
-                    modalFooter.appendChild(btnSesion);
-                    modalContent.appendChild(modalHeader);
-                    modalContent.appendChild(modalBody);
-                    modalContent.appendChild(modalFooter);
-                    modalDialog.appendChild(modalContent);
-                    modTabin.appendChild(modalDialog);
-            
-                    modalContainer.innerHTML = "";
-                    modalContainer.appendChild(modTabin);
-            
-                    const bootstrapModal = new bootstrap.Modal(modTabin);
-                    bootstrapModal.show();
+                const modTabin = document.createElement("div");
+                const modalDialog = document.createElement("div");
+                const modalContent = document.createElement("div");
+                const modalHeader = document.createElement("div");
+                const modalTitle = document.createElement("h4");
+                const btnClose = document.createElement("button");
+                const modalBody = document.createElement("div");
+                const modalFooter = document.createElement("div");
 
 
-                   
-                    btnSesion.addEventListener("click", (e)=>{
-                        e.preventDefault();
-                        if(e.target){
-                            return window.location.href = "/";
-                        }
-                    })
-            
-            }}
-        }catch(error){
-    
-            return console.log(error)
+
+                modTabin.setAttribute("class", "modal fade");
+                modTabin.setAttribute("id", "exampleModal");
+                modTabin.setAttribute("aria-labelledby", "exampleModalLabel");
+                modTabin.setAttribute("tabindex", "-1");
+                modTabin.setAttribute("aria-hidden", "true");
+                modalDialog.setAttribute("class", "modal-dialog");
+                modalContent.setAttribute("class", "modal-content");
+                modalHeader.setAttribute("class", "modal-header text-bg-success");
+                modalTitle.setAttribute("class", "modal-title");
+                modalTitle.setAttribute("id", "exampleModalLabel");
+                btnClose.setAttribute("type", "button");
+                btnClose.setAttribute("class", "btn-close");
+                btnClose.setAttribute("data-bs-dismiss", "modal");
+                btnClose.setAttribute("aria-label", "Close");
+                modalBody.setAttribute("class", "modal-body row");
+                modalFooter.setAttribute("class", "modal-footer");
+
+                let btnSesion = document.createElement("button");
+                let p = document.createElement("h2");
+                p.setAttribute("class", "msgExito");
+                btnSesion.setAttribute("class", "btnSesion");
+                modal.innerHTML = "";
+                p.innerHTML = data.mensaje;
+                btnSesion.innerHTML = "Iniciar Sesion";
+
+                modalHeader.appendChild(modalTitle);
+                modalHeader.appendChild(btnClose);
+                modalBody.appendChild(p);
+                modalFooter.appendChild(btnSesion);
+                modalContent.appendChild(modalHeader);
+                modalContent.appendChild(modalBody);
+                modalContent.appendChild(modalFooter);
+                modalDialog.appendChild(modalContent);
+                modTabin.appendChild(modalDialog);
+
+                modalContainer.innerHTML = "";
+                modalContainer.appendChild(modTabin);
+
+                const bootstrapModal = new bootstrap.Modal(modTabin);
+                bootstrapModal.show();
+
+
+
+                btnSesion.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (e.target) {
+                        return window.location.href = "/";
+                    }
+                })
+
+            }
         }
-  
+    } catch (error) {
+
+        return console.log(error)
+    }
+
 
 });
 
-sesion.addEventListener("click", (e)=>{
-    if(e.target){
+sesion.addEventListener("click", (e) => {
+    if (e.target) {
         return window.location.href = "/";
-    }else{
+    } else {
         console.log("Error al redirigir")
     }
 })

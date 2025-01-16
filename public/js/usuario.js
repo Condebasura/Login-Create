@@ -267,7 +267,7 @@ const dataUsuario = async () => {
                 modTabin.setAttribute("aria-hidden", "true");
                 modalDialog.setAttribute("class", "modal-dialog");
                 modalContent.setAttribute("class", "modal-content");
-                modalHeader.setAttribute("class", "modal-header ");
+                modalHeader.setAttribute("class", "modal-header  text-bg-success");
                 modalTitle.setAttribute("class", "modal-title");
                 modalTitle.setAttribute("id", "exampleModalLabel");
                 btnClose.setAttribute("type", "button");
