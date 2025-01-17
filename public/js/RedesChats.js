@@ -6,7 +6,7 @@ const  LoadBoxesSeionStorage = () =>{
     const SaveBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     if(SaveBoxes){
 
-        // Reparar error de en la consola!!
+        
         SaveBoxes.forEach((boxtext ) => {
             console.log(boxtext)
             const box = document.createElement('div');
@@ -303,7 +303,7 @@ btnAddBox.addEventListener("click", (e)=>{
         btnaddRedChat.textContent = "+ add";
         header.appendChild(EliminarBox)
         newBox.appendChild(header);
-       // newBox.appendChild(btnaddRedChat);
+       
 ContRedChat.appendChild(newBox);
 let computeStyle = window.getComputedStyle(newBox);
 if(computeStyle.backgroundImage !== 'none'){

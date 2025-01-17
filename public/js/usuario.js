@@ -185,9 +185,8 @@ const dataUsuario = async () => {
 
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;
-            // CAMBIAR AL TERMINAR!!
-            // const imageURL = `https://sesions.hopto.org/uploads/${datos.imagen}`;
-            const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+
+            const imageURL = `https://sesions.hopto.org/uploads/${datos.imagen}`;
             const imagenResponse = await fetch(imageURL);
             const imgBlob = await imagenResponse.blob();
             const imagenObjectURL = URL.createObjectURL(imgBlob);
@@ -213,7 +212,7 @@ const dataUsuario = async () => {
 
                 let ContainerImput = document.createElement("div");
                 let divInputs = document.createElement("div");
-                
+
                 let divArchivo = document.createElement("div");
                 let labelArchivo = document.createElement("label")
                 let archivo = document.createElement("input");
@@ -223,7 +222,7 @@ const dataUsuario = async () => {
                 let divNombre = document.createElement("div");
                 let inputNombre = document.createElement("input");
                 let labelNombre = document.createElement("label");
-                
+
                 let divApellido = document.createElement("div");
                 let labelApellido = document.createElement("label");
                 let inputApellido = document.createElement("input");
@@ -275,7 +274,7 @@ const dataUsuario = async () => {
                 btnClose.setAttribute("data-bs-dismiss", "modal");
                 btnClose.setAttribute("aria-label", "Close");
                 modalBody.setAttribute("class", "modal-body");
-                
+
 
                 form.setAttribute("class", "formEditPerfil form  rounded  bg-light text-dark");
                 divInputs.setAttribute("class", "divInputs");
@@ -284,13 +283,13 @@ const dataUsuario = async () => {
                 inputNombre.setAttribute("class", "form-control");
                 inputNombre.setAttribute("id", "floatingInput");
                 labelNombre.setAttribute("for", "floatingInput");
-                
+
 
                 divApellido.setAttribute("class", "form-floating");
                 inputApellido.setAttribute("class", "form-control");
                 inputApellido.setAttribute("id", "floatingInput");
                 labelApellido.setAttribute("for", "floatingInput");
-                
+
                 divEmail.setAttribute("class", "form-floating");
                 inputEmail.setAttribute("class", "form-control");
                 inputEmail.setAttribute("id", "floatingInput");
@@ -301,8 +300,8 @@ const dataUsuario = async () => {
                 inputPass.setAttribute("class", " inputPass form-control ");
                 inputPass.setAttribute("id", "floatingInput");
                 labelPass.setAttribute("for", "floatingInput");
-                         
-                       
+
+
                 divArchivo.setAttribute("class", "mb-3");
                 labelArchivo.setAttribute("for", "formFile");
                 labelArchivo.setAttribute("class", "form-label");
@@ -310,7 +309,7 @@ const dataUsuario = async () => {
                 archivo.setAttribute("id", "formFile");
 
 
-               
+
 
 
                 inputEmail.setAttribute("type", "email");
@@ -320,7 +319,7 @@ const dataUsuario = async () => {
                 PrevArchivo.setAttribute("name", "Prevarchivo");
                 PrevArchivo.setAttribute("type", "hidden");
                 ContainerImput.setAttribute("class", "input_Container")
-                
+
 
                 divBtns.setAttribute("class", "ContentBtns")
                 btnCancelar.setAttribute("type", "button");
@@ -333,32 +332,26 @@ const dataUsuario = async () => {
 
                 divApellido.appendChild(inputApellido);
                 divApellido.appendChild(labelApellido);
-                
+
                 divEmail.appendChild(inputEmail);
                 divEmail.appendChild(labelEmail);
-                
+
                 divPass.appendChild(inputPass);
                 divPass.appendChild(labelPass);
                 divArchivo.appendChild(labelArchivo)
                 divArchivo.appendChild(archivo)
-                
-                
+
+
                 divInputs.appendChild(divNombre);
                 divInputs.appendChild(divApellido);
                 divInputs.appendChild(divEmail);
                 divInputs.appendChild(divPass);
-                
-                
-                
-                form.appendChild(divInputs);
-               
-                /*btnPass.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    if (e.target) {
-                        inputPass.style.display = "block";
 
-                    }
-                });*/
+
+
+                form.appendChild(divInputs);
+
+
 
                 ContainerImput.appendChild(archivo);
                 ContainerImput.appendChild(PrevArchivo);
@@ -366,7 +359,7 @@ const dataUsuario = async () => {
                 form.appendChild(ContainerImput);
                 divBtns.appendChild(btnCancelar);
                 divBtns.appendChild(btnGuardar);
-                
+
                 form.appendChild(divBtns);
 
                 modalHeader.appendChild(modalTitle);
@@ -445,10 +438,8 @@ const dataUsuario = async () => {
 
 
                             textName.innerHTML = `Redes de ${newdatos.nombre}`;
-                            // CAMBIAR AL TERMINAR
-                            //const imageURL = `https://sesions.hopto.org/uploads/${newdatos.imagen}`;
 
-                            const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+                            const imageURL = `https://sesions.hopto.org/uploads/${newdatos.imagen}`;
                             const imagenResponse = await fetch(imageURL);
                             const imgBlob = await imagenResponse.blob();
                             const imagenObjectURL = URL.createObjectURL(imgBlob);
@@ -477,8 +468,8 @@ const dataUsuario = async () => {
 
                 btnCancelar.addEventListener("click", (e) => {
                     if (e.target) {
-                return window.location.reload();
-                        
+                        return window.location.reload();
+
                     }
                 });
             }
