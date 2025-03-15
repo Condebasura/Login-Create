@@ -256,11 +256,16 @@ form.addEventListener("submit", (e) =>{
                    modalDialog.appendChild(modalContent);
                    modTabin.appendChild(modalDialog);
            
-                   modalContainer.innerHTML = "";
-                   modalContainer.appendChild(modTabin);
-           
-                   const bootstrapModal = new bootstrap.Modal(modTabin);
-                   bootstrapModal.show();
+                   modTabin.removeAttribute("inert");
+                   modTabin.removeAttribute("aria-hidden");
+                       const bootstrapModal = new bootstrap.Modal(modTabin);
+                               bootstrapModal.show();
+                          
+                       modTabin.addEventListener("hidden.bs.modal", ()=>{
+                         modalContainer.innerHTML = "";
+                         modTabin.setAttribute("aria-hidden", "true");
+                         modTabin.setAttribute("inert", "")
+                       })
            
                 }
                 

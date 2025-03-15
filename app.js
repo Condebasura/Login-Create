@@ -16,7 +16,7 @@ const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 
-const port = 443;
+const port = 3000;
 const corsOptions = {
     origin: '*' [`http://localhost:${port}/`, `http://localhost:${port}/create` , `http://localhost:${port}/layout` , `http://localhost:${port}/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
@@ -25,11 +25,11 @@ const corsOptions = {
   
 };
 
-const sslOptions = {
+/*const sslOptions = {
   key: fs.readFileSync('/home/ubuntu/privkey.pem'),
   cert: fs.readFileSync('/home/ubuntu/cert.pem'),
   ca: fs.readFileSync('/home/ubuntu/chain.pem'),
-};
+};*/
 
 
 
@@ -96,7 +96,7 @@ app.use(cookieParser());
 
 const upload = multer({dest: 'public/uploads/'});
 
-const httpsServer = https.createServer(sslOptions , app);
+///const httpsServer = https.createServer(sslOptions , app);
 
 app.get("/Delete" , bd.DeleteAll);
 app.get("/consulta" , bd.ConsultUser);
@@ -111,10 +111,13 @@ app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
+app.listen(port, ()=>{
+  console.log(`Servidor corriendo en http://localhost/${port}`)
+})
 
-httpsServer.listen(port, () => {
+/*httpsServer.listen(port, () => {
   console.log('Servidor HTTPS corriendo en https://sesions.hopto.org ');
-});
+});*/
 
 
 export {

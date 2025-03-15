@@ -237,30 +237,74 @@ form.addEventListener("submit", async (e) => {
             console.log(data);
             if (res.status === 409) {
 
-                let modal = document.getElementById("modal");
-                let p = document.createElement("h2");
-                let ok = document.createElement("button");
-                p.setAttribute("class", "msgError");
-                ok.setAttribute("class", "ok");
-                modal.innerHTML = "";
+                const modTabin = document.createElement("div");
+                const modalDialog = document.createElement("div");
+                const modalContent = document.createElement("div");
+                const modalHeader = document.createElement("div");
+                const modalTitle = document.createElement("h2");
+                const btnClose = document.createElement("button");
+                const modalBody = document.createElement("div");
+                const modalFooter = document.createElement("div");
+                
+                let p = document.createElement("h4");
+               
+
+
+
+                modTabin.setAttribute("class", "modal fade");
+                modTabin.setAttribute("id", "exampleModal");
+                modTabin.setAttribute("aria-labelledby", "exampleModalLabel");
+                modTabin.setAttribute("tabindex", "-1");
+                modTabin.setAttribute("aria-hidden", "true");
+                modalDialog.setAttribute("class", "modal-dialog");
+                modalContent.setAttribute("class", "modal-content");
+                modalHeader.setAttribute("class", "modal-header text-bg-danger");
+                modalTitle.setAttribute("class", "modal-title");
+                modalTitle.setAttribute("id", "exampleModalLabel");
+                btnClose.setAttribute("type", "button");
+                btnClose.setAttribute("class", "btn-close");
+                btnClose.setAttribute("data-bs-dismiss", "modal");
+                btnClose.setAttribute("aria-label", "Close");
+                modalBody.setAttribute("class", "modal-body row");
+                modalFooter.setAttribute("class", "modal-footer");
+                
+                p.setAttribute("class", "msgError p-2 link-danger");
+               
+                modalTitle.innerHTML = "Ups!!"
                 p.innerHTML = data.mensaje;
-                p.style.color = "red";
-                ok.innerHTML = "OK";
-                modal.showModal();
-                modal.appendChild(p)
-                modal.appendChild(ok)
+                
+              
+
+
+                modalHeader.appendChild(modalTitle);
+                modalHeader.appendChild(btnClose);
+                modalBody.appendChild(p);
+                
+               
+                modalContent.appendChild(modalHeader);
+                modalContent.appendChild(modalBody);
+                modalContent.appendChild(modalFooter);
+                modalDialog.appendChild(modalContent);
+                modTabin.appendChild(modalDialog);
+
+                modalContainer.innerHTML = "";
+                modalContainer.appendChild(modTabin);
+
+                const bootstrapModal = new bootstrap.Modal(modTabin);
+                bootstrapModal.show();
+               
+                
+
+               
 
                 setTimeout(() => {
-                    modal.close();
-                    modal.style.display = "none";
+                
                     window.location.reload();
 
                 }, 5000);
                 ok.addEventListener("click", (e) => {
                     e.preventDefault();
                     if (e.target) {
-                        modal.close();
-                        modal.style.display = "none";
                         window.location.reload();
                     }
                 })
@@ -298,7 +342,7 @@ form.addEventListener("submit", async (e) => {
                 let btnSesion = document.createElement("button");
                 let p = document.createElement("h2");
                 p.setAttribute("class", "msgExito");
-                btnSesion.setAttribute("class", "btnSesion");
+                btnSesion.setAttribute("class", "btnSesion  btn-primary");
                 modal.innerHTML = "";
                 p.innerHTML = data.mensaje;
                 btnSesion.innerHTML = "Iniciar Sesion";
