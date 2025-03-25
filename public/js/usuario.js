@@ -186,7 +186,7 @@ const dataUsuario = async () => {
             UserName.innerHTML = "Perfil";
             textName.innerHTML = `Redes de ${datos.nombre}`;
 
-            const imageURL = `http://localhost:3000/uploads/${datos.imagen}`;
+            const imageURL = `https://sessions.hopto.org/uploads/${datos.imagen}`;
             const imagenResponse = await fetch(imageURL);
             const imgBlob = await imagenResponse.blob();
             const imagenObjectURL = URL.createObjectURL(imgBlob);
@@ -439,7 +439,7 @@ const dataUsuario = async () => {
 
                             textName.innerHTML = `Redes de ${newdatos.nombre}`;
 
-                            const imageURL = `http://localhost:3000/uploads/${newdatos.imagen}`;
+                            const imageURL = `https://sessions.hopto.org/uploads/${newdatos.imagen}`;
                             const imagenResponse = await fetch(imageURL);
                             const imgBlob = await imagenResponse.blob();
                             const imagenObjectURL = URL.createObjectURL(imgBlob);
