@@ -22,7 +22,9 @@ Proyecto web que simula una red social móvil, con funcionalidades completas de 
 - **Frontend:**
   - HTML5
   - CSS3
+  - Bootstrap
   - JavaScript
+    
 
 - **Backend:**
   - Node.js
