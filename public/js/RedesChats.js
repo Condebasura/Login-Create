@@ -47,6 +47,7 @@ const  LoadBoxesSeionStorage = () =>{
             Whatsapp.textContent = "WhatsApp";
             Teleg.textContent = "Telegram";
             cardbody.setAttribute("class", "card-body");
+            cardbody.setAttribute("loading", "lazy");
             contSelect.setAttribute("class", "contSelect list-group list-group-flush my-3  text-center");
             tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action text-bg-success");
             insta.setAttribute("class", "selecRed list-group-item list-group-item-action");
@@ -336,6 +337,7 @@ Disc.textContent = "Discord";
 Whatsapp.textContent = "WhatsApp";
 Teleg.textContent = "Telegram";
 cardBody.setAttribute("class", "card-body");
+cardBody.setAttribute("loading", "lazy");
 contSelect.setAttribute("class", "contSelect list-group list-group-flush my-3 text-center");
 tituloRed.setAttribute("class", "titleRed list-group-item list-group-item-action text-bg-success");
 insta.setAttribute("class", "selecRed list-group-item list-group-item-action");
