@@ -1,7 +1,7 @@
 import  sqlite3  from "sqlite3";
 import bcrypt from "bcrypt";
 const saltRounds = 10;
-let bd = new sqlite3.Database('Users.bd');
+let bd = new sqlite3.Database('./data/Users.bd');
 
 bd.run('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT  , nombre TEXT , apellido TEXT , email TEXT  , password TEXT , imagen TEXT)');
 

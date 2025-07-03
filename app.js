@@ -16,7 +16,7 @@ const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const corsOptions = {
     origin: '*' [`sessions.hopto.org/`, `sessions.hopto.org/create` , `sessions.hopto.org/layout` , `sessions.hopto.org/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
@@ -113,8 +113,8 @@ app.get("/create", UserControllers.getCreate);
 app.post("/create", upload.single('Archivo'), UserControllers.CrarUsuario );
 app.put("/usuario/update", upload.single('archivo'), UserControllers.ActualizarPerfil);
 app.get("/logout", UserControllers.logout);
-app.listen(port,'localhost', ()=>{
-  console.log(`Servidor corriendo en http://localhost/${port}`)
+app.listen(port, ()=>{
+  console.log(`Servidor corriendo en el puerto ${port}`)
 })
 
 /*httpsServer.listen(port, () => {
