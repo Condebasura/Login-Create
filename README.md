@@ -2,7 +2,7 @@
 
 Proyecto web que simula una red social móvil, con funcionalidades completas de autenticación y perfil de usuario. Desarrollado como demostración de mis conocimientos en desarrollo web fullstack.
 
-🔗 **Demo en vivo:** [sessions.hopto.org](http://sessions.hopto.org)
+🔗 **Demo en vivo:** [sessions-jfdj.onrender.com](https://sessions-jfdj.onrender.com)
 
 ---
 
