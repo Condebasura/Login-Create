@@ -103,7 +103,7 @@ dotenv.config();
 			  margin:2em;
 			  box-shadow: 2px 2px 12px #444545;">
 			  <h2>En el siguiente enlace podras cambiar tu contraseña</h2>
-			  <a href= "https://sessions-jfdj.onrender.com/RecuPass?token=${token}"  style="border-style: none;
+			  <a href= "https://sessions.hopto.org/RecuPass?token=${token}"  style="border-style: none;
       background-color: rgba(28, 60, 202, 1);
       color: white;
       padding: 3px;
@@ -218,7 +218,7 @@ const postrePasword = async(req, res)=>{
 			  margin:2em;
 			  box-shadow: 2px 2px 12px #444545;">
 			  <h2>Hola ${usuario.nombre}!! gracias por ser parte de <b style="color: blue; letter-spacing: 2px;font-family: cursive , sant-serif;">Sesions</b>, se confirmó tu registro, esperamos que disfrutes de esta experiencia!! </h2>
-			  <a href="https://sessions-jfdj.onrender.com" style="border-style: none;
+			  <a href="https://sessions.hopto.org" style="border-style: none;
       background-color: rgba(28, 60, 202, 1);
       color: white;
       padding: 3px;

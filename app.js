@@ -16,7 +16,7 @@ const ScrT = "humedad-cancha-lodo";
 const __dirname = (process.platform === "win32")? fileURLToPath(new URL(".", import.meta.url)):path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 const corsOptions = {
     origin: '*' [`sessions.hopto.org/`, `sessions.hopto.org/create` , `sessions.hopto.org/layout` , `sessions.hopto.org/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
