@@ -18,7 +18,7 @@ const app = express();
 
 const port = process.env.PORT || 8081;
 const corsOptions = {
-    origin: '*' [`sessions.hopto.org/`, `sessions.hopto.org/create` , `sessions.hopto.org/layout` , `sessions.hopto.org/logout` ],  // Origen permitido (puedes usar * para permitir todo)
+    origin:  [`https://sessions.hopto.org/`, `https://sessions.hopto.org/create` , `https://sessions.hopto.org/layout` , `https://sessions.hopto.org/logout` ],  // Origen permitido (puedes usar * para permitir todo)
     methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type,Authorization',
      // Encabezados permitidos
